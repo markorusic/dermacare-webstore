@@ -5,7 +5,7 @@
     }
 
     $slug = get('slug');
-    $product = findProduct($slug, $products);
+    $product = findBySlug($slug, $products);
     if (is_null($product)) {
         abort(404);
     }

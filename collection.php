@@ -3,6 +3,11 @@
     if (!isPresent('slug')) {
         abort(400);
     }
+    $slug = get('slug');
+    $category = findBySlug($slug, $categories);
+    if (is_null($category)) {
+        abort(404);
+    }
 ?>
 
 <?php include 'partials/header.php' ?>
@@ -12,9 +17,11 @@
     <!-- Page title -->
     <div class="page-title-strip">
         <div class="container">
-            <h1 class="text-uppercase">Glow edition</h1>
+            <h1 class="text-uppercase"><?= $category['name'] ?></h1>
             <div class="breadcrumb-top">
-                <a href="index.php" class="breadcrumb-item">Dermacare</a> <span class="mlr">></span> <a href="glow-edition.php" class="breadcrumb-item">Glow Edition</a>
+                <a href="index.php" class="breadcrumb-item">Dermacare</a>
+                <span class="mlr">></span>
+                <a href="collection.php?slug=<?= $category['slug'] ?>" class="breadcrumb-item"><?= $category['name'] ?></a>
             </div>
         </div>
     </div>

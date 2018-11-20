@@ -1,74 +1,26 @@
 <?php include 'partials/header.php' ?>
 
-    <!-- Main Container -->
-    <main>
-
-        <!-- First Main Section .home-top -->
-        <section class="home-top">
-            <div class="container">
-                <div class="row">
-                    <div class="d-none d-md-block col-md-6">
-                        <article>
-
-                        </article>
+    <main id="about-me">
+		<div class="container pt-5">
+    		<div class="content-wrapper flex-center-col">
+	            <img class="author-avatar-lg" src="https://avatars1.githubusercontent.com/u/25515080?s=460&amp;v=4" alt="Avatar photo of website author.">	           
+	            <p class="author-info">
+	                <span class="bold uc"> Marko Rusic</span>
+	                </p><p><i class="fa fa-envelope-o" aria-hidden="true"></i> marko.rusic.22.17@ict.edu.rs</p>
+	                <p><i class="fa fa-id-card-o" aria-hidden="true"></i> Broj indeksa: 22/17</p>
+	            <p></p>
+	            <p class="text-center author-text">Imam 20 godina, iz Beograda sam, student druge godine Visoke ICT skole, smer Internet tehnologije. Aktivno se bavim veb programiranjem od treceg razreda srenje skole. Privi programski jezik koji me je ozbiljno zaniteresovao bio je Javascript, tako da sam se u pocetku fokusirao na front end, sve do trenutka u kom sam otkrio Node.js i uopste sve benefite vezane za bekend programiranje. Danas mogu reci za sebe da posedujem znanje u mnogim klijentskim i serverskim tehnologijama. </p>
+	            <div class="author-more-info text-center mt-3">
+                    <p>Korisini linkovi:</p>
+                    <div class="useful-links">
+                        <a href="https://github.com/markorusic" class="btn btn-derma" style="width: 250px;" target="_blank"> <i class="fa fa-github"></i> Github</a> 
+                        <a href="https://codepen.io/marko123/" class="btn btn-derma" style="width: 250px;" target="_blank"> <i class="fa fa-codepen"></i> Codepen</a> 
                     </div>
-                    <div class="col-md-6">
-                        <article>
-
-                        </article>
-                    </div>
+                    <hr>
+                    <p>Repozitorijum ovog sajta: <a class="repo black" href="https://github.com/markorusic/wp1" target="_blank">https://github.com/markorusic/wp1</a></p>
                 </div>
-            </div>
-        </section>
-
-        <!--About -->
-        <section class="product-section">
-            <div class="container">
-                <div class="heading-wrap text-center">
-                    <h3 class="d-inline-block bg-white">ABOUT</h3>
-                </div>
-                <div class="row">
-                    <div class="col-12 about-us-tet">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis dicta explicabo harum
-                            hic ipsum pariatur praesentium quam quidem ut vel. Aliquid eum in perferendis. Cumque
-                            officiis quae similique, sunt suscipit temporibus voluptatem? Adipisci aspernatur debitis
-                            dolore numquam, quae ratione. At debitis delectus dignissimos modi quae rerum sint tempora
-                            ullam vero?</p>
-
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut blanditiis consequuntur cumque
-                            dicta dolores ducimus exercitationem harum ipsum, maxime necessitatibus obcaecati odit optio
-                            placeat quasi quod repellendus repudiandae sit veritatis vitae voluptates. Adipisci,
-                            blanditiis cumque dignissimos doloribus harum, illum ipsa libero nobis non nostrum numquam
-                            odit officia quae quo quod repellendus similique temporibus, veritatis. Dolore ducimus
-                            explicabo laborum laudantium tenetur?</p>
-
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut blanditiis consequuntur cumque
-                            dicta dolores ducimus exercitationem harum ipsum, maxime necessitatibus obcaecati odit optio
-                            placeat quasi quod repellendus repudiandae sit veritatis vitae voluptates. Adipisci,
-                            blanditiis cumque dignissimos doloribus harum, illum ipsa libero nobis non nostrum numquam
-                            odit officia quae quo quod repellendus similique temporibus, veritatis. Dolore ducimus
-                            explicabo laborum laudantium tenetur?</p>
-
-
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut blanditiis consequuntur cumque
-                            dicta dolores ducimus exercitationem harum ipsum, maxime necessitatibus obcaecati odit optio
-                            placeat quasi quod repellendus repudiandae sit veritatis vitae voluptates. Adipisci,
-                            blanditiis cumque dignissimos doloribus harum, illum ipsa libero nobis non nostrum numquam
-                            odit officia quae quo quod repellendus similique temporibus, veritatis. Dolore ducimus
-                            explicabo laborum laudantium tenetur? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut blanditiis consequuntur cumque
-                            dicta dolores ducimus exercitationem harum ipsum, maxime necessitatibus obcaecati odit optio
-                            placeat quasi quod repellendus repudiandae sit veritatis vitae voluptates. Adipisci,
-                            blanditiis cumque dignissimos doloribus harum, illum ipsa libero nobis non nostrum numquam
-                            odit officia quae quo quod repellendus similique temporibus, veritatis. Dolore ducimus
-                            explicabo laborum laudantium tenetur?</p>
-
-
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-    <!-- Main Container END -->
+	        </div>	        
+    	</div>
+	</main>
 
 <?php include 'partials/footer.php' ?>

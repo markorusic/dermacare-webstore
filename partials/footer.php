@@ -48,9 +48,9 @@
     <div class="copyright">
         <div class="container text-center">
             <small class="text-center">
-                Dermacare© 2018. <a href="privacy-policy.php">Privacy Policy</a>
+                Dermacare© <?= date("Y") ?>.
             </small>
-            <p class="text-center">Site designed & developed by <a href="http://markorusic.github.io" target="_blank">Marko Rusic</a></p>
+            <p class="text-center">Site designed & developed by <a href="about.php">Marko Rusic</a></p>
         </div>
     </div>
 </footer>

@@ -1,11 +1,12 @@
 <?php
 
 $products = json_decode(file_get_contents('js/src/mockup/products.json'), true);
+$categories = json_decode(file_get_contents('js/src/mockup/categories.json'), true);
 
-function findProduct($slug, $products) {
-  foreach ($products as $i => $product) {
-    if($product['slug'] == $slug) {
-      return $product;
+function findBySlug($slug, $items) {
+  foreach ($items as $i => $item) {
+    if($item['slug'] == $slug) {
+      return $item;
     }
   }
   return null;
