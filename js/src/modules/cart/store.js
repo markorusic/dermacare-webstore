@@ -21,7 +21,7 @@ export default {
 
     this.eventBus.emit(ACTIONS.CART_PRODUCTS_LOADING)
 
-    productService.fetchAll(products => {
+    productService.fetchAll().then(products => {
       const productIds = products.map(({ id }) => id)
       cartItems = cartItems
         .filter(item => productIds.includes(item.id))

@@ -8,6 +8,6 @@ const wait = (data, time = 1500) =>
   })
 
 export default {
-  fetchAll: () => wait(productData),
+  fetchAll: () => wait(productData, 500),
   checkout: () => wait(true)
 }

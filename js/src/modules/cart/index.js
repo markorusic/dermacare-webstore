@@ -4,7 +4,7 @@ import view from './view'
 import { ACTIONS, SHIPPING_FEE, LOCALSTORAGE_ITEM } from './config'
 
 export default (() => {
-  const isCartPage = window.location.pathname === '/cart'
+  const isCartPage = window.location.pathname === '/korpa.php'
 
   let checkoutInProgress = false
 
@@ -78,7 +78,7 @@ export default (() => {
     }
 
     store.add({ id, quantity })
-    $.toaster('Uspešno dodato u <a href="/cart">korpu</a>!')
+    $.toaster('Uspešno dodato u <a href="/korpa.php">korpu</a>!')
   }
 
   function _handleRemoveFromCart(event) {

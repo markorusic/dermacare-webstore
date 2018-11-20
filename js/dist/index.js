@@ -892,7 +892,7 @@ var wait = function wait(data) {
 
 var _default = {
   fetchAll: function fetchAll() {
-    return wait(_mockupData.default);
+    return wait(_mockupData.default, 500);
   },
   checkout: function checkout() {
     return wait(true);
@@ -999,7 +999,7 @@ var _default = {
     });
     this.eventBus.emit(_config.ACTIONS.CART_PRODUCTS_LOADING);
 
-    _product.default.fetchAll(function (products) {
+    _product.default.fetchAll().then(function (products) {
       var productIds = products.map(function (_ref) {
         var id = _ref.id;
         return id;
@@ -1170,7 +1170,7 @@ var _config = require("./config");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _default = function () {
-  var isCartPage = window.location.pathname === '/cart';
+  var isCartPage = window.location.pathname === '/korpa.php';
   var checkoutInProgress = false;
   var $dom = {};
 
@@ -1253,7 +1253,7 @@ var _default = function () {
       quantity: quantity
     });
 
-    $.toaster('Uspešno dodato u <a href="/cart">korpu</a>!');
+    $.toaster('Uspešno dodato u <a href="/korpa.php">korpu</a>!');
   }
 
   function _handleRemoveFromCart(event) {

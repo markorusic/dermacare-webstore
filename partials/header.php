@@ -38,6 +38,7 @@
             <a class="navbar-brand" href="index.php"><img src="img/logo.svg" alt="Logo" class="img-fluid"></a>
             <div class="d-flex justify-content-center align-items-center flex-row">
                 <div class="shopping-cart-icon d-lg-none d-inline-block mr-3">
+                <a href="/korpa.php" class="shopping-cart-icon d-lg-none d-inline-block mr-3">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 28.98">
                         <defs>
                             <style>.cls-1 {
@@ -56,12 +57,13 @@
                             <g id="Layer_1-2" data-name="Layer 1">
                                 <path class="cls-1"
                                       d="M23.78,3.95a.57.57,0,0,0-.57-.54H18.4a6.8,6.8,0,0,0-11.79,0H1.79a.57.57,0,0,0-.57.54L0,28.38a.57.57,0,0,0,.57.6H24.43a.57.57,0,0,0,.57-.6ZM18.18,6.82a.57.57,0,1,1-.57-.57.57.57,0,0,1,.57.57ZM12.5,1.14A5.67,5.67,0,0,1,17,3.41H8A5.67,5.67,0,0,1,12.5,1.14ZM7.39,6.25a.57.57,0,1,1-.57.57.57.57,0,0,1,.57-.57ZM1.16,27.84,2.33,4.55H6.08a6.77,6.77,0,0,0-.4,2.27A1.72,1.72,0,1,0,7.07,5.15a5.54,5.54,0,0,1,.23-.6H17.7a5.58,5.58,0,0,1,.23.6,1.7,1.7,0,1,0,1.39,1.67,6.78,6.78,0,0,0-.4-2.27h3.75l1.17,23.3Zm0,0"/>
-                                <text x="40%" y="0" class="cls-2 text-center" text-anchor="middle"
-                                      transform="translate(1.82 21.99)">99
+                                <text x="40%" y ="0" class="cart-items-count cls-2 text-center" text-anchor="middle" transform="translate(1.82 21.99)">
+                                    
                                 </text>
                             </g>
                         </g>
                     </svg>
+                </a>
                 </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent"
@@ -89,7 +91,7 @@
                         <a class="nav-link" href="contact.php">Contact</a>
                     </li>
                 </ul>
-                <div class="shopping-cart-icon d-none d-lg-block">
+                <a href="/korpa.php" class="shopping-cart-icon d-none d-lg-block">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 28.98">
                         <defs>
                             <style>.cls-1 {
@@ -108,13 +110,13 @@
                             <g id="Layer_1-2" data-name="Layer 1">
                                 <path class="cls-1"
                                       d="M23.78,3.95a.57.57,0,0,0-.57-.54H18.4a6.8,6.8,0,0,0-11.79,0H1.79a.57.57,0,0,0-.57.54L0,28.38a.57.57,0,0,0,.57.6H24.43a.57.57,0,0,0,.57-.6ZM18.18,6.82a.57.57,0,1,1-.57-.57.57.57,0,0,1,.57.57ZM12.5,1.14A5.67,5.67,0,0,1,17,3.41H8A5.67,5.67,0,0,1,12.5,1.14ZM7.39,6.25a.57.57,0,1,1-.57.57.57.57,0,0,1,.57-.57ZM1.16,27.84,2.33,4.55H6.08a6.77,6.77,0,0,0-.4,2.27A1.72,1.72,0,1,0,7.07,5.15a5.54,5.54,0,0,1,.23-.6H17.7a5.58,5.58,0,0,1,.23.6,1.7,1.7,0,1,0,1.39,1.67,6.78,6.78,0,0,0-.4-2.27h3.75l1.17,23.3Zm0,0"/>
-                                <text x="40%" y="0" class="cls-2 text-center" text-anchor="middle"
-                                      transform="translate(1.82 21.99)">99
+                                <text x="40%" y="0" class="cart-items-count cls-2 text-center" text-anchor="middle"
+                                      transform="translate(1.82 21.99)">
                                 </text>
                             </g>
                         </g>
                     </svg>
-                </div>
+                </a>
             </div>
         </nav>
     </div>
