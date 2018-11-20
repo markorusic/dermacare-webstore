@@ -6,7 +6,7 @@ import { ACTIONS, SHIPPING_FEE, LC_CART_KEY } from './config'
 const { CART_PRODUCTS_LOADING, CART_PRODUCTS_LOADED, CART_UPDATED } = ACTIONS
 
 export default (() => {
-  const isCartPage = window.location.pathname === '/korpa.php'
+  const isCartPage = window.location.pathname === '/cart.php'
 
   let checkoutInProgress = false
 
@@ -81,7 +81,7 @@ export default (() => {
     }
 
     store.add({ id, quantity })
-    $.toaster('Uspešno dodato u <a href="/korpa.php">korpu</a>!')
+    $.toaster('Uspešno dodato u <a href="/cart.php">korpu</a>!')
   }
 
   function _handleRemoveFromCart(event) {

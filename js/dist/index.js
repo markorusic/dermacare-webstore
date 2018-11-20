@@ -1353,7 +1353,7 @@ var CART_PRODUCTS_LOADING = _config.ACTIONS.CART_PRODUCTS_LOADING,
     CART_UPDATED = _config.ACTIONS.CART_UPDATED;
 
 var _default = function () {
-  var isCartPage = window.location.pathname === '/korpa.php';
+  var isCartPage = window.location.pathname === '/cart.php';
   var checkoutInProgress = false;
   var $dom = {};
 
@@ -1437,7 +1437,7 @@ var _default = function () {
       quantity: quantity
     });
 
-    $.toaster('Uspešno dodato u <a href="/korpa.php">korpu</a>!');
+    $.toaster('Uspešno dodato u <a href="/cart.php">korpu</a>!');
   }
 
   function _handleRemoveFromCart(event) {

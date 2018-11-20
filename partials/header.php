@@ -30,7 +30,7 @@
             </a>
             <div class="d-flex justify-content-center align-items-center flex-row">
                 <div class="shopping-cart-icon d-lg-none d-inline-block mr-3">
-                <a href="/korpa.php" class="shopping-cart-icon d-lg-none d-inline-block mr-3">
+                <a href="/cart.php" class="shopping-cart-icon d-lg-none d-inline-block mr-3">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 28.98">
                         <defs>
                             <style>.cls-1 {
@@ -80,7 +80,7 @@
                         <a class="nav-link" href="contact.php">Contact</a>
                     </li>
                 </ul>
-                <a href="/korpa.php" class="shopping-cart-icon d-none d-lg-block">
+                <a href="/cart.php" class="shopping-cart-icon d-none d-lg-block">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 28.98">
                         <defs>
                             <style>.cls-1 {
