@@ -10,8 +10,8 @@
                     </div>
 
                     <p class="text-center">
-                        <span class="mb-1 d-block">Maenzijeva 23, Beograd</span>
-                        <span><a href="mailto:office@dermaceutical.rs" style="color:white;">office@dermaceutical.rs</a></span>
+                        <span class="mb-1 d-block">Adresa 213a, Beograd</span>
+                        <span><a href="mailto:marko.rusic.22.17@ict.edu.rs" style="color:white;">marko.rusic.22.17@ict.edu.rs</a></span>
                     </p>
                 </div>
             </div>
@@ -23,10 +23,9 @@
                     </div>
 
                     <ul class="list-reset text-center">
-                        <li class="d-inline-block mr-40"><a href="https://www.facebook.com/Dermaceutical-Srbija-353791661794302/" target="_blank"><img src="img/fb.svg" alt="facebook icon"></a></li>
-                        <li class="d-inline-block"><a href="https://www.instagram.com/dermaceutical.srbija" target="_blank"><img src="img/insta.svg" alt="facebook icon"></a>
-                        </li>
-                      <!--  <li class="d-inline-block"><a href="#"><img src="img/twitter.svg" alt="facebook icon"></a></li>-->
+                        <li class="d-inline-block mr-40"><a href="#"><img src="img/fb.svg" alt="facebook icon"></a></li>
+                        <li class="d-inline-block mr-40"><a href="#"><img src="img/insta.svg" alt="instagram icon"></a></li>
+                       <li class="d-inline-block"><a href="#"><img src="img/twitter.svg" alt="twitter icon"></a></li>
                     </ul>
                 </div>
             </div>
@@ -49,9 +48,9 @@
     <div class="copyright">
         <div class="container text-center">
             <small class="text-center">
-                Dermaceutical© 2018. <a href="privacy-policy.php">Privacy Policy</a>
+                Dermacare© 2018. <a href="privacy-policy.php">Privacy Policy</a>
             </small>
-            <p class="text-center">Site designed & developed by <a href="http://mineweb.rs">MineWeb</a></p>
+            <p class="text-center">Site designed & developed by <a href="http://markorusic.github.io" target="_blank">Marko Rusic</a></p>
         </div>
     </div>
 </footer>
@@ -74,9 +73,6 @@
     src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
-
-<!-- OWL CAROUSEL -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 
 <!-- Main JS -->
 <script src="js/dist/index.js"></script>

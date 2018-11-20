@@ -1,3 +1,10 @@
+<?php
+    include 'utils.php';
+    if (!isPresent('slug')) {
+        abort(400);
+    }
+?>
+
 <?php include 'partials/header.php' ?>
 
 <!-- Main Container -->
@@ -5,146 +12,35 @@
     <!-- Page title -->
     <div class="page-title-strip">
         <div class="container">
-            <h1 class="text-uppercase">Collection</h1>
+            <h1 class="text-uppercase">Glow edition</h1>
             <div class="breadcrumb-top">
-                <a href="index.php" class="breadcrumb-item">Dermaceutical</a> <span class="mlr">></span> <a
-                        href="collection.php" class="breadcrumb-item">Collection</a>
+                <a href="index.php" class="breadcrumb-item">Dermacare</a> <span class="mlr">></span> <a href="glow-edition.php" class="breadcrumb-item">Glow Edition</a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="product-filter d-flex flex-column justify-content-md-between flex-md-row num-of-showed-products">
+            <p>Prikazano <span class="currently-showing"></span> od ukupno <span class="total"></span> proizvoda</p>
+
+            <div>
+                <form class="product-ordering">
+                    <select name="orderby" class="orderby">
+                        <option value="date" selected="selected">Sortiraj po datumu dodavanja</option>
+                        <option value="price">Sortiraj po ceni: od manje ka većoj</option>
+                        <option value="price-desc">Sortiraj po ceni: od veće ka manjoj</option>
+                    </select>
+                </form>
             </div>
         </div>
     </div>
 
-    <!-- Product categories -->
-    <section class="product-section category-section">
+
+    <!-- Product list -->
+    <section class="product-section">
         <div class="container">
-            <div class="row">
-                <div class="col-6 col-md-4 col-lg-3">
-                    <article class="product-preview-article">
-                        <div class="position-relative product-image-preview d-flex justify-content-center align-items-center flex-column">
-                            <img src="img/glow.jpg" alt="" class="img-fluid">
-                            <div class="image-overlay position-absolute"></div>
-                            <div class="position-absolute box-block d-flex justify-content-center align-items-center flex-column">
-                                <a class="text-center" href="glow-edition.php">
-                                    CLEAN & CARE
-                                </a>
-                            </div>
-                        </div>
-                        <div class="text-center">
-                            <h4><a href="glow-edition.php">CLEAN & CARE</a></h4>
-                        </div>
-                    </article>
-                </div>
-                <div class="col-6 col-md-4 col-lg-3">
-                    <article class="product-preview-article">
-                        <div class="position-relative product-image-preview d-flex justify-content-center align-items-center flex-column">
-                            <img src="img/glow.jpg" alt="" class="img-fluid">
-                            <div class="image-overlay position-absolute"></div>
-                            <div class="position-absolute box-block d-flex justify-content-center align-items-center flex-column">
-                                <a class="text-center" href="glow-edition.php">
-                                   BOOST
-                                </a>
-                            </div>
-                        </div>
-                        <div class="text-center">
-                            <h4><a href="glow-edition.php">BOOST</a></h4>
-                        </div>
-                    </article>
-                </div>
-                <div class="col-6 col-md-4 col-lg-3">
-                    <article class="product-preview-article">
-                        <div class="position-relative product-image-preview d-flex justify-content-center align-items-center flex-column">
-                            <img src="img/glow.jpg" alt="" class="img-fluid">
-                            <div class="image-overlay position-absolute"></div>
-                            <div class="position-absolute box-block d-flex justify-content-center align-items-center flex-column">
-                                <a class="text-center" href="glow-edition.php">
-                                    SKIN CARE
-                                </a>
-                            </div>
-                        </div>
-                        <div class="text-center">
-                            <h4><a href="glow-edition.php">SKIN CARE</a></h4>
-                        </div>
-                    </article>
-                </div>
-                <div class="col-6 col-md-4 col-lg-3">
-                    <article class="product-preview-article">
-                        <div class="position-relative product-image-preview d-flex justify-content-center align-items-center flex-column">
-                            <img src="img/glow.jpg" alt="" class="img-fluid">
-                            <div class="image-overlay position-absolute"></div>
-                            <div class="position-absolute box-block d-flex justify-content-center align-items-center flex-column">
-                                <a class="text-center" href="glow-edition.php">
-                                  EYE CARE
-                                </a>
-                            </div>
-                        </div>
-                        <div class="text-center">
-                            <h4><a href="glow-edition.php">EYE CARE</a></h4>
-                        </div>
-                    </article>
-                </div>
-                <div class="col-6 col-md-4 col-lg-3">
-                    <article class="product-preview-article">
-                        <div class="position-relative product-image-preview d-flex justify-content-center align-items-center flex-column">
-                            <img src="img/glow.jpg" alt="" class="img-fluid">
-                            <div class="image-overlay position-absolute"></div>
-                            <div class="position-absolute box-block d-flex justify-content-center align-items-center flex-column">
-                                <a class="text-center" href="glow-edition.php">
-                                    EYE CARE
-                                </a>
-                            </div>
-                        </div>
-                        <div class="text-center">
-                            <h4><a href="glow-edition.php">EYE CARE</a></h4>
-                        </div>
-                    </article>
-                </div>
-                <div class="col-6 col-md-4 col-lg-3">
-                    <article class="product-preview-article">
-                        <div class="position-relative product-image-preview d-flex justify-content-center align-items-center flex-column">
-                            <img src="img/glow.jpg" alt="" class="img-fluid">
-                            <div class="image-overlay position-absolute"></div>
-                            <div class="position-absolute box-block d-flex justify-content-center align-items-center flex-column">
-                                <a class="text-center" href="glow-edition.php">
-                                    EYE CARE
-                                </a>
-                            </div>
-                        </div>
-                        <div class="text-center">
-                            <h4><a href="glow-edition.php">EYE CARE</a></h4>
-                        </div>
-                    </article>
-                </div>
-                <div class="col-6 col-md-4 col-lg-3">
-                    <article class="product-preview-article">
-                        <div class="position-relative product-image-preview d-flex justify-content-center align-items-center flex-column">
-                            <img src="img/glow.jpg" alt="" class="img-fluid">
-                            <div class="image-overlay position-absolute"></div>
-                            <div class="position-absolute box-block d-flex justify-content-center align-items-center flex-column">
-                                <a class="text-center" href="glow-edition.php">
-                                    EYE CARE
-                                </a>
-                            </div>
-                        </div>
-                        <div class="text-center">
-                            <h4><a href="glow-edition.php">EYE CARE</a></h4>
-                        </div>
-                    </article>
-                </div>
-                <div class="col-6 col-md-4 col-lg-3">
-                    <article class="product-preview-article">
-                        <div class="position-relative product-image-preview d-flex justify-content-center align-items-center flex-column">
-                            <img src="img/glow.jpg" alt="" class="img-fluid">
-                            <div class="image-overlay position-absolute"></div>
-                            <div class="position-absolute box-block d-flex justify-content-center align-items-center flex-column">
-                                <a class="text-center" href="glow-edition.php">
-                                    EYE CARE
-                                </a>
-                            </div>
-                        </div>
-                        <div class="text-center">
-                            <h4><a href="glow-edition.php">EYE CARE</a></h4>
-                        </div>
-                    </article>
-                </div>
+            <div class="row" id="product-list"></div>
+            <div class="heading-wrap text-center lmb-wrap" style="display: none;">
+                <h3 class="d-inline-block bg-white"><a id="loadMore" class="load-more-btn">Učitaj još</a></h3>
             </div>
         </div>
     </section>

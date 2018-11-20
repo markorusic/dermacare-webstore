@@ -1,6 +1,6 @@
-import productService from '../../shared/services/product'
+import productService from '../product/productService'
 import EventEmitter from '../../shared/utils/EventEmitter'
-import { ACTIONS, LOCALSTORAGE_ITEM, SHIPPING_FEE } from './config'
+import { ACTIONS, LC_CART_KEY, SHIPPING_FEE } from './config'
 
 export default {
   eventBus: new EventEmitter(),
@@ -8,7 +8,7 @@ export default {
   initCart() {
     let cartItems = []
     try {
-      cartItems = JSON.parse(localStorage.getItem(LOCALSTORAGE_ITEM)) || []
+      cartItems = JSON.parse(localStorage.getItem(LC_CART_KEY)) || []
     } catch (e) {}
 
     if (cartItems.length === 0) {
@@ -38,7 +38,7 @@ export default {
   },
   setItems(cart) {
     this.cart = [...cart]
-    localStorage.setItem(LOCALSTORAGE_ITEM, JSON.stringify(this.cart))
+    localStorage.setItem(LC_CART_KEY, JSON.stringify(this.cart))
     this.eventBus.emit(ACTIONS.CART_UPDATED, this.cart)
   },
   getMiniCart() {

@@ -59,6 +59,10 @@ export default (() => {
       }
     })
 
+    _renderEffects()
+  }
+
+  function _renderEffects() {
     pagination.handleLoadMoreButton()
     _cacheProducts()
   }
@@ -81,6 +85,7 @@ export default (() => {
     init() {
       _cacheDom()
       _bindEvents()
+      _renderEffects()
     }
   }
 })()

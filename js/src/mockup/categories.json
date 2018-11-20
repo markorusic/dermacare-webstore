@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "GLOW EDITION",
+    "slug": "glow-edition",
+    "main_photo": "https://dermaceutical.rs/uploads/2018/06/gFrE111902.jpg"
+  },
+  {
+    "id": 2,
+    "name": "CLEAN & CLEAR",
+    "slug": "clean-and-clear",
+    "main_photo": "https://dermaceutical.rs/uploads/2018/06/0YASU12803.jpg"
+  },
+  {
+    "id": 3,
+    "name": "BOOST",
+    "slug": "boost",
+    "main_photo": "https://dermaceutical.rs/uploads/2018/06/T0RI612903.jpg"
+  },
+  {
+    "id": 4,
+    "name": "SKIN CARE",
+    "slug": "skin-care",
+    "main_photo": "https://dermaceutical.rs/uploads/2018/06/BSF1N12804.jpg"
+  }
+]

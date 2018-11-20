@@ -1,7 +1,9 @@
-import productService from '../../shared/services/product'
+import productService from '../product/productService'
 import store from './store'
 import view from './view'
-import { ACTIONS, SHIPPING_FEE, LOCALSTORAGE_ITEM } from './config'
+import { ACTIONS, SHIPPING_FEE, LC_CART_KEY } from './config'
+
+const { CART_PRODUCTS_LOADING, CART_PRODUCTS_LOADED, CART_UPDATED } = ACTIONS
 
 export default (() => {
   const isCartPage = window.location.pathname === '/korpa.php'
@@ -11,19 +13,19 @@ export default (() => {
   const $dom = {}
 
   function _initCart() {
-    store.eventBus.on(ACTIONS.CART_PRODUCTS_LOADING, () => {
+    store.eventBus.on(CART_PRODUCTS_LOADING, () => {
       if (isCartPage) {
         view.renderLoader()
       }
     })
-    store.eventBus.on(ACTIONS.CART_PRODUCTS_LOADED, cart => {
+    store.eventBus.on(CART_PRODUCTS_LOADED, cart => {
       if (isCartPage) {
         view.initialRender(cart)
         _cahceCartDom()
         _bindCartEvents()
       }
     })
-    store.eventBus.on(ACTIONS.CART_UPDATED, cart => {
+    store.eventBus.on(CART_UPDATED, cart => {
       $dom.cartItemsCount.text(store.countItems())
       if (isCartPage) {
         if (cart.length === 0) {
@@ -65,6 +67,7 @@ export default (() => {
   }
 
   function _handleAddToCart(event) {
+    event.preventDefault()
     const $btn = $(event.target).closest('[data-product-id]')
     const id = $btn.data().productId
     let quantity = 1
@@ -124,20 +127,17 @@ export default (() => {
     productService
       .checkout()
       .then(() => {
-        localStorage.removeItem(LOCALSTORAGE_ITEM)
+        localStorage.removeItem(LC_CART_KEY)
         $form.fadeOut(() => {
           $modalBody.addClass('flex-center-col').html(view.successfulyCheckout)
         })
-        $dom.orderModal.on('hide.bs.modal', () => {
-          store.clear()
-        })
+        $dom.orderModal.on('hide.bs.modal', () => store.clear())
         checkoutInProgress = false
       })
-      .catch(error => {
+      .catch(() => {
         checkoutInProgress = false
         $btn.css({ 'pointer-events': 'auto' }).text(btnTextBefore)
         alert('Doslo je do greske!')
-        console.log(error)
       })
   }
 

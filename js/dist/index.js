@@ -369,6 +369,26 @@ var _default = function () {
 }();
 
 exports.default = _default;
+},{}],"src/modules/cart/config.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.ACTIONS = exports.LC_CART_KEY = exports.SHIPPING_FEE = exports.CURRENCY = void 0;
+var CURRENCY = 'RSD';
+exports.CURRENCY = CURRENCY;
+var SHIPPING_FEE = 0;
+exports.SHIPPING_FEE = SHIPPING_FEE;
+var LC_CART_KEY = 'cart-items';
+exports.LC_CART_KEY = LC_CART_KEY;
+var ACTIONS = {
+  CART_UPDATED: 'cart:updated',
+  CART_PRODUCTS_LOADING: 'cart:loading',
+  CART_PRODUCTS_LOADED: 'cart:products-loaded',
+  EMPTY_CART: 'cart:empty'
+};
+exports.ACTIONS = ACTIONS;
 },{}],"src/shared/utils/index.js":[function(require,module,exports) {
 "use strict";
 
@@ -380,6 +400,8 @@ exports.default = void 0;
 var _fakeHttp = _interopRequireDefault(require("../services/fakeHttp"));
 
 var _pagination = _interopRequireDefault(require("./pagination"));
+
+var _config = require("../../modules/cart/config");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -419,7 +441,9 @@ var _default = function () {
     $dom.videoModal = $('#videoModal');
     $dom.videoIframe = $dom.videoModal.find('iframe'); // Contact form
 
-    $dom.contactForm = $('#contact-form');
+    $dom.contactForm = $('#contact-form'); // currency span
+
+    $dom.currency = $('.currency');
   }
 
   function _initContactForm() {
@@ -460,6 +484,8 @@ var _default = function () {
       _initMediaVideoModal();
 
       _pagination.default.init();
+
+      $dom.currency.text(_config.CURRENCY);
     },
     gallery: gallery,
     helpers: helpers
@@ -467,7 +493,29 @@ var _default = function () {
 }();
 
 exports.default = _default;
-},{"../services/fakeHttp":"src/shared/services/fakeHttp.js","./pagination":"src/shared/utils/pagination.js"}],"src/modules/product/ordering.js":[function(require,module,exports) {
+},{"../services/fakeHttp":"src/shared/services/fakeHttp.js","./pagination":"src/shared/utils/pagination.js","../../modules/cart/config":"src/modules/cart/config.js"}],"src/shared/utils/url.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _default = {
+  getParams: function getParams() {
+    var search = location.search.substring(1);
+
+    try {
+      return JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"') + '"}');
+    } catch (_unused) {
+      return {};
+    }
+  },
+  getParam: function getParam(param) {
+    return this.getParams()[param];
+  }
+};
+exports.default = _default;
+},{}],"src/modules/product/ordering.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -543,6 +591,10 @@ var _default = function () {
       }
     });
 
+    _renderEffects();
+  }
+
+  function _renderEffects() {
     _pagination.default.handleLoadMoreButton();
 
     _cacheProducts();
@@ -570,31 +622,70 @@ var _default = function () {
       _cacheDom();
 
       _bindEvents();
+
+      _renderEffects();
     }
   };
 }();
 
 exports.default = _default;
-},{"../../shared/utils/pagination":"src/shared/utils/pagination.js"}],"src/modules/cart/config.js":[function(require,module,exports) {
+},{"../../shared/utils/pagination":"src/shared/utils/pagination.js"}],"src/shared/utils/View.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ACTIONS = exports.LOCALSTORAGE_ITEM = exports.SHIPPING_FEE = exports.CURRENCY = void 0;
-var CURRENCY = 'RSD';
-exports.CURRENCY = CURRENCY;
-var SHIPPING_FEE = 0;
-exports.SHIPPING_FEE = SHIPPING_FEE;
-var LOCALSTORAGE_ITEM = 'cart-items';
-exports.LOCALSTORAGE_ITEM = LOCALSTORAGE_ITEM;
-var ACTIONS = {
-  CART_UPDATED: 'cart:updated',
-  CART_PRODUCTS_LOADING: 'cart:loading',
-  CART_PRODUCTS_LOADED: 'cart:products-loaded',
-  EMPTY_CART: 'cart:empty'
-};
-exports.ACTIONS = ACTIONS;
+exports.default = void 0;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var View =
+/*#__PURE__*/
+function () {
+  function View(getHTML) {
+    _classCallCheck(this, View);
+
+    this.getHTML = getHTML;
+  }
+
+  _createClass(View, [{
+    key: "render",
+    value: function render() {
+      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
+
+      View.render.apply(View, [this.getHTML].concat(args));
+    }
+  }, {
+    key: "renderList",
+    value: function renderList() {
+      for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+        args[_key2] = arguments[_key2];
+      }
+
+      View.renderList.apply(View, [this.getHTML].concat(args));
+    }
+  }], [{
+    key: "render",
+    value: function render(getHTML, item, selector) {
+      $(selector).html(getHTML(item));
+    }
+  }, {
+    key: "renderList",
+    value: function renderList(getHTML, items, selector) {
+      $(selector).html(items.map(getHTML).join(''));
+    }
+  }]);
+
+  return View;
+}();
+
+exports.default = View;
 },{}],"src/modules/product/view.js":[function(require,module,exports) {
 "use strict";
 
@@ -605,25 +696,25 @@ exports.default = void 0;
 
 var _config = require("../cart/config");
 
-var _default = {
-  getProductHTML: function getProductHTML(_ref, index) {
-    var id = _ref.id,
-        name = _ref.name,
-        price = _ref.price,
-        slug = _ref.slug,
-        main_photo = _ref.main_photo,
-        category = _ref.category,
-        created_at = _ref.created_at;
-    return "\n    <div\n      class=\"col-6 col-md-4 col-lg-3\"\n      data-pageable\n      data-product-id=\"".concat(id, "\"\n      data-price=\"").concat(price, "\"\n      data-created-at=\"").concat(created_at, "\"\n      style=\"display:").concat(index > 7 ? 'none' : 'block', ";\"\n    >\n      <article class=\"product-preview-article\">\n          <div class=\"product-image-preview position-relative\">\n              <a href=\"/product/").concat(slug, "\">\n                  <img src=\"").concat(main_photo, "\" alt=\"").concat(name, "\" class=\"img-fluid\">\n              </a>\n              <button data-product-id=\"").concat(id, "\" class=\"btn-add-to-cart d-flex justify-content-between preview-product-atc\">\n                <span>Dodaj u korpu</span>\n                <span class=\"btn-add-to-cart-plus\"><img src=\"img/plus.svg\" alt=\"Dodaj u korpu\"></span>\n              </button>\n          </div>\n          <div class=\"d-flex flex-column justify-content-md-between flex-md-row\">\n              <h4><a href=\"/product/").concat(slug, "\">").concat(name, "</a></h4>\n              <h4>").concat(price, "  ").concat(_config.CURRENCY, "</h4>\n          </div>\n          ").concat(category && function () {
-      return "\n              <h6 class=\"pb-1\">\n                <a style=\"color: inherit;\" href=\"/category/".concat(category.slug, "\">\n                  ").concat(category.name, "\n                </a>\n              </h6>\n          ");
-    }(), "\n      </article>\n    </div>\n  ");
-  },
-  render: function render(products, selector) {
-    $(selector).html(products.map(this.getProductHTML).join(''));
-  }
-};
+var _View = _interopRequireDefault(require("../../shared/utils/View"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _default = new _View.default(function (_ref, index) {
+  var id = _ref.id,
+      name = _ref.name,
+      price = _ref.price,
+      slug = _ref.slug,
+      main_photo = _ref.main_photo,
+      category = _ref.category,
+      created_at = _ref.created_at;
+  return "\n    <div\n      class=\"col-6 col-md-4 col-lg-3\"\n      data-pageable\n      data-product-id=\"".concat(id, "\"\n      data-price=\"").concat(price, "\"\n      data-created-at=\"").concat(created_at, "\"\n      style=\"display:").concat(index > 7 ? 'none' : 'block', ";\"\n    >\n      <article class=\"product-preview-article\">\n          <div class=\"product-image-preview position-relative\">\n              <a href=\"/product.php?slug=").concat(slug, "\">\n                  <img src=\"").concat(main_photo, "\" alt=\"").concat(name, "\" class=\"img-fluid\">\n              </a>\n              <button data-product-id=\"").concat(id, "\" class=\"btn-add-to-cart d-flex justify-content-between preview-product-atc\">\n                <span>Dodaj u korpu</span>\n                <span class=\"btn-add-to-cart-plus\"><img src=\"img/plus.svg\" alt=\"Dodaj u korpu\"></span>\n              </button>\n          </div>\n          <div class=\"d-flex flex-column justify-content-md-between flex-md-row\">\n              <h4><a href=\"/product/").concat(slug, "\">").concat(name, "</a></h4>\n              <h4>").concat(price, "  ").concat(_config.CURRENCY, "</h4>\n          </div>\n          ").concat(category && function () {
+    return "\n              <h6 class=\"pb-1\">\n                <a style=\"color: inherit;\" href=\"/collection.php?slug=".concat(category.slug, "\">\n                  ").concat(category.name, "\n                </a>\n              </h6>\n          ");
+  }(), "\n      </article>\n    </div>\n  ");
+});
+
 exports.default = _default;
-},{"../cart/config":"src/modules/cart/config.js"}],"src/modules/product/index.js":[function(require,module,exports) {
+},{"../cart/config":"src/modules/cart/config.js","../../shared/utils/View":"src/shared/utils/View.js"}],"src/modules/product/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -647,14 +738,15 @@ var _default = function () {
 }();
 
 exports.default = _default;
-},{"./ordering":"src/modules/product/ordering.js","./view":"src/modules/product/view.js"}],"src/mockupData.json":[function(require,module,exports) {
+},{"./ordering":"src/modules/product/ordering.js","./view":"src/modules/product/view.js"}],"src/mockup/products.json":[function(require,module,exports) {
 module.exports = [{
   "id": 1,
   "name": "24k premium Gold Mask",
   "price": "120",
-  "slug": "24k-premium-gold-mask",
+  "slug": "24k-premium-gold-mask-1",
   "main_photo": "img/glow.jpg",
-  "created_at": "1542680351966",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  "created_at": 1540339200000,
   "category": {
     "name": "GLOW edition",
     "slug": "glow-edition"
@@ -663,9 +755,10 @@ module.exports = [{
   "id": 2,
   "name": "Miracle premium Silver Mask",
   "price": "120",
-  "slug": "miracle-premium-silver-mask",
+  "slug": "miracle-premium-silver-mask-2",
   "main_photo": "img/pp-2.jpg",
-  "created_at": "1542680351966",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  "created_at": 1540425600000,
   "category": {
     "name": "GLOW edition",
     "slug": "glow-edition"
@@ -674,75 +767,82 @@ module.exports = [{
   "id": 3,
   "name": "Pure Vitality Mask",
   "price": "400",
-  "slug": "pure-vitality-mask",
+  "slug": "pure-vitality-mask-3",
   "main_photo": "img/pp-3.jpg",
-  "created_at": "1542680351966",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  "created_at": 1540598400000,
   "category": {
-    "name": "GLOW edition",
-    "slug": "glow-edition"
+    "name": "BOOST",
+    "slug": "boost"
   }
 }, {
   "id": 4,
   "name": "Re-Birth Serum",
   "price": "50",
-  "slug": "re-birth-serum",
+  "slug": "re-birth-serum-4",
   "main_photo": "img/pp-4.jpg",
-  "created_at": "1542680351966",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  "created_at": 1540684800000,
   "category": {
-    "name": "GLOW edition",
-    "slug": "glow-edition"
+    "name": "BOOST",
+    "slug": "boost"
   }
 }, {
   "id": 5,
   "name": "24k premium Gold Mask",
   "price": "120",
-  "slug": "24k-premium-gold-mask",
+  "slug": "24k-premium-gold-mask-5",
   "main_photo": "img/glow.jpg",
-  "created_at": "1542680351966",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  "created_at": 1540944000000,
   "category": {
-    "name": "GLOW edition",
-    "slug": "glow-edition"
+    "name": "BOOST",
+    "slug": "boost"
   }
 }, {
   "id": 6,
   "name": "Miracle premium Silver Mask",
   "price": "120",
-  "slug": "miracle-premium-silver-mask",
+  "slug": "miracle-premium-silver-mask-6",
   "main_photo": "img/pp-2.jpg",
-  "created_at": "1542680351966",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  "created_at": 1541030400000,
   "category": {
-    "name": "GLOW edition",
-    "slug": "glow-edition"
+    "name": "BOOST",
+    "slug": "boost"
   }
 }, {
   "id": 7,
   "name": "Pure Vitality Mask",
   "price": "120",
-  "slug": "pure-vitality-mask",
+  "slug": "pure-vitality-mask-7",
   "main_photo": "img/pp-3.jpg",
-  "created_at": "1542680351966",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  "created_at": 1541116800000,
   "category": {
-    "name": "GLOW edition",
-    "slug": "glow-edition"
+    "name": "BOOST",
+    "slug": "boost"
   }
 }, {
   "id": 8,
   "name": "Re-Birth Serum",
   "price": "120",
-  "slug": "re-birth-serum",
+  "slug": "re-birth-serum-8",
   "main_photo": "img/pp-4.jpg",
-  "created_at": "1542680351966",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  "created_at": 1541289600000,
   "category": {
-    "name": "GLOW edition",
-    "slug": "glow-edition"
+    "name": "BOOST",
+    "slug": "boost"
   }
 }, {
   "id": 9,
   "name": "24k premium Gold Mask",
   "price": "120",
-  "slug": "24k-premium-gold-mask",
+  "slug": "24k-premium-gold-mask-9",
   "main_photo": "img/glow.jpg",
-  "created_at": "1542680351966",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  "created_at": 1541548800000,
   "category": {
     "name": "GLOW edition",
     "slug": "glow-edition"
@@ -751,9 +851,10 @@ module.exports = [{
   "id": 10,
   "name": "Miracle premium Silver Mask",
   "price": "120",
-  "slug": "miracle-premium-silver-mask",
+  "slug": "miracle-premium-silver-mask-10",
   "main_photo": "img/pp-2.jpg",
-  "created_at": "1542680351966",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  "created_at": 1541635200000,
   "category": {
     "name": "GLOW edition",
     "slug": "glow-edition"
@@ -762,9 +863,10 @@ module.exports = [{
   "id": 11,
   "name": "Pure Vitality Mask",
   "price": "120",
-  "slug": "pure-vitality-mask",
+  "slug": "pure-vitality-mask-11",
   "main_photo": "img/pp-3.jpg",
-  "created_at": "1542680351966",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  "created_at": 1541721600000,
   "category": {
     "name": "GLOW edition",
     "slug": "glow-edition"
@@ -773,9 +875,10 @@ module.exports = [{
   "id": 12,
   "name": "Re-Birth Serum",
   "price": "120",
-  "slug": "re-birth-serum",
+  "slug": "re-birth-serum-12",
   "main_photo": "img/pp-4.jpg",
-  "created_at": "1542680351966",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  "created_at": 1541980800000,
   "category": {
     "name": "GLOW edition",
     "slug": "glow-edition"
@@ -784,9 +887,10 @@ module.exports = [{
   "id": 13,
   "name": "24k premium Gold Mask",
   "price": "120",
-  "slug": "24k-premium-gold-mask",
+  "slug": "24k-premium-gold-mask-13",
   "main_photo": "img/glow.jpg",
-  "created_at": "1542680351966",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  "created_at": 1542067200000,
   "category": {
     "name": "GLOW edition",
     "slug": "glow-edition"
@@ -795,9 +899,10 @@ module.exports = [{
   "id": 14,
   "name": "Miracle premium Silver Mask",
   "price": "120",
-  "slug": "miracle-premium-silver-mask",
+  "slug": "miracle-premium-silver-mask-14",
   "main_photo": "img/pp-2.jpg",
-  "created_at": "1542680351966",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  "created_at": 1542153600000,
   "category": {
     "name": "GLOW edition",
     "slug": "glow-edition"
@@ -806,9 +911,10 @@ module.exports = [{
   "id": 15,
   "name": "Pure Vitality Mask",
   "price": "120",
-  "slug": "pure-vitality-mask",
+  "slug": "pure-vitality-mask-15",
   "main_photo": "img/pp-3.jpg",
-  "created_at": "1542680351966",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  "created_at": 1542499200000,
   "category": {
     "name": "GLOW edition",
     "slug": "glow-edition"
@@ -817,9 +923,10 @@ module.exports = [{
   "id": 16,
   "name": "Re-Birth Serum",
   "price": "120",
-  "slug": "re-birth-serum",
+  "slug": "re-birth-serum-16",
   "main_photo": "img/pp-4.jpg",
-  "created_at": "1542680351966",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  "created_at": 1542585600000,
   "category": {
     "name": "GLOW edition",
     "slug": "glow-edition"
@@ -828,9 +935,10 @@ module.exports = [{
   "id": 17,
   "name": "24k premium Gold Mask",
   "price": "120",
-  "slug": "24k-premium-gold-mask",
+  "slug": "24k-premium-gold-mask-17",
   "main_photo": "img/glow.jpg",
-  "created_at": "1542680351966",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  "created_at": 1542758400000,
   "category": {
     "name": "GLOW edition",
     "slug": "glow-edition"
@@ -839,9 +947,10 @@ module.exports = [{
   "id": 18,
   "name": "Miracle premium Silver Mask",
   "price": "120",
-  "slug": "miracle-premium-silver-mask",
+  "slug": "miracle-premium-silver-mask-18",
   "main_photo": "img/pp-2.jpg",
-  "created_at": "1542680351966",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  "created_at": 1542844800000,
   "category": {
     "name": "GLOW edition",
     "slug": "glow-edition"
@@ -850,9 +959,10 @@ module.exports = [{
   "id": 19,
   "name": "Pure Vitality Mask",
   "price": "120",
-  "slug": "pure-vitality-mask",
+  "slug": "pure-vitality-mask-19",
   "main_photo": "img/pp-3.jpg",
-  "created_at": "1542680351966",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  "created_at": 1543017600000,
   "category": {
     "name": "GLOW edition",
     "slug": "glow-edition"
@@ -861,15 +971,64 @@ module.exports = [{
   "id": 20,
   "name": "Re-Birth Serum",
   "price": "120",
-  "slug": "re-birth-serum",
+  "slug": "re-birth-serum-20",
   "main_photo": "img/pp-4.jpg",
-  "created_at": "1542680351966",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  "created_at": 1543104000000,
   "category": {
     "name": "GLOW edition",
     "slug": "glow-edition"
   }
+}, {
+  "id": 171,
+  "name": "24k premium Gold Mask 2",
+  "price": "140",
+  "slug": "24k-premium-gold-mask-2-171",
+  "main_photo": "img/glow.jpg",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  "created_at": 1542758400000,
+  "category": {
+    "name": "SKIN CARE",
+    "slug": "skin-care"
+  }
+}, {
+  "id": 181,
+  "name": "Miracle premium Silver Mask 2",
+  "price": "140",
+  "slug": "miracle-premium-silver-mask-2-181",
+  "main_photo": "img/pp-2.jpg",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  "created_at": 1542844800000,
+  "category": {
+    "name": "SKIN CARE",
+    "slug": "skin-care"
+  }
+}, {
+  "id": 191,
+  "name": "Pure Vitality Mask 2",
+  "price": "140",
+  "slug": "pure-vitality-mask-2-191",
+  "main_photo": "img/pp-3.jpg",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  "created_at": 1543017600000,
+  "category": {
+    "name": "SKIN CARE",
+    "slug": "skin-care"
+  }
+}, {
+  "id": 201,
+  "name": "Re-Birth Serum 2",
+  "price": "140",
+  "slug": "re-birth-serum-2-201",
+  "main_photo": "img/pp-4.jpg",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  "created_at": 1543104000000,
+  "category": {
+    "name": "SKIN CARE",
+    "slug": "skin-care"
+  }
 }];
-},{}],"src/shared/services/product.js":[function(require,module,exports) {
+},{}],"src/shared/utils/wait.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -877,12 +1036,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _mockupData = _interopRequireDefault(require("../../mockupData"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var wait = function wait(data) {
-  var time = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1500;
+var _default = function _default(data) {
+  var time = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
   return new Promise(function (resolve) {
     setTimeout(function () {
       resolve(data);
@@ -890,16 +1045,40 @@ var wait = function wait(data) {
   });
 };
 
+exports.default = _default;
+},{}],"src/modules/product/productService.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _products = _interopRequireDefault(require("../../mockup/products.json"));
+
+var _wait = _interopRequireDefault(require("../../shared/utils/wait"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var _default = {
   fetchAll: function fetchAll() {
-    return wait(_mockupData.default, 500);
+    return (0, _wait.default)(_products.default, 500);
+  },
+  fetchFeatured: function fetchFeatured() {
+    return (0, _wait.default)(_products.default.slice(0, 8));
+  },
+  fetchByCategory: function fetchByCategory(cateogrySlug) {
+    return (0, _wait.default)(_products.default.filter(function (_ref) {
+      var category = _ref.category;
+      return category.slug === cateogrySlug;
+    }));
   },
   checkout: function checkout() {
-    return wait(true);
+    return (0, _wait.default)(true, 1500);
   }
 };
 exports.default = _default;
-},{"../../mockupData":"src/mockupData.json"}],"src/shared/utils/EventEmitter.js":[function(require,module,exports) {
+},{"../../mockup/products.json":"src/mockup/products.json","../../shared/utils/wait":"src/shared/utils/wait.js"}],"src/shared/utils/EventEmitter.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -956,7 +1135,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _product = _interopRequireDefault(require("../../shared/services/product"));
+var _productService = _interopRequireDefault(require("../product/productService"));
 
 var _EventEmitter = _interopRequireDefault(require("../../shared/utils/EventEmitter"));
 
@@ -985,7 +1164,7 @@ var _default = {
     var cartItems = [];
 
     try {
-      cartItems = JSON.parse(localStorage.getItem(_config.LOCALSTORAGE_ITEM)) || [];
+      cartItems = JSON.parse(localStorage.getItem(_config.LC_CART_KEY)) || [];
     } catch (e) {}
 
     if (cartItems.length === 0) {
@@ -999,7 +1178,7 @@ var _default = {
     });
     this.eventBus.emit(_config.ACTIONS.CART_PRODUCTS_LOADING);
 
-    _product.default.fetchAll().then(function (products) {
+    _productService.default.fetchAll().then(function (products) {
       var productIds = products.map(function (_ref) {
         var id = _ref.id;
         return id;
@@ -1020,7 +1199,7 @@ var _default = {
   },
   setItems: function setItems(cart) {
     this.cart = _toConsumableArray(cart);
-    localStorage.setItem(_config.LOCALSTORAGE_ITEM, JSON.stringify(this.cart));
+    localStorage.setItem(_config.LC_CART_KEY, JSON.stringify(this.cart));
     this.eventBus.emit(_config.ACTIONS.CART_UPDATED, this.cart);
   },
   getMiniCart: function getMiniCart() {
@@ -1089,7 +1268,7 @@ var _default = {
   }
 };
 exports.default = _default;
-},{"../../shared/services/product":"src/shared/services/product.js","../../shared/utils/EventEmitter":"src/shared/utils/EventEmitter.js","./config":"src/modules/cart/config.js"}],"src/modules/cart/view.js":[function(require,module,exports) {
+},{"../product/productService":"src/modules/product/productService.js","../../shared/utils/EventEmitter":"src/shared/utils/EventEmitter.js","./config":"src/modules/cart/config.js"}],"src/modules/cart/view.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1118,7 +1297,7 @@ var templates = {
   cartSum: function cartSum() {
     return "\n            <div class=\"col-md-4 info-box\">\n                <h6>Ukupno</h6>\n                <hr>\n                <p class=\"d-flex flex-column justify-content-md-between flex-md-row\">\n                    <span>Ukupna vrednost proizvoda</span>\n                    <span><span class=\"cart-items-total\"></span> ".concat(_config.CURRENCY, "</span>\n                </p>\n\n                <p class=\"d-flex flex-column justify-content-md-between flex-md-row font-weight-bold mt-3 mb-5\">\n                    <span>Ukupno</span>\n                    <span><span class=\"cart-items-total-with-shipping\"></span> ").concat(_config.CURRENCY, "</span>\n                </p>\n                <button type=\"submit\"\n                        class=\"btn-add-to-cart-look d-flex justify-content-between\"\n                        data-toggle=\"modal\"\n                        data-target=\"#orderModal\">\n                    <span>Nastavi</span>\n                    <span class=\"btn-add-to-cart-plus\"><img src=\"img/check.svg\" alt=\"\"></span>\n                </button>\n            </div>\n        ");
   },
-  emptyCart: "\n        <div class=\"col-12 col-md-6 offset-md-3\">\n            <div class=\"flex-center-col pt-4\">\n                <h3 class=\"uc font-size-21\">Va\u0161a korpa je trenutno prazna</h3>\n                <p class=\"small-p\">Niste ubacili proizvod u va\u0161u korpu</p>\n                <a href=\"/collection\" class=\"uc btn btn-derma\">\n                    Vrati se u prodavnicu\n                </a>\n            </div>\n        </div>\n    ",
+  emptyCart: "\n        <div class=\"col-12 col-md-6 offset-md-3\">\n            <div class=\"flex-center-col pt-4\">\n                <h3 class=\"uc font-size-21\">Va\u0161a korpa je trenutno prazna</h3>\n                <p class=\"small-p\">Niste ubacili proizvod u va\u0161u korpu</p>\n                <a href=\"/collections.php\" class=\"uc btn btn-derma\">\n                    Vrati se u prodavnicu\n                </a>\n            </div>\n        </div>\n    ",
   loader: "\n        <div class=\"cart-loader-wrapper\">\n            <div class=\"lds-ripple\"><div></div><div></div></div>\n        </div>\n    ",
   successfulyCheckout: "\n        <div class=\"flex-center-col\" style=\"height: 100%;\">\n            <h3 class=\"uc font-size-21\">Hvala na kupovini nasih porizvoda!</h3>\n            <p>Proverite mail, kako biste zavr\u0161ili kupovinu</p>\n        </div>\n    "
 };
@@ -1159,7 +1338,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _product = _interopRequireDefault(require("../../shared/services/product"));
+var _productService = _interopRequireDefault(require("../product/productService"));
 
 var _store = _interopRequireDefault(require("./store"));
 
@@ -1169,19 +1348,23 @@ var _config = require("./config");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var CART_PRODUCTS_LOADING = _config.ACTIONS.CART_PRODUCTS_LOADING,
+    CART_PRODUCTS_LOADED = _config.ACTIONS.CART_PRODUCTS_LOADED,
+    CART_UPDATED = _config.ACTIONS.CART_UPDATED;
+
 var _default = function () {
   var isCartPage = window.location.pathname === '/korpa.php';
   var checkoutInProgress = false;
   var $dom = {};
 
   function _initCart() {
-    _store.default.eventBus.on(_config.ACTIONS.CART_PRODUCTS_LOADING, function () {
+    _store.default.eventBus.on(CART_PRODUCTS_LOADING, function () {
       if (isCartPage) {
         _view.default.renderLoader();
       }
     });
 
-    _store.default.eventBus.on(_config.ACTIONS.CART_PRODUCTS_LOADED, function (cart) {
+    _store.default.eventBus.on(CART_PRODUCTS_LOADED, function (cart) {
       if (isCartPage) {
         _view.default.initialRender(cart);
 
@@ -1191,7 +1374,7 @@ var _default = function () {
       }
     });
 
-    _store.default.eventBus.on(_config.ACTIONS.CART_UPDATED, function (cart) {
+    _store.default.eventBus.on(CART_UPDATED, function (cart) {
       $dom.cartItemsCount.text(_store.default.countItems());
 
       if (isCartPage) {
@@ -1236,6 +1419,7 @@ var _default = function () {
   }
 
   function _handleAddToCart(event) {
+    event.preventDefault();
     var $btn = $(event.target).closest('[data-product-id]');
     var id = $btn.data().productId;
     var quantity = 1;
@@ -1301,22 +1485,21 @@ var _default = function () {
       'pointer-events': 'none'
     }).text('Molimo Vas da sačekate...');
 
-    _product.default.checkout().then(function () {
-      localStorage.removeItem(_config.LOCALSTORAGE_ITEM);
+    _productService.default.checkout().then(function () {
+      localStorage.removeItem(_config.LC_CART_KEY);
       $form.fadeOut(function () {
         $modalBody.addClass('flex-center-col').html(_view.default.successfulyCheckout);
       });
       $dom.orderModal.on('hide.bs.modal', function () {
-        _store.default.clear();
+        return _store.default.clear();
       });
       checkoutInProgress = false;
-    }).catch(function (error) {
+    }).catch(function () {
       checkoutInProgress = false;
       $btn.css({
         'pointer-events': 'auto'
       }).text(btnTextBefore);
       alert('Doslo je do greske!');
-      console.log(error);
     });
   }
 
@@ -1332,7 +1515,89 @@ var _default = function () {
 }();
 
 exports.default = _default;
-},{"../../shared/services/product":"src/shared/services/product.js","./store":"src/modules/cart/store.js","./view":"src/modules/cart/view.js","./config":"src/modules/cart/config.js"}],"src/app.js":[function(require,module,exports) {
+},{"../product/productService":"src/modules/product/productService.js","./store":"src/modules/cart/store.js","./view":"src/modules/cart/view.js","./config":"src/modules/cart/config.js"}],"src/modules/category/view.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _View = _interopRequireDefault(require("../../shared/utils/View"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _default = new _View.default(function (_ref) {
+  var id = _ref.id,
+      name = _ref.name,
+      slug = _ref.slug,
+      main_photo = _ref.main_photo;
+  return "\n    <div class=\"col-6 col-md-4 col-lg-3\">\n      <article class=\"product-preview-article\">\n          <div class=\"position-relative product-image-preview d-flex justify-content-center align-items-center flex-column\">\n              <img src=\"".concat(main_photo, "\" alt=\"").concat(name, "\" class=\"img-fluid\">\n              <div class=\"image-overlay position-absolute\"></div>\n              <div class=\"position-absolute box-block d-flex justify-content-center align-items-center flex-column\">\n                  <a class=\"text-center full-wh flex-center-col\" href=\"collection.php?slug=").concat(slug, "\">\n                    ").concat(name, "\n                  </a>\n              </div>\n          </div>\n          <div class=\"text-center\">\n              <h4><a href=\"collection.php?slug=").concat(slug, "\">").concat(name, "</a></h4>\n          </div>\n      </article>\n    </div>\n    ");
+});
+
+exports.default = _default;
+},{"../../shared/utils/View":"src/shared/utils/View.js"}],"src/modules/category/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _view = _interopRequireDefault(require("./view"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _default = function () {
+  return {
+    view: _view.default
+  };
+}();
+
+exports.default = _default;
+},{"./view":"src/modules/category/view.js"}],"src/mockup/categories.json":[function(require,module,exports) {
+module.exports = [{
+  "id": 1,
+  "name": "GLOW EDITION",
+  "slug": "glow-edition",
+  "main_photo": "https://dermaceutical.rs/uploads/2018/06/gFrE111902.jpg"
+}, {
+  "id": 2,
+  "name": "CLEAN & CLEAR",
+  "slug": "clean-and-clear",
+  "main_photo": "https://dermaceutical.rs/uploads/2018/06/0YASU12803.jpg"
+}, {
+  "id": 3,
+  "name": "BOOST",
+  "slug": "boost",
+  "main_photo": "https://dermaceutical.rs/uploads/2018/06/T0RI612903.jpg"
+}, {
+  "id": 4,
+  "name": "SKIN CARE",
+  "slug": "skin-care",
+  "main_photo": "https://dermaceutical.rs/uploads/2018/06/BSF1N12804.jpg"
+}];
+},{}],"src/modules/category/categoryService.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _categories = _interopRequireDefault(require("../../mockup/categories.json"));
+
+var _wait = _interopRequireDefault(require("../../shared/utils/wait"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _default = {
+  fetchAll: function fetchAll() {
+    return (0, _wait.default)(_categories.default);
+  }
+};
+exports.default = _default;
+},{"../../mockup/categories.json":"src/mockup/categories.json","../../shared/utils/wait":"src/shared/utils/wait.js"}],"src/app.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1344,70 +1609,66 @@ var _toaster = _interopRequireDefault(require("./shared/utils/toaster"));
 
 var _utils = _interopRequireDefault(require("./shared/utils"));
 
-var _index = _interopRequireDefault(require("./modules/product/index"));
+var _url = _interopRequireDefault(require("./shared/utils/url"));
 
-var _index2 = _interopRequireDefault(require("./modules/cart/index"));
+var _product = _interopRequireDefault(require("./modules/product"));
 
-var _mockupData = _interopRequireDefault(require("./mockupData"));
+var _cart = _interopRequireDefault(require("./modules/cart"));
+
+var _category = _interopRequireDefault(require("./modules/category"));
+
+var _productService = _interopRequireDefault(require("./modules/product/productService"));
+
+var _categoryService = _interopRequireDefault(require("./modules/category/categoryService"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _default = {
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+var app = {
+  load: function load() {
+    var slug = _url.default.getParam('slug');
+
+    return Promise.all([_productService.default.fetchFeatured(), _productService.default.fetchByCategory(slug), _categoryService.default.fetchAll()]);
+  },
   init: function init() {
-    _index.default.view.render(_mockupData.default.slice(0, 4), '#home-product-group-1 .row');
+    app.load().then(function (_ref) {
+      var _ref2 = _slicedToArray(_ref, 3),
+          featuredProducts = _ref2[0],
+          categoryProducts = _ref2[1],
+          categories = _ref2[2];
 
-    _index.default.view.render(_mockupData.default.slice(4, 8), '#home-product-group-2 .row');
+      _product.default.view.renderList(featuredProducts.slice(0, 4), '#home-product-group-1 .row');
 
-    _index.default.view.render(_mockupData.default, '#product-list');
+      _product.default.view.renderList(featuredProducts.slice(4, 8), '#home-product-group-2 .row');
 
-    _utils.default.init();
+      _product.default.view.renderList(categoryProducts, '#product-list');
 
-    _index.default.init();
+      _category.default.view.renderList(categories, '#collection-row');
 
-    _index2.default.init();
+      _utils.default.init();
+
+      _product.default.init();
+
+      _cart.default.init();
+    });
   }
 };
+var _default = app;
 exports.default = _default;
-},{"./shared/utils/toaster":"src/shared/utils/toaster.js","./shared/utils":"src/shared/utils/index.js","./modules/product/index":"src/modules/product/index.js","./modules/cart/index":"src/modules/cart/index.js","./mockupData":"src/mockupData.json"}],"index.js":[function(require,module,exports) {
+},{"./shared/utils/toaster":"src/shared/utils/toaster.js","./shared/utils":"src/shared/utils/index.js","./shared/utils/url":"src/shared/utils/url.js","./modules/product":"src/modules/product/index.js","./modules/cart":"src/modules/cart/index.js","./modules/category":"src/modules/category/index.js","./modules/product/productService":"src/modules/product/productService.js","./modules/category/categoryService":"src/modules/category/categoryService.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _app = _interopRequireDefault(require("./src/app"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// /** autoplay & autostop on clik yt video **/
-// $(function () {
-//     $(".video").click(function () {
-//         var theModal = $(this).data("target"),
-//             videoSRC = $(this).attr("data-video"),
-//             videoSRCauto = videoSRC + "?modestbranding=1&rel=0&controls=0&showinfo=0&html5=1&autoplay=1";
-//         $(theModal + ' iframe').attr('src', videoSRCauto);
-//         $(theModal + ' button.close').click(function () {
-//             $(theModal + ' iframe').attr('src', videoSRC);
-//         });
-//         $(theModal + '#videoModal').click(function () {
-//             $(theModal + ' iframe').attr('src', videoSRC);
-//         });
-//     });
-// });
-// /** carousel product imgs **/
-// $(document).ready(function () {
-//     $(".owl-carousel").owlCarousel({
-//         margin: 15,
-//         items: 4
-//     });
-// });
-// /** load more js **/
-// $(function () {
-//     $(".col-6").slice(0, 8).show();
-//     $("#loadMore").on('click', function (e) {
-//         e.preventDefault();
-//         $("div:hidden").slice(0, 12).slideDown();
-//         if ($("div:hidden").length == 4) {
-//             $("#load").fadeOut('slow');
-//         }
-//     });
-// });
 $(_app.default.init);
 },{"./src/app":"src/app.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -1436,7 +1697,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "43489" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "43296" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

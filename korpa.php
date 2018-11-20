@@ -6,7 +6,7 @@
             <div class="container">
                 <h1 class="text-uppercase">Korpa</h1>
                 <div class="breadcrumb-top">
-                  <a href="index.php" class="breadcrumb-item">Dermaceutical</a> <span class="mlr">></span> <a href="korpa.php" class="breadcrumb-item">Korpa</a>
+                  <a href="index.php" class="breadcrumb-item">Dermacare</a> <span class="mlr">></span> <a href="korpa.php" class="breadcrumb-item">Korpa</a>
                 </div>
             </div>
         </div>

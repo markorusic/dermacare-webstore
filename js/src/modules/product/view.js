@@ -1,10 +1,8 @@
 import { CURRENCY } from '../cart/config'
+import View from '../../shared/utils/View'
 
-export default {
-  getProductHTML: (
-    { id, name, price, slug, main_photo, category, created_at },
-    index
-  ) => `
+export default new View(
+  ({ id, name, price, slug, main_photo, category, created_at }, index) => `
     <div
       class="col-6 col-md-4 col-lg-3"
       data-pageable
@@ -15,7 +13,7 @@ export default {
     >
       <article class="product-preview-article">
           <div class="product-image-preview position-relative">
-              <a href="/product/${slug}">
+              <a href="/product.php?slug=${slug}">
                   <img src="${main_photo}" alt="${name}" class="img-fluid">
               </a>
               <button data-product-id="${id}" class="btn-add-to-cart d-flex justify-content-between preview-product-atc">
@@ -30,15 +28,14 @@ export default {
           ${category &&
             (() => `
               <h6 class="pb-1">
-                <a style="color: inherit;" href="/category/${category.slug}">
+                <a style="color: inherit;" href="/collection.php?slug=${
+                  category.slug
+                }">
                   ${category.name}
                 </a>
               </h6>
           `)()}
       </article>
     </div>
-  `,
-  render(products, selector) {
-    $(selector).html(products.map(this.getProductHTML).join(''))
-  }
-}
+  `
+)

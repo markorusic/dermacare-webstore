@@ -7,7 +7,7 @@
         <div class="container">
             <h1 class="text-uppercase">Contact</h1>
             <div class="breadcrumb-top">
-                <a href="index.php" class="breadcrumb-item">Dermaceutical</a> <span class="mlr">></span> <a
+                <a href="index.php" class="breadcrumb-item">Dermacare</a> <span class="mlr">></span> <a
                         href="glow-edition.php" class="breadcrumb-item">Contact</a>
             </div>
         </div>
@@ -56,13 +56,12 @@
                 </form>
             </div>
             <div class="col-md-4 info-box">
-                <h6>Dermaceutical</h6>
+                <h6>Dermacare</h6>
                 <hr>
                 <p class="lh2">
-                    Makenzijeva 23<br>
+                    Adresa 312<br>
                     11000 Beograd<br>
-                    +381 11 123 44 55<br>
-                    office@dermaceutical.rs
+                    marko.rusic.22.17@ict.edu.rs
                 </p>
             </div>
         </div>

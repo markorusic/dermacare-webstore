@@ -1,5 +1,6 @@
 import http from '../services/fakeHttp'
 import pagination from './pagination'
+import { CURRENCY } from '../../modules/cart/config'
 
 export default (() => {
   const helpers = {
@@ -42,6 +43,8 @@ export default (() => {
     $dom.videoIframe = $dom.videoModal.find('iframe')
     // Contact form
     $dom.contactForm = $('#contact-form')
+    // currency span
+    $dom.currency = $('.currency')
   }
 
   function _initContactForm() {
@@ -83,6 +86,7 @@ export default (() => {
       _initContactForm()
       _initMediaVideoModal()
       pagination.init()
+      $dom.currency.text(CURRENCY)
     },
     gallery,
     helpers

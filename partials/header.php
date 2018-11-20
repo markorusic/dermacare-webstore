@@ -5,20 +5,10 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Dermaceutical</title>
+    <title>Dermacare</title>
 
-    <!-- BOOTSTRAP
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-          crossorigin="anonymous"> -->
-
+    <!-- BOOTSTRAP  -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"/>
 
     <!-- ANIMATE CSS -->
     <link rel="stylesheet"
@@ -35,7 +25,9 @@
 <header>
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light">
-            <a class="navbar-brand" href="index.php"><img src="img/logo.svg" alt="Logo" class="img-fluid"></a>
+            <a class="navbar-brand" href="index.php">
+                <h1>Dermacare</h1>
+            </a>
             <div class="d-flex justify-content-center align-items-center flex-row">
                 <div class="shopping-cart-icon d-lg-none d-inline-block mr-3">
                 <a href="/korpa.php" class="shopping-cart-icon d-lg-none d-inline-block mr-3">
@@ -76,16 +68,13 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="collection.php">Collection</a>
+                        <a class="nav-link" href="collections.php">Collections</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="glow-edition.php">Glow Edition</a>
+                        <a class="nav-link" href="collection.php?slug=glow-edition">Glow Edition</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="about.php">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="blog.php">Blog</a>
+                        <a class="nav-link" href="about.php">About author</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="contact.php">Contact</a>

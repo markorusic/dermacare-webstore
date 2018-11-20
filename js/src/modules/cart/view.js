@@ -87,7 +87,7 @@ const templates = {
             <div class="flex-center-col pt-4">
                 <h3 class="uc font-size-21">Vaša korpa je trenutno prazna</h3>
                 <p class="small-p">Niste ubacili proizvod u vašu korpu</p>
-                <a href="/collection" class="uc btn btn-derma">
+                <a href="/collections.php" class="uc btn btn-derma">
                     Vrati se u prodavnicu
                 </a>
             </div>
