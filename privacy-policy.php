@@ -1,4 +1,4 @@
-<?php include 'header.php' ?>
+<?php include 'partials/header.php' ?>
 
 <main class="privacy-policy">
     <div class="container">
@@ -56,4 +56,4 @@
     </div>
 </main>
 
-<?php include 'footer.php' ?>
+<?php include 'partials/footer.php' ?>

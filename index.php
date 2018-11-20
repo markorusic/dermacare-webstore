@@ -1,4 +1,4 @@
-<?php include 'header.php' ?>
+<?php include 'partials/header.php' ?>
 
     <!-- Main Container -->
     <main>
@@ -22,7 +22,7 @@
                         <article class="d-flex justify-content-center align-items-center flex-column video"
                                  data-toggle="modal"
                                  data-target="#videoModal" style="cursor: pointer;"
-                                 data-video="https://www.youtube.com/embed/ixPFJe4wobM">
+                                 data-video="https://www.youtube.com/watch?v=ixPFJe4wobM">
                             <div class="box-block d-flex justify-content-center align-items-center flex-column">
                                 <img src="img/play.svg" alt="play">
                             </div>
@@ -33,136 +33,22 @@
         </section>
 
         <!-- Glow Edition -->
-        <section class="product-section">
+        <section class="product-section" id="home-product-group-1">
             <div class="container">
                 <div class="heading-wrap text-center">
                     <h3 class="d-inline-block bg-white">GLOW edition</h3>
                 </div>
-                <div class="row">
-                    <div class="col-6 col-md-4 col-lg-3">
-                        <article class="product-preview-article">
-                            <div class="product-image-preview">
-                                <a href="lift-active-cream.php">
-                                    <img src="img/pe-5.jpg" alt="" class="img-fluid">
-                                </a>
-                            </div>
-                            <div class="d-flex flex-column justify-content-md-between flex-md-row">
-                                <h4><a href="lift-active-cream.php">Lift Active Cream</a></h4>
-                                <h4>120 €</h4>
-                            </div>
-                            <h6>GLOW edition</h6>
-                        </article>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3">
-                        <article class="product-preview-article">
-                            <div class="product-image-preview">
-                                <a href="moon-care-cream.php">
-                                    <img src="img/pp-6.jpg" alt="" class="img-fluid">
-                                </a>
-                            </div>
-                            <div class="d-flex flex-column justify-content-md-between flex-md-row">
-                                <h4><a href="moon-care-cream.php">Moon Care Cream</a></h4>
-                                <h4>120 €</h4>
-                            </div>
-                            <h6>GLOW edition</h6>
-                        </article>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3">
-                        <article class="product-preview-article">
-                            <div class="product-image-preview">
-                                <a href="cell-renewal-spray.php">
-                                    <img src="img/pp7.jpg" alt="" class="img-fluid">
-                                </a>
-                            </div>
-                            <div class="d-flex flex-column justify-content-md-between flex-md-row">
-                                <h4><a href="cell-renewal-spray.php">Cell Renewal Spray</a></h4>
-                                <h4>120 €</h4>
-                            </div>
-                            <h6>GLOW edition</h6>
-                        </article>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3">
-                        <article class="product-preview-article">
-                            <div class="product-image-preview">
-                                <a href="cell-renewal-spray.php">
-                                    <img src="img/pp7.jpg" alt="" class="img-fluid">
-                                </a>
-                            </div>
-                            <div class="d-flex flex-column justify-content-md-between flex-md-row">
-                                <h4><a href="cell-renewal-spray.php">Cell Renewal Spray</a></h4>
-                                <h4>120 €</h4>
-                            </div>
-                            <h6>GLOW edition</h6>
-                        </article>
-                    </div>
-                </div>
+                <div class="row"></div>
             </div>
         </section>
 
         <!-- Glow Edition -->
-        <section class="product-section">
+        <section class="product-section" id="home-product-group-2">
             <div class="container">
                 <div class="heading-wrap text-center">
                     <h3 class="d-inline-block bg-white text-uppercase">Najprodavaniji proizvodi</h3>
                 </div>
-                <div class="row">
-                    <div class="col-6 col-md-4 col-lg-3">
-                        <article class="product-preview-article">
-                            <div class="product-image-preview">
-                                <a href="lift-active-cream.php">
-                                    <img src="img/pe-5.jpg" alt="" class="img-fluid">
-                                </a>
-                            </div>
-                            <div class="d-flex flex-column justify-content-md-between flex-md-row">
-                                <h4><a href="lift-active-cream.php">Lift Active Cream</a></h4>
-                                <h4>120 €</h4>
-                            </div>
-                            <h6>GLOW edition</h6>
-                        </article>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3">
-                        <article class="product-preview-article">
-                            <div class="product-image-preview">
-                                <a href="moon-care-cream.php">
-                                    <img src="img/pp-6.jpg" alt="" class="img-fluid">
-                                </a>
-                            </div>
-                            <div class="d-flex flex-column justify-content-md-between flex-md-row">
-                                <h4><a href="moon-care-cream.php">Moon Care Cream</a></h4>
-                                <h4>120 €</h4>
-                            </div>
-                            <h6>GLOW edition</h6>
-                        </article>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3">
-                        <article class="product-preview-article">
-                            <div class="product-image-preview">
-                                <a href="cell-renewal-spray.php">
-                                    <img src="img/pp7.jpg" alt="" class="img-fluid">
-                                </a>
-                            </div>
-                            <div class="d-flex flex-column justify-content-md-between flex-md-row">
-                                <h4><a href="cell-renewal-spray.php">Cell Renewal Spray</a></h4>
-                                <h4>120 €</h4>
-                            </div>
-                            <h6>GLOW edition</h6>
-                        </article>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3">
-                        <article class="product-preview-article">
-                            <div class="product-image-preview">
-                                <a href="cell-renewal-spray.php">
-                                    <img src="img/pp7.jpg" alt="" class="img-fluid">
-                                </a>
-                            </div>
-                            <div class="d-flex flex-column justify-content-md-between flex-md-row">
-                                <h4><a href="cell-renewal-spray.php">Cell Renewal Spray</a></h4>
-                                <h4>120 €</h4>
-                            </div>
-                            <h6>GLOW edition</h6>
-                        </article>
-                    </div>
-                </div>
+                <div class="row"></div>
             </div>
         </section>
 
@@ -235,4 +121,4 @@
 </div>
 
 
-<?php include 'footer.php' ?>
+<?php include 'partials/footer.php' ?>

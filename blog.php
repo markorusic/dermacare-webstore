@@ -1,4 +1,4 @@
-<?php include 'header.php' ?>
+<?php include 'partials/header.php' ?>
 
 <!-- Main Container -->
 <main>
@@ -74,4 +74,4 @@
 <!-- Main Container END -->
 
 
-<?php include 'footer.php' ?>
+<?php include 'partials/footer.php' ?>

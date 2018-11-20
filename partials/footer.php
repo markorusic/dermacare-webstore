@@ -78,11 +78,7 @@
 <!-- OWL CAROUSEL -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 
-<!-- GOOGLE MAPS -->
-<script src="js/gmaps.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuFAbsOWS2Q1QoBxNqZ_rx0nZbDhtTGG8&callback=initMap"></script>
-
 <!-- Main JS -->
-<script src="js/main.js"></script>
+<script src="js/dist/index.js"></script>
 </body>
 </html>

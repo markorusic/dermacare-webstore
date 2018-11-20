@@ -1,4 +1,4 @@
-<?php include 'header.php' ?>
+<?php include 'partials/header.php' ?>
 
 <!-- Main Container -->
 <main>
@@ -24,34 +24,10 @@
                             <img src="img/gold-2.jpg" alt="" class="img-fluid">
                         </a>
                     </div>
-                    <!-- on click se menja img iznad -->
-                    <div class="owl-carousel">
-                        <!-- default img of product -->
-                        <div class="product-image-preview product-images-thumb"
-                             style="background-image: url('img/gold-2.jpg')">
-                        </div>
-
-                        <div class="product-image-preview product-images-thumb"
-                             style="background-image: url('img/proizvod1.jpg')">
-                        </div>
-                        <div class="product-image-preview product-images-thumb"
-                             style="background-image: url('img/proizvod1.jpg')">
-                        </div>
-                        <div class="product-image-preview product-images-thumb"
-                             style="background-image: url('img/proizvod1.jpg')">
-                        </div>
-                        <div class="product-image-preview product-images-thumb"
-                             style="background-image: url('img/proizvod1.jpg')">
-                        </div>
-                    </div>
                 </div>
                 <div class="col-md-6">
                     <div class="d-flex justify-content-between">
                         <h2 class="product-price">95 €</h2>
-                        <div class="arrows-product">
-                            <a href="#"><img src="img/arrow-left.svg" alt=""></a>
-                            <a href="#"><img src="img/arrow-right.svg" alt=""></a>
-                        </div>
                     </div>
 
                     <hr>
@@ -102,4 +78,4 @@
 </main>
 <!-- Main Container END -->
 
-<?php include 'footer.php' ?>
+<?php include 'partials/footer.php' ?>

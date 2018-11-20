@@ -1,4 +1,4 @@
-<?php include 'header.php' ?>
+<?php include 'partials/header.php' ?>
 
 <!-- Main Container -->
 <main class="contact">
@@ -13,11 +13,6 @@
         </div>
     </div>
 
-    <!-- Map -->
-    <div class="container">
-        <div id="map"></div>
-    </div>
-
     <!-- Contact Form -->
 
     <div class="container">
@@ -25,7 +20,7 @@
             <div class="col-md-8">
                 <h6>Imate pitanje?</h6>
                 <hr>
-                <form action="">
+                <form id="contact-form">
                     <div class="form-group">
                         <label for="senderName">Ime (obavezno polje)</label>
                         <input type="text"
@@ -54,7 +49,7 @@
                         <textarea class="form-control" id="senderMessage" rows="3"></textarea>
                     </div>
 
-                    <button type="submit" class="btn-add-to-cart d-flex justify-content-between">
+                    <button type="submit" class="btn-add-to-cart-look d-flex justify-content-between">
                         <span>Pošalji</span>
                         <span class="btn-add-to-cart-plus"><img src="img/check.svg" alt=""></span>
                     </button>
@@ -77,5 +72,5 @@
 <!-- Main Container END -->
 
 
-<?php include 'footer.php' ?>
+<?php include 'partials/footer.php' ?>
 
