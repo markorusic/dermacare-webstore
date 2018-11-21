@@ -17,8 +17,8 @@ export default new View(
                   <img src="${main_photo}" alt="${name}" class="img-fluid">
               </a>
               <button data-product-id="${id}" class="btn-add-to-cart d-flex justify-content-between preview-product-atc">
-                <span>Dodaj u korpu</span>
-                <span class="btn-add-to-cart-plus"><img src="img/plus.svg" alt="Dodaj u korpu"></span>
+                <span>Add to cart</span>
+                <span class="btn-add-to-cart-plus"><img src="img/plus.svg" alt="Add to cart"></span>
               </button>
           </div>
           <div class="d-flex flex-column justify-content-md-between flex-md-row">
