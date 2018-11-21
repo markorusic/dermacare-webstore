@@ -1,4 +1,8 @@
-<?php include 'partials/header.php' ?>
+<?php
+    $page_title = 'Welcome';
+	$page_description = 'Dermacare is skin care shop you allways wanted!';
+    include 'partials/header.php';
+?>
 
     <!-- Main Container -->
     <main>
@@ -19,10 +23,10 @@
                         </article>
                     </div>
                     <div class="col-md-6">
-                        <article class="d-flex justify-content-center align-items-center flex-column video"
+                        <article class="d-flex justify-content-center align-items-center flex-column video pointer"
                                  data-toggle="modal"
-                                 data-target="#videoModal" style="cursor: pointer;"
-                                 data-video="https://www.youtube.com/watch?v=ixPFJe4wobM">
+                                 data-target="#videoModal"
+                                 data-video="https://www.youtube.com/watch?v=oFxEN_o2AUQ">
                             <div class="box-block d-flex justify-content-center align-items-center flex-column">
                                 <img src="img/play.svg" alt="play">
                             </div>
@@ -46,7 +50,7 @@
         <section class="product-section" id="home-product-group-2">
             <div class="container">
                 <div class="heading-wrap text-center">
-                    <h3 class="d-inline-block bg-white text-uppercase">Najprodavaniji proizvodi</h3>
+                    <h3 class="d-inline-block bg-white text-uppercase">Best sellers</h3>
                 </div>
                 <div class="row"></div>
             </div>

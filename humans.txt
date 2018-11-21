@@ -1,0 +1,10 @@
+/* TEAM */
+	Front-End Developer: Marko Rusic
+	E-mail: marko.rusic.22.17 [at] ict.edu.rs
+	From:Belgrade, Serbia
+
+
+/* SITE */
+	Last update:2018
+	Language: English
+	Doctype: HTML5

@@ -37,6 +37,12 @@ h6,
   height: 100%;
   width: 100%;
 }
+.circle {
+  border-radius: 50%;
+}
+.bold {
+  font-weight: bold;
+}
 
 /*========================================================================
                                 Layout
@@ -288,7 +294,7 @@ footer .heading-wrap h5 {
   text-transform: none !important;
 }
 
-footer .heading-wrap img {
+footer .heading-wrap span {
   background: #838088;
   position: relative;
   padding: 0 20px;

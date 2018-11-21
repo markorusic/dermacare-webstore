@@ -8,9 +8,11 @@
     if (is_null($category)) {
         abort(404);
     }
-?>
 
-<?php include 'partials/header.php' ?>
+    $page_title = $category['name'];
+    $page_description = $category['description'];
+    include 'partials/header.php';
+?>
 
 <!-- Main Container -->
 <main>

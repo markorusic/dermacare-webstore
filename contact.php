@@ -1,4 +1,8 @@
-<?php include 'partials/header.php' ?>
+<?php
+    $page_title = 'Contact';
+	$page_description = 'Contact us.';
+    include 'partials/header.php';
+?>
 
 <!-- Main Container -->
 <main class="contact">
@@ -22,7 +26,7 @@
                 <hr>
                 <form id="contact-form">
                     <div class="form-group">
-                        <label for="senderName">Ime (obavezno polje)</label>
+                        <label for="senderName">Ime</label>
                         <input type="text"
                                name="senderName"
                                id="senderName"
@@ -30,7 +34,7 @@
                                required>
                     </div>
                     <div class="form-group">
-                        <label for="senderEmail">Email (obavezno polje)</label>
+                        <label for="senderEmail">Email</label>
                         <input type="email"
                                name="senderEmail"
                                id="senderEmail"
@@ -60,7 +64,7 @@
                 <hr>
                 <p class="lh2">
                     Adresa 312<br>
-                    11000 Beograd<br>
+                    11000 Beograd<br>
                     marko.rusic.22.17@ict.edu.rs
                 </p>
             </div>

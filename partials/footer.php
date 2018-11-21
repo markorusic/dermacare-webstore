@@ -6,7 +6,7 @@
             <div class="col-md-4">
                 <div>
                     <div class="heading-wrap text-center">
-                        <img src="img/logo-beli.svg" alt="" class="img-fluid">
+                        <span>Dermacare</span>
                     </div>
 
                     <p class="text-center">
@@ -19,7 +19,7 @@
             <div class="col-md-4">
                 <div>
                     <div class="heading-wrap text-center">
-                        <h5 class="d-inline-block bg-white text-uppercase">Pratite nas</h5>
+                        <h5 class="d-inline-block bg-white text-uppercase">Follow us on social meida</h5>
                     </div>
 
                     <ul class="list-reset text-center">
@@ -33,11 +33,11 @@
             <div class="col-md-4">
                 <div>
                     <div class="heading-wrap text-center">
-                        <h5 class="d-inline-block bg-white text-uppercase">Prijavite se za Newsletter</h5>
+                        <h5 class="d-inline-block bg-white text-uppercase">Sing for our Newsletter</h5>
                     </div>
 
                     <form action="">
-                        <input type="email" placeholder="Unesite vašu e-mail adresu">
+                        <input type="email" placeholder="Enter your email address">
                         <button><img src="img/newsletter.svg" alt=""></button>
                     </form>
                 </div>

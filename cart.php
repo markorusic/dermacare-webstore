@@ -1,4 +1,8 @@
-<?php include 'partials/header.php' ?>
+<?php
+    $page_title = 'Cart';
+	$page_description = 'Cart page.';
+    include 'partials/header.php';
+?>
     <!-- Main Container -->
     <main class="contact">
             <!-- Page title -->
@@ -27,7 +31,7 @@
                 <div class="modal-body position-relative">
                     <form id="checkout-form" action="">
                         <div class="form-group">
-                            <label for="name">Ime</label>
+                            <label for="name">Name</label>
                             <input type="text"
                                    name="name"
                                    id="name"
@@ -43,7 +47,7 @@
                                    required>
                         </div>
                         <div class="form-group">
-                            <label for="address">Adresa za isporuku</label>
+                            <label for="address">Address</label>
                             <input type="text"
                                    name="address"
                                    id="address"
@@ -51,7 +55,7 @@
                                    required>
                         </div>
                         <div class="form-group">
-                            <label for="city">Grad</label>
+                            <label for="city">City</label>
                             <input type="text"
                                    name="city"
                                    id="city"
@@ -59,7 +63,7 @@
                                    required>
                         </div>
                         <div class="form-group">
-                            <label for="contact">Broj telefona</label>
+                            <label for="contact">Phone number</label>
                             <input type="tel"
                                    name="contact"
                                    id="contact"
@@ -67,13 +71,13 @@
                                    required>
                         </div>
                         <div class="form-group">
-                            <label for="additionalInfo">Dodatne informacije</label>
+                            <label for="additionalInfo">Additional info</label>
                             <textarea class="form-control" id="additionalInfo" name="additionalInfo" rows="3"></textarea>
                         </div>
     
                         <button type="submit" class="btn-derma btn-add-to-cart-look d-flex justify-content-between">
-                            <span>Poruči</span>
-                            <span class="btn-add-to-cart-plus"><img src="img/check.svg" alt="Poruči"></span>
+                            <span>Order</span>
+                            <span class="btn-add-to-cart-plus"><img src="img/check.svg" alt="Order"></span>
                         </button>
                     </form>
                 </div>

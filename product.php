@@ -9,9 +9,11 @@
     if (is_null($product)) {
         abort(404);
     }
-?>
 
-<?php include 'partials/header.php' ?>
+    $page_title = $product['name'];
+    $page_description = $product['description'];
+    include 'partials/header.php';
+?>
 
 <!-- Main Container -->
 <main>

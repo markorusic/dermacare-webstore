@@ -1560,21 +1560,25 @@ module.exports = [{
   "id": 1,
   "name": "GLOW EDITION",
   "slug": "glow-edition",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
   "main_photo": "https://dermaceutical.rs/uploads/2018/06/gFrE111902.jpg"
 }, {
   "id": 2,
   "name": "CLEAN & CLEAR",
   "slug": "clean-and-clear",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
   "main_photo": "https://dermaceutical.rs/uploads/2018/06/0YASU12803.jpg"
 }, {
   "id": 3,
   "name": "BOOST",
   "slug": "boost",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
   "main_photo": "https://dermaceutical.rs/uploads/2018/06/T0RI612903.jpg"
 }, {
   "id": 4,
   "name": "SKIN CARE",
   "slug": "skin-care",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
   "main_photo": "https://dermaceutical.rs/uploads/2018/06/BSF1N12804.jpg"
 }];
 },{}],"src/modules/category/categoryService.js":[function(require,module,exports) {
