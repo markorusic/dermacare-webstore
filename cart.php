@@ -8,9 +8,9 @@
             <!-- Page title -->
         <div class="page-title-strip">
             <div class="container">
-                <h1 class="text-uppercase">Korpa</h1>
+                <h1 class="text-uppercase">Cart</h1>
                 <div class="breadcrumb-top">
-                  <a href="index.php" class="breadcrumb-item">Dermacare</a> <span class="mlr">></span> <a href="cart.php" class="breadcrumb-item">Korpa</a>
+                  <a href="index.php" class="breadcrumb-item">Dermacare</a> <span class="mlr">></span> <a href="cart.php" class="breadcrumb-item">Cart</a>
                 </div>
             </div>
         </div>

@@ -1,4 +1,4 @@
-export const CURRENCY = 'RSD'
+export const CURRENCY = '€'
 export const SHIPPING_FEE = 0
 export const LC_CART_KEY = 'cart-items'
 export const ACTIONS = {

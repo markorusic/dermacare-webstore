@@ -22,11 +22,11 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                <h6>Imate pitanje?</h6>
+                <h6>Have a question?</h6>
                 <hr>
                 <form id="contact-form">
                     <div class="form-group">
-                        <label for="senderName">Ime</label>
+                        <label for="senderName">Name</label>
                         <input type="text"
                                name="senderName"
                                id="senderName"
@@ -42,19 +42,19 @@
                                required>
                     </div>
                     <div class="form-group">
-                        <label for="senderSubject">Naslov poruke</label>
+                        <label for="senderSubject">Title</label>
                         <input type="text"
                                name="senderSubject"
                                id="senderSubject"
                                class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="senderMessage">Teskt poruke</label>
+                        <label for="senderMessage">Content</label>
                         <textarea class="form-control" id="senderMessage" rows="3"></textarea>
                     </div>
 
                     <button type="submit" class="btn-add-to-cart-look d-flex justify-content-between">
-                        <span>Pošalji</span>
+                        <span>Send</span>
                         <span class="btn-add-to-cart-plus"><img src="img/check.svg" alt=""></span>
                     </button>
                 </form>

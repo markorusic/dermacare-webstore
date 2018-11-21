@@ -376,7 +376,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.ACTIONS = exports.LC_CART_KEY = exports.SHIPPING_FEE = exports.CURRENCY = void 0;
-var CURRENCY = 'RSD';
+var CURRENCY = '€';
 exports.CURRENCY = CURRENCY;
 var SHIPPING_FEE = 0;
 exports.SHIPPING_FEE = SHIPPING_FEE;
@@ -708,7 +708,7 @@ var _default = new _View.default(function (_ref, index) {
       main_photo = _ref.main_photo,
       category = _ref.category,
       created_at = _ref.created_at;
-  return "\n    <div\n      class=\"col-6 col-md-4 col-lg-3\"\n      data-pageable\n      data-product-id=\"".concat(id, "\"\n      data-price=\"").concat(price, "\"\n      data-created-at=\"").concat(created_at, "\"\n      style=\"display:").concat(index > 7 ? 'none' : 'block', ";\"\n    >\n      <article class=\"product-preview-article\">\n          <div class=\"product-image-preview position-relative\">\n              <a href=\"/product.php?slug=").concat(slug, "\">\n                  <img src=\"").concat(main_photo, "\" alt=\"").concat(name, "\" class=\"img-fluid\">\n              </a>\n              <button data-product-id=\"").concat(id, "\" class=\"btn-add-to-cart d-flex justify-content-between preview-product-atc\">\n                <span>Dodaj u korpu</span>\n                <span class=\"btn-add-to-cart-plus\"><img src=\"img/plus.svg\" alt=\"Dodaj u korpu\"></span>\n              </button>\n          </div>\n          <div class=\"d-flex flex-column justify-content-md-between flex-md-row\">\n              <h4><a href=\"/product/").concat(slug, "\">").concat(name, "</a></h4>\n              <h4>").concat(price, "  ").concat(_config.CURRENCY, "</h4>\n          </div>\n          ").concat(category && function () {
+  return "\n    <div\n      class=\"col-6 col-md-4 col-lg-3\"\n      data-pageable\n      data-product-id=\"".concat(id, "\"\n      data-price=\"").concat(price, "\"\n      data-created-at=\"").concat(created_at, "\"\n      style=\"display:").concat(index > 7 ? 'none' : 'block', ";\"\n    >\n      <article class=\"product-preview-article\">\n          <div class=\"product-image-preview position-relative\">\n              <a href=\"/product.php?slug=").concat(slug, "\">\n                  <img src=\"").concat(main_photo, "\" alt=\"").concat(name, "\" class=\"img-fluid\">\n              </a>\n              <button data-product-id=\"").concat(id, "\" class=\"btn-add-to-cart d-flex justify-content-between preview-product-atc\">\n                <span>Dodaj u korpu</span>\n                <span class=\"btn-add-to-cart-plus\"><img src=\"img/plus.svg\" alt=\"Dodaj u korpu\"></span>\n              </button>\n          </div>\n          <div class=\"d-flex flex-column justify-content-md-between flex-md-row\">\n              <h4><a href=\"/product.php?slug=").concat(slug, "\">").concat(name, "</a></h4>\n              <h4>").concat(price, "  ").concat(_config.CURRENCY, "</h4>\n          </div>\n          ").concat(category && function () {
     return "\n              <h6 class=\"pb-1\">\n                <a style=\"color: inherit;\" href=\"/collection.php?slug=".concat(category.slug, "\">\n                  ").concat(category.name, "\n                </a>\n              </h6>\n          ");
   }(), "\n      </article>\n    </div>\n  ");
 });
@@ -1289,17 +1289,17 @@ var templates = {
         main_photo = _ref.main_photo,
         price = _ref.price,
         quantity = _ref.quantity;
-    return "\n            <tr data-product-id=\"".concat(id, "\">\n                <td data-th=\"Proizvod\">\n                    <div class=\"row\">\n                        <div class=\"col-sm-4 hidden-xs\">\n                            <div class=\"card-product-img\"\n                                style=\"background-image: url('").concat(main_photo, "');\"></div>\n                        </div>\n                        <div class=\"col-sm-8 d-flex align-items-center\">\n                        \n                            <h4>").concat(name, "</h4>\n                        </div>\n                    </div>\n                </td>\n                <td data-th=\"Cena\">").concat(price, " ").concat(_config.CURRENCY, "</td>\n                \n                <td data-th=\"Koli\u010Dina\">\n                    <input value=\"").concat(quantity, "\" class=\"change-product-quantity input-number\" type=\"number\" step=\"1\" min=\"1\" name=\"quantity\">\n                </td>\n                <td data-th=\"Ukupno\">\n                    <span class=\"single-product-total\">").concat(price * quantity, "</span> ").concat(_config.CURRENCY, "\n                </td>\n                <td class=\"actions\" data-th=\"Ukloni\">\n                    <button class=\"remove-from-cart btn btn-sm\"><img src=\"").concat(window.location.origin, "/img/x.svg\" alt=\"\"></button>\n                </td>\n            </tr>\n        ");
+    return "\n            <tr data-product-id=\"".concat(id, "\">\n                <td data-th=\"Product\">\n                    <div class=\"row\">\n                        <div class=\"col-sm-4 hidden-xs\">\n                            <div class=\"card-product-img\"\n                                style=\"background-image: url('").concat(main_photo, "');\"></div>\n                        </div>\n                        <div class=\"col-sm-8 d-flex align-items-center\">\n                        \n                            <h4>").concat(name, "</h4>\n                        </div>\n                    </div>\n                </td>\n                <td data-th=\"Price\">").concat(price, " ").concat(_config.CURRENCY, "</td>\n                \n                <td data-th=\"Quantity\">\n                    <input value=\"").concat(quantity, "\" class=\"change-product-quantity input-number\" type=\"number\" step=\"1\" min=\"1\" name=\"quantity\">\n                </td>\n                <td data-th=\"Total\">\n                    <span class=\"single-product-total\">").concat(price * quantity, "</span> ").concat(_config.CURRENCY, "\n                </td>\n                <td class=\"actions\" data-th=\"Ukloni\">\n                    <button class=\"remove-from-cart btn btn-sm\"><img src=\"").concat(window.location.origin, "/img/x.svg\" alt=\"\"></button>\n                </td>\n            </tr>\n        ");
   },
   cartProductsWrapper: function cartProductsWrapper(productsHTML) {
-    return "\n            <div class=\"col-md-8\">\n                <h6>Izabrani proizvodi (<span class=\"cart-items-count\"></span> kom)</h6>\n                <hr>\n                <div class=\"table-responsive\">\n                    <table id=\"cart\" class=\"table table-hover table-condensed\">\n                        <thead>\n                        <tr>\n                            <th>Proizvod</th>\n                            <th>Cena</th>\n                            <th>Koli\u010Dina</th>\n                            <th>Ukupno</th>\n                            <th>&nbsp;</th>\n                        </tr>\n                        </thead>\n                        <tbody>\n                            ".concat(productsHTML, "\n                        </tbody>\n                    </table>\n                </div>\n\n            </div>\n        ");
+    return "\n            <div class=\"col-md-8\">\n                <h6>Selected products (<span class=\"cart-items-count\"></span>)</h6>\n                <hr>\n                <div class=\"table-responsive\">\n                    <table id=\"cart\" class=\"table table-hover table-condensed\">\n                        <thead>\n                        <tr>\n                            <th>Product</th>\n                            <th>Price</th>\n                            <th>Quantity</th>\n                            <th>Total</th>\n                            <th>&nbsp;</th>\n                        </tr>\n                        </thead>\n                        <tbody>\n                            ".concat(productsHTML, "\n                        </tbody>\n                    </table>\n                </div>\n\n            </div>\n        ");
   },
   cartSum: function cartSum() {
-    return "\n            <div class=\"col-md-4 info-box\">\n                <h6>Ukupno</h6>\n                <hr>\n                <p class=\"d-flex flex-column justify-content-md-between flex-md-row\">\n                    <span>Ukupna vrednost proizvoda</span>\n                    <span><span class=\"cart-items-total\"></span> ".concat(_config.CURRENCY, "</span>\n                </p>\n\n                <p class=\"d-flex flex-column justify-content-md-between flex-md-row font-weight-bold mt-3 mb-5\">\n                    <span>Ukupno</span>\n                    <span><span class=\"cart-items-total-with-shipping\"></span> ").concat(_config.CURRENCY, "</span>\n                </p>\n                <button type=\"submit\"\n                        class=\"btn-add-to-cart-look d-flex justify-content-between\"\n                        data-toggle=\"modal\"\n                        data-target=\"#orderModal\">\n                    <span>Nastavi</span>\n                    <span class=\"btn-add-to-cart-plus\"><img src=\"img/check.svg\" alt=\"\"></span>\n                </button>\n            </div>\n        ");
+    return "\n            <div class=\"col-md-4 info-box\">\n                <h6>Total</h6>\n                <hr>\n                <p class=\"d-flex flex-column justify-content-md-between flex-md-row\">\n                    <span>Total value of the products</span>\n                    <span><span class=\"cart-items-total\"></span> ".concat(_config.CURRENCY, "</span>\n                </p>\n\n                <p class=\"d-flex flex-column justify-content-md-between flex-md-row font-weight-bold mt-3 mb-5\">\n                    <span>Total</span>\n                    <span><span class=\"cart-items-total-with-shipping\"></span> ").concat(_config.CURRENCY, "</span>\n                </p>\n                <button type=\"submit\"\n                        class=\"btn-add-to-cart-look d-flex justify-content-between\"\n                        data-toggle=\"modal\"\n                        data-target=\"#orderModal\">\n                    <span>Continue</span>\n                    <span class=\"btn-add-to-cart-plus\"><img src=\"img/check.svg\" alt=\"Add to cart\"></span>\n                </button>\n            </div>\n        ");
   },
-  emptyCart: "\n        <div class=\"col-12 col-md-6 offset-md-3\">\n            <div class=\"flex-center-col pt-4\">\n                <h3 class=\"uc font-size-21\">Va\u0161a korpa je trenutno prazna</h3>\n                <p class=\"small-p\">Niste ubacili proizvod u va\u0161u korpu</p>\n                <a href=\"/collections.php\" class=\"uc btn btn-derma\">\n                    Vrati se u prodavnicu\n                </a>\n            </div>\n        </div>\n    ",
+  emptyCart: "\n        <div class=\"col-12 col-md-6 offset-md-3\">\n            <div class=\"flex-center-col pt-4\">\n                <h3 class=\"uc font-size-21\">Your cart is currently empty.</h3>\n                <p class=\"small-p\">You did not insert the product into your cart.</p>\n                <a href=\"/collections.php\" class=\"uc btn btn-derma\">\n                    Back to shop\n                </a>\n            </div>\n        </div>\n    ",
   loader: "\n        <div class=\"cart-loader-wrapper\">\n            <div class=\"lds-ripple\"><div></div><div></div></div>\n        </div>\n    ",
-  successfulyCheckout: "\n        <div class=\"flex-center-col\" style=\"height: 100%;\">\n            <h3 class=\"uc font-size-21\">Hvala na kupovini nasih porizvoda!</h3>\n            <p>Proverite mail, kako biste zavr\u0161ili kupovinu</p>\n        </div>\n    "
+  successfulyCheckout: "\n        <div class=\"flex-center-col\" style=\"height: 100%;\">\n            <h3 class=\"uc font-size-21 text-center\">Thank you for purchasing our products!</h3>\n            <p>Check your mail to complete your purchase</p>\n        </div>\n    "
 };
 
 var _default = _objectSpread({
@@ -1437,7 +1437,7 @@ var _default = function () {
       quantity: quantity
     });
 
-    $.toaster('Uspešno dodato u <a href="/cart.php">korpu</a>!');
+    $.toaster('Successfully added to <a href="/cart.php">cart</a>!');
   }
 
   function _handleRemoveFromCart(event) {
@@ -1483,7 +1483,7 @@ var _default = function () {
     var btnTextBefore = $btn.text();
     $btn.css({
       'pointer-events': 'none'
-    }).text('Molimo Vas da sačekate...');
+    }).text('Please wait...');
 
     _productService.default.checkout().then(function () {
       localStorage.removeItem(_config.LC_CART_KEY);
@@ -1499,7 +1499,7 @@ var _default = function () {
       $btn.css({
         'pointer-events': 'auto'
       }).text(btnTextBefore);
-      alert('Doslo je do greske!');
+      alert('An error has occurred!');
     });
   }
 

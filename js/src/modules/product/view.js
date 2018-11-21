@@ -22,7 +22,7 @@ export default new View(
               </button>
           </div>
           <div class="d-flex flex-column justify-content-md-between flex-md-row">
-              <h4><a href="/product/${slug}">${name}</a></h4>
+              <h4><a href="/product.php?slug=${slug}">${name}</a></h4>
               <h4>${price}  ${CURRENCY}</h4>
           </div>
           ${category &&

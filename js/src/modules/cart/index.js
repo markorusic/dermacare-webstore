@@ -81,7 +81,7 @@ export default (() => {
     }
 
     store.add({ id, quantity })
-    $.toaster('Uspešno dodato u <a href="/cart.php">korpu</a>!')
+    $.toaster('Successfully added to <a href="/cart.php">cart</a>!')
   }
 
   function _handleRemoveFromCart(event) {
@@ -123,7 +123,7 @@ export default (() => {
     const $btn = $form.find('button[type="submit"]')
     const $modalBody = $form.parent()
     const btnTextBefore = $btn.text()
-    $btn.css({ 'pointer-events': 'none' }).text('Molimo Vas da sačekate...')
+    $btn.css({ 'pointer-events': 'none' }).text('Please wait...')
     productService
       .checkout()
       .then(() => {
@@ -137,7 +137,7 @@ export default (() => {
       .catch(() => {
         checkoutInProgress = false
         $btn.css({ 'pointer-events': 'auto' }).text(btnTextBefore)
-        alert('Doslo je do greske!')
+        alert('An error has occurred!')
       })
   }
 

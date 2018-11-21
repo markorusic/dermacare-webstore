@@ -4,7 +4,7 @@ const templates = {
   cartProduct({ id, name, main_photo, price, quantity }) {
     return `
             <tr data-product-id="${id}">
-                <td data-th="Proizvod">
+                <td data-th="Product">
                     <div class="row">
                         <div class="col-sm-4 hidden-xs">
                             <div class="card-product-img"
@@ -16,12 +16,12 @@ const templates = {
                         </div>
                     </div>
                 </td>
-                <td data-th="Cena">${price} ${CURRENCY}</td>
+                <td data-th="Price">${price} ${CURRENCY}</td>
                 
-                <td data-th="Količina">
+                <td data-th="Quantity">
                     <input value="${quantity}" class="change-product-quantity input-number" type="number" step="1" min="1" name="quantity">
                 </td>
-                <td data-th="Ukupno">
+                <td data-th="Total">
                     <span class="single-product-total">${price *
                       quantity}</span> ${CURRENCY}
                 </td>
@@ -36,16 +36,16 @@ const templates = {
   cartProductsWrapper(productsHTML) {
     return `
             <div class="col-md-8">
-                <h6>Izabrani proizvodi (<span class="cart-items-count"></span> kom)</h6>
+                <h6>Selected products (<span class="cart-items-count"></span>)</h6>
                 <hr>
                 <div class="table-responsive">
                     <table id="cart" class="table table-hover table-condensed">
                         <thead>
                         <tr>
-                            <th>Proizvod</th>
-                            <th>Cena</th>
-                            <th>Količina</th>
-                            <th>Ukupno</th>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
                             <th>&nbsp;</th>
                         </tr>
                         </thead>
@@ -61,23 +61,23 @@ const templates = {
   cartSum() {
     return `
             <div class="col-md-4 info-box">
-                <h6>Ukupno</h6>
+                <h6>Total</h6>
                 <hr>
                 <p class="d-flex flex-column justify-content-md-between flex-md-row">
-                    <span>Ukupna vrednost proizvoda</span>
+                    <span>Total value of the products</span>
                     <span><span class="cart-items-total"></span> ${CURRENCY}</span>
                 </p>
 
                 <p class="d-flex flex-column justify-content-md-between flex-md-row font-weight-bold mt-3 mb-5">
-                    <span>Ukupno</span>
+                    <span>Total</span>
                     <span><span class="cart-items-total-with-shipping"></span> ${CURRENCY}</span>
                 </p>
                 <button type="submit"
                         class="btn-add-to-cart-look d-flex justify-content-between"
                         data-toggle="modal"
                         data-target="#orderModal">
-                    <span>Nastavi</span>
-                    <span class="btn-add-to-cart-plus"><img src="img/check.svg" alt=""></span>
+                    <span>Continue</span>
+                    <span class="btn-add-to-cart-plus"><img src="img/check.svg" alt="Add to cart"></span>
                 </button>
             </div>
         `
@@ -85,10 +85,10 @@ const templates = {
   emptyCart: `
         <div class="col-12 col-md-6 offset-md-3">
             <div class="flex-center-col pt-4">
-                <h3 class="uc font-size-21">Vaša korpa je trenutno prazna</h3>
-                <p class="small-p">Niste ubacili proizvod u vašu korpu</p>
+                <h3 class="uc font-size-21">Your cart is currently empty.</h3>
+                <p class="small-p">You did not insert the product into your cart.</p>
                 <a href="/collections.php" class="uc btn btn-derma">
-                    Vrati se u prodavnicu
+                    Back to shop
                 </a>
             </div>
         </div>
@@ -100,8 +100,8 @@ const templates = {
     `,
   successfulyCheckout: `
         <div class="flex-center-col" style="height: 100%;">
-            <h3 class="uc font-size-21">Hvala na kupovini nasih porizvoda!</h3>
-            <p>Proverite mail, kako biste završili kupovinu</p>
+            <h3 class="uc font-size-21 text-center">Thank you for purchasing our products!</h3>
+            <p>Check your mail to complete your purchase</p>
         </div>
     `
 }
