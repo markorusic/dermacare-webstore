@@ -104,7 +104,242 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   // Override the current require with this new one
   return newRequire;
-})({"src/shared/utils/toaster.js":[function(require,module,exports) {
+})({"src/shared/utils/EventEmitter.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var EventEmitter =
+/*#__PURE__*/
+function () {
+  function EventEmitter() {
+    _classCallCheck(this, EventEmitter);
+
+    this.events = {};
+  }
+
+  _createClass(EventEmitter, [{
+    key: "on",
+    value: function on(event, handler) {
+      if (this.events[event]) {
+        this.events[event].push(handler);
+      } else {
+        this.events[event] = [handler];
+      }
+    }
+  }, {
+    key: "emit",
+    value: function emit(event, payload) {
+      var eventHandlers = this.events[event];
+
+      if (eventHandlers) {
+        eventHandlers.forEach(function (eventHandler) {
+          eventHandler(payload);
+        });
+      }
+    }
+  }]);
+
+  return EventEmitter;
+}();
+
+exports.default = EventEmitter;
+},{}],"src/shared/utils/View.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var View =
+/*#__PURE__*/
+function () {
+  function View(getHTML) {
+    _classCallCheck(this, View);
+
+    this.getHTML = getHTML;
+  }
+
+  _createClass(View, [{
+    key: "render",
+    value: function render() {
+      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
+
+      View.render.apply(View, [this.getHTML].concat(args));
+    }
+  }, {
+    key: "renderList",
+    value: function renderList() {
+      for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+        args[_key2] = arguments[_key2];
+      }
+
+      View.renderList.apply(View, [this.getHTML].concat(args));
+    }
+  }], [{
+    key: "render",
+    value: function render(getHTML, item, selector) {
+      $(selector).html(getHTML(item));
+    }
+  }, {
+    key: "renderList",
+    value: function renderList(getHTML, items, selector) {
+      $(selector).html(items.map(getHTML).join(''));
+    }
+  }]);
+
+  return View;
+}();
+
+exports.default = View;
+},{}],"src/shared/utils/pagination.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var _default = function () {
+  var _ref;
+
+  var SHOW_PER_CLICK = 8;
+  var $dom = {
+    loadMore: null,
+    all: null,
+    hidden: null,
+    counter: null,
+    api: {
+      refreshAll: function refreshAll() {
+        $dom.all = $('[data-pageable]');
+      },
+      refreshHidden: function refreshHidden() {
+        $dom.hidden = $('[data-pageable]:hidden');
+      }
+    }
+  };
+
+  function _cacheDom() {
+    $dom.loadMore = $('#loadMore');
+    $dom.loadMoreWrapper = $dom.loadMore.parent().parent();
+    $dom.counter = $('.currently-showing');
+    $dom.counterTotal = $('.total');
+    $dom.api.refreshAll();
+    $dom.api.refreshHidden();
+  }
+
+  function _bindEvents() {
+    $dom.loadMore.on('click', _handleShowMore);
+  }
+
+  function _handleShowMore(event) {
+    $dom.api.refreshHidden();
+    event.preventDefault();
+    $dom.hidden.slice(0, SHOW_PER_CLICK).slideDown();
+    $dom.api.refreshHidden();
+
+    if ($dom.hidden.length <= 0) {
+      $dom.loadMoreWrapper.hide();
+    }
+
+    _updateCounter();
+  }
+
+  function _updateCounter() {
+    if ($dom.counter.length > 0) {
+      $dom.counter.text($dom.all.length - $dom.hidden.length);
+      $dom.counterTotal.text($dom.all.length);
+    }
+  }
+
+  return _ref = {
+    init: function init() {
+      _cacheDom();
+
+      _bindEvents();
+
+      _updateCounter();
+
+      if ($dom.hidden.length > 0) {
+        $dom.loadMoreWrapper.show();
+      }
+    },
+    countAll: function countAll() {
+      $dom.api.refreshAll();
+      return $dom.all.length;
+    }
+  }, _defineProperty(_ref, "countAll", function countAll() {
+    $dom.api.refreshHidden();
+    return $dom.hidden.length;
+  }), _defineProperty(_ref, "countVisible", function countVisible() {
+    $dom.api.refreshAll();
+    $dom.api.refreshHidden();
+    return $dom.all.length - $dom.hidden.length;
+  }), _ref;
+}();
+
+exports.default = _default;
+},{}],"src/shared/utils/url.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _default = {
+  getParams: function getParams() {
+    var search = location.search.substring(1);
+
+    try {
+      return JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"') + '"}');
+    } catch (_unused) {
+      return {};
+    }
+  },
+  getParam: function getParam(param) {
+    return this.getParams()[param];
+  }
+};
+exports.default = _default;
+},{}],"src/shared/utils/wait.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _default = function _default(data) {
+  var time = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+  return new Promise(function (resolve) {
+    setTimeout(function () {
+      resolve(data);
+    }, time);
+  });
+};
+
+exports.default = _default;
+},{}],"src/shared/utils/toaster.js":[function(require,module,exports) {
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 /***********************************************************************************
@@ -251,494 +486,63 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
     $.extend(settings, defaults);
   };
 })(jQuery);
-},{}],"src/shared/services/fakeHttp.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var fakeRequest = function fakeRequest() {
-  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-    args[_key] = arguments[_key];
-  }
-
-  return new Promise(function (resolve) {
-    setTimeout(function () {
-      resolve.apply(void 0, args);
-    }, 500);
-  });
-};
-
-var _default = {
-  get: fakeRequest,
-  post: fakeRequest,
-  put: fakeRequest,
-  delete: fakeRequest
-};
-exports.default = _default;
-},{}],"src/shared/utils/pagination.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var _default = function () {
-  var _ref;
-
-  var SHOW_PER_CLICK = 8;
-  var $dom = {
-    loadMore: null,
-    all: null,
-    hidden: null,
-    counter: null,
-    api: {
-      setAll: function setAll() {
-        $dom.all = $('[data-pageable]');
-      },
-      setHidden: function setHidden() {
-        $dom.hidden = $('[data-pageable]:hidden');
-      }
-    }
-  };
-
-  function _cacheDom() {
-    $dom.loadMore = $('#loadMore');
-    $dom.loadMoreWrapper = $dom.loadMore.parent().parent();
-    $dom.counter = $('.currently-showing');
-    $dom.counterTotal = $('.total');
-    $dom.api.setAll();
-    $dom.api.setHidden();
-  }
-
-  function _bindEvents() {
-    $dom.loadMore.on('click', _handleShowMore);
-  }
-
-  function _handleShowMore(event) {
-    $dom.api.setHidden();
-    event.preventDefault();
-    $dom.hidden.slice(0, SHOW_PER_CLICK).slideDown();
-    $dom.api.setHidden();
-
-    if ($dom.hidden.length <= 0) {
-      $dom.loadMoreWrapper.hide();
-    }
-
-    _updateCounter();
-  }
-
-  function _updateCounter() {
-    if ($dom.counter.length > 0) {
-      $dom.counter.text($dom.all.length - $dom.hidden.length);
-      $dom.counterTotal.text($dom.all.length);
-    }
-  }
-
-  return _ref = {
-    init: function init() {
-      _cacheDom();
-
-      _bindEvents();
-
-      _updateCounter();
-    },
-    countAll: function countAll() {
-      $dom.api.setAll();
-      return $dom.all.length;
-    }
-  }, _defineProperty(_ref, "countAll", function countAll() {
-    $dom.api.setHidden();
-    return $dom.hidden.length;
-  }), _defineProperty(_ref, "countVisible", function countVisible() {
-    $dom.api.setAll();
-    $dom.api.setHidden();
-    return $dom.all.length - $dom.hidden.length;
-  }), _defineProperty(_ref, "handleLoadMoreButton", function handleLoadMoreButton() {
-    if ($dom.hidden.length > 0) {
-      $dom.loadMoreWrapper.show();
-    } else {
-      $dom.loadMoreWrapper.hide();
-    }
-  }), _ref;
-}();
-
-exports.default = _default;
-},{}],"src/modules/cart/config.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.ACTIONS = exports.LC_CART_KEY = exports.SHIPPING_FEE = exports.CURRENCY = void 0;
-var CURRENCY = '€';
-exports.CURRENCY = CURRENCY;
-var SHIPPING_FEE = 0;
-exports.SHIPPING_FEE = SHIPPING_FEE;
-var LC_CART_KEY = 'cart-items';
-exports.LC_CART_KEY = LC_CART_KEY;
-var ACTIONS = {
-  CART_UPDATED: 'cart:updated',
-  CART_PRODUCTS_LOADING: 'cart:loading',
-  CART_PRODUCTS_LOADED: 'cart:products-loaded',
-  EMPTY_CART: 'cart:empty'
-};
-exports.ACTIONS = ACTIONS;
 },{}],"src/shared/utils/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+Object.defineProperty(exports, "EventEmitter", {
+  enumerable: true,
+  get: function () {
+    return _EventEmitter.default;
+  }
+});
+Object.defineProperty(exports, "View", {
+  enumerable: true,
+  get: function () {
+    return _View.default;
+  }
+});
+Object.defineProperty(exports, "pagination", {
+  enumerable: true,
+  get: function () {
+    return _pagination.default;
+  }
+});
+Object.defineProperty(exports, "url", {
+  enumerable: true,
+  get: function () {
+    return _url.default;
+  }
+});
+Object.defineProperty(exports, "wait", {
+  enumerable: true,
+  get: function () {
+    return _wait.default;
+  }
+});
+Object.defineProperty(exports, "toaster", {
+  enumerable: true,
+  get: function () {
+    return _toaster.default;
+  }
+});
 
-var _fakeHttp = _interopRequireDefault(require("../services/fakeHttp"));
+var _EventEmitter = _interopRequireDefault(require("./EventEmitter"));
+
+var _View = _interopRequireDefault(require("./View"));
 
 var _pagination = _interopRequireDefault(require("./pagination"));
 
-var _config = require("../../modules/cart/config");
+var _url = _interopRequireDefault(require("./url"));
+
+var _wait = _interopRequireDefault(require("./wait"));
+
+var _toaster = _interopRequireDefault(require("./toaster"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var _default = function () {
-  var helpers = {
-    getPhotoFromBg: function getPhotoFromBg(element) {
-      return element.css('background-image').replace(/.*\s?url\([\'\"]?/, '').replace(/[\'\"]?\).*/, '');
-    }
-  };
-  var gallery = {
-    getInitialState: function getInitialState(photos) {
-      var state = {
-        photos: photos,
-        current: photos.length > 0 ? photos[0] : null,
-        next: null,
-        prev: null
-      };
-      return gallery.updateGalleryState(state, state.current);
-    },
-    updateGalleryState: function updateGalleryState(state, current) {
-      var len = state.photos.length;
-      var i = state.photos.indexOf(current);
-      state.current = current;
-      state.next = state.photos[(i + 1) % len];
-      state.prev = state.photos[(i + len - 1) % len];
-      return state;
-    }
-  };
-  var $dom = {};
-
-  function _cacheDom() {
-    // Media photo
-    $dom.photoModal = $('#photoModal');
-    $dom.photoModalLeft = $dom.photoModal.find('.arr-left');
-    $dom.photoModalRight = $dom.photoModal.find('.arr-right'); // Media video
-
-    $dom.videoModal = $('#videoModal');
-    $dom.videoIframe = $dom.videoModal.find('iframe'); // Contact form
-
-    $dom.contactForm = $('#contact-form'); // currency span
-
-    $dom.currency = $('.currency');
-  }
-
-  function _initContactForm() {
-    $dom.contactForm.on('submit', function (event) {
-      event.preventDefault();
-      var $form = $(event.target);
-      var $btn = $form.find('button[type="submit"]');
-      var $formWrapper = $form.parent();
-      $btn.css({
-        'pointer-events': 'none'
-      }).text('Molimo Vas da sačekate...');
-      var data = {};
-
-      _fakeHttp.default.post("".concat(window.location.origin, "/contact/send"), data).then(function () {
-        $form.fadeOut(function () {
-          $formWrapper.html("<div><p class=\"font-size-21\">Hvala. Uspe\u0161no ste poslali poruku. Uskoro \u0107emo vam odgovoriti.</p></div>");
-        });
-      });
-    });
-  }
-
-  function _initMediaVideoModal() {
-    $dom.videoModal.on('show.bs.modal', function (event) {
-      var videoId = $(event.relatedTarget).data().video.split('?')[1].slice(2);
-      var embedUrl = "https://www.youtube.com/embed/".concat(videoId, "?autoplay=1");
-      $dom.videoIframe.attr('src', embedUrl);
-    }).on('hide.bs.modal', function () {
-      $dom.videoIframe.attr('src', '');
-    });
-  }
-
-  return {
-    init: function init() {
-      _cacheDom();
-
-      _initContactForm();
-
-      _initMediaVideoModal();
-
-      _pagination.default.init();
-
-      $dom.currency.text(_config.CURRENCY);
-    },
-    gallery: gallery,
-    helpers: helpers
-  };
-}();
-
-exports.default = _default;
-},{"../services/fakeHttp":"src/shared/services/fakeHttp.js","./pagination":"src/shared/utils/pagination.js","../../modules/cart/config":"src/modules/cart/config.js"}],"src/shared/utils/url.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _default = {
-  getParams: function getParams() {
-    var search = location.search.substring(1);
-
-    try {
-      return JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"') + '"}');
-    } catch (_unused) {
-      return {};
-    }
-  },
-  getParam: function getParam(param) {
-    return this.getParams()[param];
-  }
-};
-exports.default = _default;
-},{}],"src/modules/product/ordering.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _pagination = _interopRequireDefault(require("../../shared/utils/pagination"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var _default = function () {
-  var orderingTypes = {
-    createdAt: 'date',
-    priceAsc: 'price',
-    priceDesc: 'price-desc'
-  };
-  var $dom = {};
-
-  function _cacheDom() {
-    $dom.root = $('#product-list');
-    $dom.ordering = $('.product-ordering');
-
-    _cacheProducts();
-  }
-
-  function _cacheProducts() {
-    $dom.products = $dom.root.children();
-  }
-
-  function _bindEvents() {
-    $dom.ordering.on('change', _handleOrderingChange);
-  }
-
-  function _getById(id) {
-    return $dom.root.find("[data-product=".concat(id, "]")).get(0).outerHTML;
-  }
-
-  function _handleOrderingChange(event) {
-    event.preventDefault();
-    var orderBy = $(event.target).val();
-    var $sortedProducts = null;
-
-    switch (orderBy) {
-      case orderingTypes.createdAt:
-        $sortedProducts = _getSortedDomElements('createdAt', true);
-        break;
-
-      case orderingTypes.priceAsc:
-        $sortedProducts = _getSortedDomElements('price', false);
-        break;
-
-      case orderingTypes.priceDesc:
-        $sortedProducts = _getSortedDomElements('price', true);
-        break;
-
-      default:
-    }
-
-    _render($sortedProducts);
-  }
-
-  function _render($products) {
-    $dom.root.append($products);
-
-    var visible = _pagination.default.countVisible();
-
-    $dom.root.children().each(function (index, element) {
-      if (index > visible - 1) {
-        $(element).hide();
-      } else {
-        $(element).show();
-      }
-    });
-
-    _renderEffects();
-  }
-
-  function _renderEffects() {
-    _pagination.default.handleLoadMoreButton();
-
-    _cacheProducts();
-  }
-
-  function _getSortedDomElements(prop, desc) {
-    return $dom.products.sort(function (current, next) {
-      var currentData = $(current).data();
-      var nextData = $(next).data();
-
-      if (currentData[prop] < nextData[prop]) {
-        return desc ? 1 : -1;
-      }
-
-      if (currentData[prop] > nextData[prop]) {
-        return desc ? -1 : 1;
-      }
-
-      return 0;
-    });
-  }
-
-  return {
-    init: function init() {
-      _cacheDom();
-
-      _bindEvents();
-
-      _renderEffects();
-    }
-  };
-}();
-
-exports.default = _default;
-},{"../../shared/utils/pagination":"src/shared/utils/pagination.js"}],"src/shared/utils/View.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-var View =
-/*#__PURE__*/
-function () {
-  function View(getHTML) {
-    _classCallCheck(this, View);
-
-    this.getHTML = getHTML;
-  }
-
-  _createClass(View, [{
-    key: "render",
-    value: function render() {
-      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-        args[_key] = arguments[_key];
-      }
-
-      View.render.apply(View, [this.getHTML].concat(args));
-    }
-  }, {
-    key: "renderList",
-    value: function renderList() {
-      for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-        args[_key2] = arguments[_key2];
-      }
-
-      View.renderList.apply(View, [this.getHTML].concat(args));
-    }
-  }], [{
-    key: "render",
-    value: function render(getHTML, item, selector) {
-      $(selector).html(getHTML(item));
-    }
-  }, {
-    key: "renderList",
-    value: function renderList(getHTML, items, selector) {
-      $(selector).html(items.map(getHTML).join(''));
-    }
-  }]);
-
-  return View;
-}();
-
-exports.default = View;
-},{}],"src/modules/product/view.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _config = require("../cart/config");
-
-var _View = _interopRequireDefault(require("../../shared/utils/View"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var _default = new _View.default(function (_ref, index) {
-  var id = _ref.id,
-      name = _ref.name,
-      price = _ref.price,
-      slug = _ref.slug,
-      main_photo = _ref.main_photo,
-      category = _ref.category,
-      created_at = _ref.created_at;
-  return "\n    <div\n      class=\"col-6 col-md-4 col-lg-3\"\n      data-pageable\n      data-product-id=\"".concat(id, "\"\n      data-price=\"").concat(price, "\"\n      data-created-at=\"").concat(created_at, "\"\n      style=\"display:").concat(index > 7 ? 'none' : 'block', ";\"\n    >\n      <article class=\"product-preview-article\">\n          <div class=\"product-image-preview position-relative\">\n              <a href=\"/product.php?slug=").concat(slug, "\">\n                  <img src=\"").concat(main_photo, "\" alt=\"").concat(name, "\" class=\"img-fluid\">\n              </a>\n              <button data-product-id=\"").concat(id, "\" class=\"btn-add-to-cart d-flex justify-content-between preview-product-atc\">\n                <span>Add to cart</span>\n                <span class=\"btn-add-to-cart-plus\"><img src=\"img/plus.svg\" alt=\"Add to cart\"></span>\n              </button>\n          </div>\n          <div class=\"d-flex flex-column justify-content-md-between flex-md-row\">\n              <h4><a href=\"/product.php?slug=").concat(slug, "\">").concat(name, "</a></h4>\n              <h4>").concat(price, "  ").concat(_config.CURRENCY, "</h4>\n          </div>\n          ").concat(category && function () {
-    return "\n              <h6 class=\"pb-1\">\n                <a style=\"color: inherit;\" href=\"/collection.php?slug=".concat(category.slug, "\">\n                  ").concat(category.name, "\n                </a>\n              </h6>\n          ");
-  }(), "\n      </article>\n    </div>\n  ");
-});
-
-exports.default = _default;
-},{"../cart/config":"src/modules/cart/config.js","../../shared/utils/View":"src/shared/utils/View.js"}],"src/modules/product/index.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _ordering = _interopRequireDefault(require("./ordering"));
-
-var _view = _interopRequireDefault(require("./view"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var _default = function () {
-  return {
-    init: function init() {
-      _ordering.default.init();
-    },
-    view: _view.default
-  };
-}();
-
-exports.default = _default;
-},{"./ordering":"src/modules/product/ordering.js","./view":"src/modules/product/view.js"}],"src/mockup/products.json":[function(require,module,exports) {
+},{"./EventEmitter":"src/shared/utils/EventEmitter.js","./View":"src/shared/utils/View.js","./pagination":"src/shared/utils/pagination.js","./url":"src/shared/utils/url.js","./wait":"src/shared/utils/wait.js","./toaster":"src/shared/utils/toaster.js"}],"src/mockup/products.json":[function(require,module,exports) {
 module.exports = [{
   "id": 1,
   "name": "24k premium Gold Mask",
@@ -838,7 +642,7 @@ module.exports = [{
 }, {
   "id": 9,
   "name": "24k premium Gold Mask",
-  "price": "120",
+  "price": "190",
   "slug": "24k-premium-gold-mask-9",
   "main_photo": "img/glow.jpg",
   "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -1028,24 +832,6 @@ module.exports = [{
     "slug": "skin-care"
   }
 }];
-},{}],"src/shared/utils/wait.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _default = function _default(data) {
-  var time = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-  return new Promise(function (resolve) {
-    setTimeout(function () {
-      resolve(data);
-    }, time);
-  });
-};
-
-exports.default = _default;
 },{}],"src/modules/product/productService.js":[function(require,module,exports) {
 "use strict";
 
@@ -1078,55 +864,26 @@ var _default = {
   }
 };
 exports.default = _default;
-},{"../../mockup/products.json":"src/mockup/products.json","../../shared/utils/wait":"src/shared/utils/wait.js"}],"src/shared/utils/EventEmitter.js":[function(require,module,exports) {
+},{"../../mockup/products.json":"src/mockup/products.json","../../shared/utils/wait":"src/shared/utils/wait.js"}],"src/modules/cart/config.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-var EventEmitter =
-/*#__PURE__*/
-function () {
-  function EventEmitter() {
-    _classCallCheck(this, EventEmitter);
-
-    this.events = {};
-  }
-
-  _createClass(EventEmitter, [{
-    key: "on",
-    value: function on(event, handler) {
-      if (this.events[event]) {
-        this.events[event].push(handler);
-      } else {
-        this.events[event] = [handler];
-      }
-    }
-  }, {
-    key: "emit",
-    value: function emit(event, payload) {
-      var eventHandlers = this.events[event];
-
-      if (eventHandlers) {
-        eventHandlers.forEach(function (eventHandler) {
-          eventHandler(payload);
-        });
-      }
-    }
-  }]);
-
-  return EventEmitter;
-}();
-
-exports.default = EventEmitter;
+exports.ACTIONS = exports.LC_CART_KEY = exports.SHIPPING_FEE = exports.CURRENCY = void 0;
+var CURRENCY = '€';
+exports.CURRENCY = CURRENCY;
+var SHIPPING_FEE = 0;
+exports.SHIPPING_FEE = SHIPPING_FEE;
+var LC_CART_KEY = 'cart-items';
+exports.LC_CART_KEY = LC_CART_KEY;
+var ACTIONS = {
+  CART_UPDATED: 'cart:updated',
+  CART_PRODUCTS_LOADING: 'cart:loading',
+  CART_PRODUCTS_LOADED: 'cart:products-loaded',
+  EMPTY_CART: 'cart:empty'
+};
+exports.ACTIONS = ACTIONS;
 },{}],"src/modules/cart/store.js":[function(require,module,exports) {
 "use strict";
 
@@ -1515,7 +1272,177 @@ var _default = function () {
 }();
 
 exports.default = _default;
-},{"../product/productService":"src/modules/product/productService.js","./store":"src/modules/cart/store.js","./view":"src/modules/cart/view.js","./config":"src/modules/cart/config.js"}],"src/modules/category/view.js":[function(require,module,exports) {
+},{"../product/productService":"src/modules/product/productService.js","./store":"src/modules/cart/store.js","./view":"src/modules/cart/view.js","./config":"src/modules/cart/config.js"}],"src/modules/product/ordering.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _pagination = _interopRequireDefault(require("../../shared/utils/pagination"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _default = function () {
+  var orderingTypes = {
+    createdAt: 'date',
+    priceAsc: 'price',
+    priceDesc: 'price-desc'
+  };
+  var $dom = {};
+
+  function _cacheDom() {
+    $dom.root = $('#product-list');
+    $dom.ordering = $('.product-ordering');
+
+    _cacheProducts();
+  }
+
+  function _cacheProducts() {
+    $dom.products = $dom.root.children();
+  }
+
+  function _bindEvents() {
+    $dom.ordering.on('change', _handleOrderingChange);
+  }
+
+  function _getById(id) {
+    return $dom.root.find("[data-product=".concat(id, "]")).get(0).outerHTML;
+  }
+
+  function _handleOrderingChange(event) {
+    event.preventDefault();
+    var orderBy = $(event.target).val();
+    var $sortedProducts = null;
+
+    switch (orderBy) {
+      case orderingTypes.createdAt:
+        $sortedProducts = _getSortedDomElements('createdAt', true);
+        break;
+
+      case orderingTypes.priceAsc:
+        $sortedProducts = _getSortedDomElements('price', false);
+        break;
+
+      case orderingTypes.priceDesc:
+        $sortedProducts = _getSortedDomElements('price', true);
+        break;
+
+      default:
+    }
+
+    _render($sortedProducts);
+  }
+
+  function _render($products) {
+    $dom.root.append($products);
+
+    var visible = _pagination.default.countVisible();
+
+    $dom.root.children().each(function (index, element) {
+      if (index > visible - 1) {
+        $(element).hide();
+      } else {
+        $(element).show();
+      }
+    });
+
+    _renderEffects();
+  }
+
+  function _renderEffects() {
+    _cacheProducts();
+  }
+
+  function _getSortedDomElements(prop, desc) {
+    return $dom.products.sort(function (current, next) {
+      var currentData = $(current).data();
+      var nextData = $(next).data();
+
+      if (currentData[prop] < nextData[prop]) {
+        return desc ? 1 : -1;
+      }
+
+      if (currentData[prop] > nextData[prop]) {
+        return desc ? -1 : 1;
+      }
+
+      return 0;
+    });
+  }
+
+  return {
+    init: function init() {
+      _cacheDom();
+
+      _bindEvents();
+
+      _renderEffects();
+    }
+  };
+}();
+
+exports.default = _default;
+},{"../../shared/utils/pagination":"src/shared/utils/pagination.js"}],"src/modules/product/view.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _config = require("../cart/config");
+
+var _View = _interopRequireDefault(require("../../shared/utils/View"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _default = new _View.default(function (_ref, index) {
+  var id = _ref.id,
+      name = _ref.name,
+      price = _ref.price,
+      slug = _ref.slug,
+      main_photo = _ref.main_photo,
+      category = _ref.category,
+      created_at = _ref.created_at;
+  return "\n    <div\n      class=\"col-6 col-md-4 col-lg-3\"\n      data-pageable\n      data-product-id=\"".concat(id, "\"\n      data-price=\"").concat(price, "\"\n      data-created-at=\"").concat(created_at, "\"\n      style=\"display:").concat(index > 7 ? 'none' : 'block', ";\"\n    >\n      <article class=\"product-preview-article\">\n          <div class=\"product-image-preview position-relative\">\n              <a href=\"/product.php?slug=").concat(slug, "\">\n                  <img src=\"").concat(main_photo, "\" alt=\"").concat(name, "\" class=\"img-fluid\">\n              </a>\n              <button data-product-id=\"").concat(id, "\" class=\"btn-add-to-cart d-flex justify-content-between preview-product-atc\">\n                <span>Add to cart</span>\n                <span class=\"btn-add-to-cart-plus\"><img src=\"img/plus.svg\" alt=\"Add to cart\"></span>\n              </button>\n          </div>\n          <div class=\"d-flex flex-column justify-content-md-between flex-md-row\">\n              <h4><a href=\"/product.php?slug=").concat(slug, "\">").concat(name, "</a></h4>\n              <h4>").concat(price, "  ").concat(_config.CURRENCY, "</h4>\n          </div>\n          ").concat(category && function () {
+    return "\n              <h6 class=\"pb-1\">\n                <a style=\"color: inherit;\" href=\"/collection.php?slug=".concat(category.slug, "\">\n                  ").concat(category.name, "\n                </a>\n              </h6>\n          ");
+  }(), "\n      </article>\n    </div>\n  ");
+});
+
+exports.default = _default;
+},{"../cart/config":"src/modules/cart/config.js","../../shared/utils/View":"src/shared/utils/View.js"}],"src/modules/product/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _ordering = _interopRequireDefault(require("./ordering"));
+
+var _view = _interopRequireDefault(require("./view"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _default = {
+  view: _view.default,
+  init: function init(_ref) {
+    var featuredProducts = _ref.featuredProducts,
+        categoryProducts = _ref.categoryProducts;
+
+    _view.default.renderList(featuredProducts.slice(0, 4), '#home-product-group-1 .row');
+
+    _view.default.renderList(featuredProducts.slice(4, 8), '#home-product-group-2 .row');
+
+    _view.default.renderList(categoryProducts, '#product-list');
+
+    _ordering.default.init();
+  }
+};
+exports.default = _default;
+},{"./ordering":"src/modules/product/ordering.js","./view":"src/modules/product/view.js"}],"src/modules/category/view.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1548,14 +1475,48 @@ var _view = _interopRequireDefault(require("./view"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _default = function () {
-  return {
-    view: _view.default
-  };
-}();
+var _default = {
+  view: _view.default,
+  init: function init(_ref) {
+    var categories = _ref.categories;
 
+    _view.default.renderList(categories, '#collection-row');
+  }
+};
 exports.default = _default;
-},{"./view":"src/modules/category/view.js"}],"src/mockup/categories.json":[function(require,module,exports) {
+},{"./view":"src/modules/category/view.js"}],"src/modules/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "cart", {
+  enumerable: true,
+  get: function () {
+    return _cart.default;
+  }
+});
+Object.defineProperty(exports, "product", {
+  enumerable: true,
+  get: function () {
+    return _product.default;
+  }
+});
+Object.defineProperty(exports, "category", {
+  enumerable: true,
+  get: function () {
+    return _category.default;
+  }
+});
+
+var _cart = _interopRequireDefault(require("./cart"));
+
+var _product = _interopRequireDefault(require("./product"));
+
+var _category = _interopRequireDefault(require("./category"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+},{"./cart":"src/modules/cart/index.js","./product":"src/modules/product/index.js","./category":"src/modules/category/index.js"}],"src/mockup/categories.json":[function(require,module,exports) {
 module.exports = [{
   "id": 1,
   "name": "GLOW EDITION",
@@ -1609,17 +1570,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _toaster = _interopRequireDefault(require("./shared/utils/toaster"));
+var _utils = require("./shared/utils");
 
-var _utils = _interopRequireDefault(require("./shared/utils"));
+var _modules = require("./modules");
 
-var _url = _interopRequireDefault(require("./shared/utils/url"));
-
-var _product = _interopRequireDefault(require("./modules/product"));
-
-var _cart = _interopRequireDefault(require("./modules/cart"));
-
-var _category = _interopRequireDefault(require("./modules/category"));
+var _config = require("./modules/cart/config");
 
 var _productService = _interopRequireDefault(require("./modules/product/productService"));
 
@@ -1637,36 +1592,69 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var app = {
   load: function load() {
-    var slug = _url.default.getParam('slug');
+    var slug = _utils.url.getParam('slug');
 
     return Promise.all([_productService.default.fetchFeatured(), _productService.default.fetchByCategory(slug), _categoryService.default.fetchAll()]);
   },
+  initVideoModal: function initVideoModal() {
+    var $videoModal = $('#videoModal');
+    var $videoIframe = $videoModal.find('iframe');
+    $videoModal.on('show.bs.modal', function (event) {
+      var videoId = $(event.relatedTarget).data().video.split('?')[1].slice(2);
+      var embedUrl = "https://www.youtube.com/embed/".concat(videoId, "?autoplay=1");
+      $videoIframe.attr('src', embedUrl);
+    }).on('hide.bs.modal', function () {
+      $videoIframe.attr('src', '');
+    });
+  },
+  initContactForm: function initContactForm() {
+    $('#contact-form').on('submit', function (event) {
+      event.preventDefault();
+      var $form = $(event.target);
+      var $btn = $form.find('button[type="submit"]');
+      var $formWrapper = $form.parent();
+      $btn.css({
+        'pointer-events': 'none'
+      }).text('Molimo Vas da sačekate...');
+      (0, _utils.wait)({}, 1000).then(function () {
+        $form.fadeOut(function () {
+          $formWrapper.html("<div><p class=\"font-size-21\">Thank you. You have successfully sent a message. Soon we'll answer.</p></div>");
+        });
+      });
+    });
+  },
+  showCurrency: function showCurrency() {
+    $('.currency').text(_config.CURRENCY);
+  },
   init: function init() {
+    app.initContactForm();
+    app.initVideoModal();
     app.load().then(function (_ref) {
       var _ref2 = _slicedToArray(_ref, 3),
           featuredProducts = _ref2[0],
           categoryProducts = _ref2[1],
           categories = _ref2[2];
 
-      _product.default.view.renderList(featuredProducts.slice(0, 4), '#home-product-group-1 .row');
+      _modules.category.init({
+        categories: categories
+      });
 
-      _product.default.view.renderList(featuredProducts.slice(4, 8), '#home-product-group-2 .row');
+      _modules.product.init({
+        featuredProducts: featuredProducts,
+        categoryProducts: categoryProducts
+      });
 
-      _product.default.view.renderList(categoryProducts, '#product-list');
+      _modules.cart.init();
 
-      _category.default.view.renderList(categories, '#collection-row');
+      app.showCurrency();
 
-      _utils.default.init();
-
-      _product.default.init();
-
-      _cart.default.init();
+      _utils.pagination.init();
     });
   }
 };
 var _default = app;
 exports.default = _default;
-},{"./shared/utils/toaster":"src/shared/utils/toaster.js","./shared/utils":"src/shared/utils/index.js","./shared/utils/url":"src/shared/utils/url.js","./modules/product":"src/modules/product/index.js","./modules/cart":"src/modules/cart/index.js","./modules/category":"src/modules/category/index.js","./modules/product/productService":"src/modules/product/productService.js","./modules/category/categoryService":"src/modules/category/categoryService.js"}],"index.js":[function(require,module,exports) {
+},{"./shared/utils":"src/shared/utils/index.js","./modules":"src/modules/index.js","./modules/cart/config":"src/modules/cart/config.js","./modules/product/productService":"src/modules/product/productService.js","./modules/category/categoryService":"src/modules/category/categoryService.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _app = _interopRequireDefault(require("./src/app"));

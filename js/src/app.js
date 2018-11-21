@@ -1,9 +1,6 @@
-import toaster from './shared/utils/toaster'
-import utils from './shared/utils'
-import urlUtil from './shared/utils/url'
-import product from './modules/product'
-import cart from './modules/cart'
-import category from './modules/category'
+import { wait, toaster, url as urlUtil, pagination } from './shared/utils'
+import { product, cart, category } from './modules'
+import { CURRENCY } from './modules/cart/config'
 import productService from './modules/product/productService'
 import categoryService from './modules/category/categoryService'
 
@@ -16,21 +13,50 @@ const app = {
       categoryService.fetchAll()
     ])
   },
+  initVideoModal() {
+    const $videoModal = $('#videoModal')
+    const $videoIframe = $videoModal.find('iframe')
+    $videoModal
+      .on('show.bs.modal', event => {
+        const videoId = $(event.relatedTarget)
+          .data()
+          .video.split('?')[1]
+          .slice(2)
+        const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`
+        $videoIframe.attr('src', embedUrl)
+      })
+      .on('hide.bs.modal', () => {
+        $videoIframe.attr('src', '')
+      })
+  },
+  initContactForm() {
+    $('#contact-form').on('submit', event => {
+      event.preventDefault()
+      const $form = $(event.target)
+      const $btn = $form.find('button[type="submit"]')
+      const $formWrapper = $form.parent()
+      $btn.css({ 'pointer-events': 'none' }).text('Molimo Vas da sačekate...')
+      wait({}, 1000).then(() => {
+        $form.fadeOut(() => {
+          $formWrapper.html(
+            `<div><p class="font-size-21">Thank you. You have successfully sent a message. Soon we'll answer.</p></div>`
+          )
+        })
+      })
+    })
+  },
+  showCurrency() {
+    $('.currency').text(CURRENCY)
+  },
   init() {
+    app.initContactForm()
+    app.initVideoModal()
     app.load().then(([featuredProducts, categoryProducts, categories]) => {
-      product.view.renderList(
-        featuredProducts.slice(0, 4),
-        '#home-product-group-1 .row'
-      )
-      product.view.renderList(
-        featuredProducts.slice(4, 8),
-        '#home-product-group-2 .row'
-      )
-      product.view.renderList(categoryProducts, '#product-list')
-      category.view.renderList(categories, '#collection-row')
-      utils.init()
-      product.init()
+      category.init({ categories })
+      product.init({ featuredProducts, categoryProducts })
       cart.init()
+      app.showCurrency()
+      pagination.init()
     })
   }
 }

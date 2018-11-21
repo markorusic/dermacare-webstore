@@ -7,10 +7,10 @@ export default (() => {
     hidden: null,
     counter: null,
     api: {
-      setAll() {
+      refreshAll() {
         $dom.all = $('[data-pageable]')
       },
-      setHidden() {
+      refreshHidden() {
         $dom.hidden = $('[data-pageable]:hidden')
       }
     }
@@ -21,8 +21,8 @@ export default (() => {
     $dom.loadMoreWrapper = $dom.loadMore.parent().parent()
     $dom.counter = $('.currently-showing')
     $dom.counterTotal = $('.total')
-    $dom.api.setAll()
-    $dom.api.setHidden()
+    $dom.api.refreshAll()
+    $dom.api.refreshHidden()
   }
 
   function _bindEvents() {
@@ -30,10 +30,10 @@ export default (() => {
   }
 
   function _handleShowMore(event) {
-    $dom.api.setHidden()
+    $dom.api.refreshHidden()
     event.preventDefault()
     $dom.hidden.slice(0, SHOW_PER_CLICK).slideDown()
-    $dom.api.setHidden()
+    $dom.api.refreshHidden()
     if ($dom.hidden.length <= 0) {
       $dom.loadMoreWrapper.hide()
     }
@@ -52,26 +52,22 @@ export default (() => {
       _cacheDom()
       _bindEvents()
       _updateCounter()
+      if ($dom.hidden.length > 0) {
+        $dom.loadMoreWrapper.show()
+      }
     },
     countAll() {
-      $dom.api.setAll()
+      $dom.api.refreshAll()
       return $dom.all.length
     },
     countAll() {
-      $dom.api.setHidden()
+      $dom.api.refreshHidden()
       return $dom.hidden.length
     },
     countVisible() {
-      $dom.api.setAll()
-      $dom.api.setHidden()
+      $dom.api.refreshAll()
+      $dom.api.refreshHidden()
       return $dom.all.length - $dom.hidden.length
-    },
-    handleLoadMoreButton() {
-      if ($dom.hidden.length > 0) {
-        $dom.loadMoreWrapper.show()
-      } else {
-        $dom.loadMoreWrapper.hide()
-      }
     }
   }
 })()

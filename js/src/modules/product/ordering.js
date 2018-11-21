@@ -63,7 +63,6 @@ export default (() => {
   }
 
   function _renderEffects() {
-    pagination.handleLoadMoreButton()
     _cacheProducts()
   }
 
