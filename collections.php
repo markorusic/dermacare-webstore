@@ -1,4 +1,8 @@
-<?php include 'partials/header.php' ?>
+<?php
+    $page_title = 'Collections';
+	$page_description = 'Dermacare product collections.';
+    include 'partials/header.php';
+?>
 
 <!-- Main Container -->
 <main>
