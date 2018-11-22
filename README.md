@@ -17,7 +17,7 @@ $ cd wp1
  $ php -S localhost:8080
 ```
 
-## JS dev/production server
+## JS dev/production build
 
 ```sh
 $ cd js
