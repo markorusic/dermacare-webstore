@@ -1,130 +1,138 @@
 import { CURRENCY } from './config'
+import { View } from '../../shared/utils'
 
-const templates = {
-  cartProduct({ id, name, main_photo, price, quantity }) {
-    return `
-            <tr data-product-id="${id}">
-                <td data-th="Product">
-                    <div class="row">
-                        <div class="col-sm-4 hidden-xs">
-                            <div class="card-product-img"
-                                style="background-image: url('${main_photo}');"></div>
-                        </div>
-                        <div class="col-sm-8 d-flex align-items-center">
-                        
-                            <h4>${name}</h4>
-                        </div>
+const views = {
+  cartProductView: new View(
+    ({ id, name, main_photo, price, quantity }) => `
+        <tr data-product-id="${id}">
+            <td data-th="Product">
+                <div class="row">
+                    <div class="col-sm-4 hidden-xs">
+                        <div class="card-product-img"
+                            style="background-image: url('${main_photo}');"></div>
                     </div>
-                </td>
-                <td data-th="Price">${price} ${CURRENCY}</td>
-                
-                <td data-th="Quantity">
-                    <input value="${quantity}" class="change-product-quantity input-number" type="number" step="1" min="1" name="quantity">
-                </td>
-                <td data-th="Total">
-                    <span class="single-product-total">${price *
-                      quantity}</span> ${CURRENCY}
-                </td>
-                <td class="actions" data-th="Ukloni">
-                    <button class="remove-from-cart btn btn-sm"><img src="${
-                      window.location.origin
-                    }/img/x.svg" alt=""></button>
-                </td>
-            </tr>
-        `
-  },
-  cartProductsWrapper(productsHTML) {
-    return `
-            <div class="col-md-8">
-                <h6>Selected products (<span class="cart-items-count"></span>)</h6>
-                <hr>
-                <div class="table-responsive">
-                    <table id="cart" class="table table-hover table-condensed">
-                        <thead>
-                        <tr>
-                            <th>Product</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                            <th>Total</th>
-                            <th>&nbsp;</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            ${productsHTML}
-                        </tbody>
-                    </table>
+                    <div class="col-sm-8 d-flex align-items-center">
+                    
+                        <h4>${name}</h4>
+                    </div>
                 </div>
-
-            </div>
-        `
-  },
-  cartSum() {
-    return `
-            <div class="col-md-4 info-box">
-                <h6>Total</h6>
-                <hr>
-                <p class="d-flex flex-column justify-content-md-between flex-md-row">
-                    <span>Total value of the products</span>
-                    <span><span class="cart-items-total"></span> ${CURRENCY}</span>
-                </p>
-
-                <p class="d-flex flex-column justify-content-md-between flex-md-row font-weight-bold mt-3 mb-5">
-                    <span>Total</span>
-                    <span><span class="cart-items-total-with-shipping"></span> ${CURRENCY}</span>
-                </p>
-                <button
-                    class="btn-add-to-cart-look d-flex justify-content-between"
-                    data-toggle="modal"
-                    data-target="#orderModal"
-                >
-                    <span>Continue</span>
-                    <span class="btn-add-to-cart-plus"><img src="img/check.svg" alt="Add to cart"></span>
+            </td>
+            <td data-th="Price">${price} ${CURRENCY}</td>
+            
+            <td data-th="Quantity">
+                <input value="${quantity}" class="change-product-quantity input-number" type="number" step="1" min="1" name="quantity">
+            </td>
+            <td data-th="Total">
+                <span class="single-product-total">
+                    ${price * quantity}
+                </span> ${CURRENCY}
+            </td>
+            <td class="actions" data-th="Remove">
+                <button class="remove-from-cart btn btn-sm">
+                    <img src="img/x.svg" alt="Remove from cart">
                 </button>
+            </td>
+        </tr>
+    `
+  ),
+  cartProductsTableView: new View(
+    ({ cols = ['Product', 'Price', 'Quantity', 'Total', '&nbsp;'] }) => `
+        <div class="col-md-8">
+            <h6>Selected products (<span class="cart-items-count"></span>)</h6>
+            <hr>
+            <div class="table-responsive">
+                <table id="cart" class="table table-hover table-condensed">
+                    <thead>
+                    <tr>
+                        ${cols.map(col => `<th>${col}</th>`).join('')}
+                    </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
             </div>
+
+        </div>
+    `
+  ),
+  cartInfoView: new View(
+    currency => `
+       <div class="col-md-4 info-box">
+            <h6>Total</h6>
+            <hr>
+            <p class="d-flex flex-column justify-content-md-between flex-md-row">
+                <span>Total value of the products</span>
+                <span><span class="cart-items-total"></span> ${currency}</span>
+            </p>
+
+            <p class="d-flex flex-column justify-content-md-between flex-md-row font-weight-bold mt-3 mb-5">
+                <span>Total</span>
+                <span><span class="cart-items-total-with-shipping"></span> ${currency}</span>
+            </p>
+            <button
+                class="btn-add-to-cart-look d-flex justify-content-between"
+                data-toggle="modal"
+                data-target="#orderModal"
+            >
+                <span>Continue</span>
+                <span class="btn-add-to-cart-plus"><img src="img/check.svg" alt="Add to cart"></span>
+            </button>
+        </div>
         `
-  },
-  emptyCart: `
+  ),
+  emptyCartView: new View(
+    ({
+      title = 'Your cart is currently empty.',
+      message = 'You did not insert the product into your cart.',
+      backButtonTitle = 'Back to shop'
+    }) => `
         <div class="col-12 col-md-6 offset-md-3">
             <div class="flex-center-col pt-4">
-                <h3 class="uc font-size-21 text-center">Your cart is currently empty.</h3>
-                <p class="small-p">You did not insert the product into your cart.</p>
+                <h3 class="uc font-size-21 text-center">${title}</h3>
+                <p class="small-p">${message}</p>
                 <a href="/collections.php" class="uc btn btn-derma">
-                    Back to shop
+                    ${backButtonTitle}
                 </a>
             </div>
         </div>
-    `,
-  loader: `
+    `
+  ),
+  loaderView: new View(
+    () => `
         <div class="cart-loader-wrapper">
             <div class="lds-ripple"><div></div><div></div></div>
         </div>
-    `,
-  successfulyCheckout: `
+    `
+  ),
+  successfulCheckoutView: new View(
+    ({
+      title = 'Thank you for purchasing our products!',
+      message = 'Check your mail to complete your purchase'
+    }) => `
         <div class="flex-center-col" style="height: 100%; width: 100%;">
-            <h3 class="uc font-size-21 text-center">Thank you for purchasing our products!</h3>
-            <p class="text-center">Check your mail to complete your purchase</p>
+            <h3 class="uc font-size-21 text-center">${title}</h3>
+            <p class="text-center">${message}</p>
         </div>
     `
+  )
 }
 
 export default {
-  $cartWrapper: $('#cart-wrapper .row'),
-  ...templates,
+  $cartRoot: $('#cart-wrapper .row'),
+  ...views,
   renderEmptyCart() {
-    this.$cartWrapper.html(this.emptyCart)
+    this.emptyCartView.render({}, this.$cartRoot)
   },
   renderLoader() {
-    this.$cartWrapper.html(this.loader)
+    this.loaderView.render({}, this.$cartRoot)
   },
   initialRender(cart) {
     if (cart.length === 0) {
       this.renderEmptyCart()
       return false
     }
-    const productsHTML = cart.map(this.cartProduct).join('')
-    const cartTableHTML = this.cartProductsWrapper(productsHTML)
-    const cartSumHTML = this.cartSum()
-    this.$cartWrapper.html(cartTableHTML + cartSumHTML)
+    this.cartInfoView.render(CURRENCY, this.$cartRoot)
+    this.cartProductsTableView.render({}, this.$cartRoot, 'prepend')
+    this.cartProductView.renderList(cart, '#cart tbody')
     return true
   }
 }

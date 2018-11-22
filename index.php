@@ -14,7 +14,7 @@
                     <div class="col-md-6">
                         <article class="d-flex justify-content-center align-items-center flex-column">
                             <div class="box-block d-flex justify-content-center align-items-center flex-column">
-                                <a href="collections.php?slug=glow-edition">
+                                <a href="collection.php?slug=glow-edition">
                                     <span>GLOW</span>
                                     <span class="hr-line"></span>
                                     <span>edition</span>

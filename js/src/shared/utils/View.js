@@ -1,18 +1,23 @@
+const allowedMethods = ['html', 'append', 'prepend']
+
 export default class View {
   constructor(getHTML) {
     this.getHTML = getHTML
   }
-  static render(getHTML, item, selector) {
-    $(selector).html(getHTML(item))
-  }
-  static renderList(getHTML, items, selector) {
-    $(selector).html(items.map(getHTML).join(''))
+
+  static validateRenderMethod(method) {
+    if (!allowedMethods.includes(method)) {
+      throw new Error('Invalid render method')
+    }
   }
 
-  render(...args) {
-    View.render(this.getHTML, ...args)
+  render(item, selector, method = 'html') {
+    View.validateRenderMethod(method)
+    $(selector)[method](this.getHTML(item))
   }
-  renderList(...args) {
-    View.renderList(this.getHTML, ...args)
+
+  renderList(items, selector, method = 'html') {
+    View.validateRenderMethod(method)
+    $(selector)[method](items.map(this.getHTML).join(''))
   }
 }

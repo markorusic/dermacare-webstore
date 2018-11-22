@@ -134,7 +134,8 @@ export default (() => {
       .then(() => {
         localStorage.removeItem(LC_CART_KEY)
         $form.fadeOut(() => {
-          $modalBody.addClass('flex-center-col').html(view.successfulyCheckout)
+          $modalBody.addClass('flex-center-col')
+          view.successfulCheckoutView.render({}, $modalBody)
         })
         $dom.orderModal.on('hide.bs.modal', () => store.clear())
         checkoutInProgress = false
