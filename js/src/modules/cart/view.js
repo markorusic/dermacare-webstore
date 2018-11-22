@@ -72,10 +72,11 @@ const templates = {
                     <span>Total</span>
                     <span><span class="cart-items-total-with-shipping"></span> ${CURRENCY}</span>
                 </p>
-                <button type="submit"
-                        class="btn-add-to-cart-look d-flex justify-content-between"
-                        data-toggle="modal"
-                        data-target="#orderModal">
+                <button
+                    class="btn-add-to-cart-look d-flex justify-content-between"
+                    data-toggle="modal"
+                    data-target="#orderModal"
+                >
                     <span>Continue</span>
                     <span class="btn-add-to-cart-plus"><img src="img/check.svg" alt="Add to cart"></span>
                 </button>
@@ -107,23 +108,23 @@ const templates = {
 }
 
 export default {
-  $cartWrapper: document.querySelector('#cart-wrapper .row'),
+  $cartWrapper: $('#cart-wrapper .row'),
   ...templates,
   renderEmptyCart() {
-    this.$cartWrapper.innerHTML = this.emptyCart
+    this.$cartWrapper.html(this.emptyCart)
   },
   renderLoader() {
-    this.$cartWrapper.innerHTML = this.loader
+    this.$cartWrapper.html(this.loader)
   },
   initialRender(cart) {
     if (cart.length === 0) {
       this.renderEmptyCart()
       return false
     }
-    const productsHTML = cart.map(product => this.cartProduct(product)).join('')
+    const productsHTML = cart.map(this.cartProduct).join('')
     const cartTableHTML = this.cartProductsWrapper(productsHTML)
     const cartSumHTML = this.cartSum()
-    this.$cartWrapper.innerHTML = cartTableHTML + cartSumHTML
+    this.$cartWrapper.html(cartTableHTML + cartSumHTML)
     return true
   }
 }

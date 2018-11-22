@@ -1188,7 +1188,7 @@ var templates = {
     return "\n            <div class=\"col-md-8\">\n                <h6>Selected products (<span class=\"cart-items-count\"></span>)</h6>\n                <hr>\n                <div class=\"table-responsive\">\n                    <table id=\"cart\" class=\"table table-hover table-condensed\">\n                        <thead>\n                        <tr>\n                            <th>Product</th>\n                            <th>Price</th>\n                            <th>Quantity</th>\n                            <th>Total</th>\n                            <th>&nbsp;</th>\n                        </tr>\n                        </thead>\n                        <tbody>\n                            ".concat(productsHTML, "\n                        </tbody>\n                    </table>\n                </div>\n\n            </div>\n        ");
   },
   cartSum: function cartSum() {
-    return "\n            <div class=\"col-md-4 info-box\">\n                <h6>Total</h6>\n                <hr>\n                <p class=\"d-flex flex-column justify-content-md-between flex-md-row\">\n                    <span>Total value of the products</span>\n                    <span><span class=\"cart-items-total\"></span> ".concat(_config.CURRENCY, "</span>\n                </p>\n\n                <p class=\"d-flex flex-column justify-content-md-between flex-md-row font-weight-bold mt-3 mb-5\">\n                    <span>Total</span>\n                    <span><span class=\"cart-items-total-with-shipping\"></span> ").concat(_config.CURRENCY, "</span>\n                </p>\n                <button type=\"submit\"\n                        class=\"btn-add-to-cart-look d-flex justify-content-between\"\n                        data-toggle=\"modal\"\n                        data-target=\"#orderModal\">\n                    <span>Continue</span>\n                    <span class=\"btn-add-to-cart-plus\"><img src=\"img/check.svg\" alt=\"Add to cart\"></span>\n                </button>\n            </div>\n        ");
+    return "\n            <div class=\"col-md-4 info-box\">\n                <h6>Total</h6>\n                <hr>\n                <p class=\"d-flex flex-column justify-content-md-between flex-md-row\">\n                    <span>Total value of the products</span>\n                    <span><span class=\"cart-items-total\"></span> ".concat(_config.CURRENCY, "</span>\n                </p>\n\n                <p class=\"d-flex flex-column justify-content-md-between flex-md-row font-weight-bold mt-3 mb-5\">\n                    <span>Total</span>\n                    <span><span class=\"cart-items-total-with-shipping\"></span> ").concat(_config.CURRENCY, "</span>\n                </p>\n                <button\n                    class=\"btn-add-to-cart-look d-flex justify-content-between\"\n                    data-toggle=\"modal\"\n                    data-target=\"#orderModal\"\n                >\n                    <span>Continue</span>\n                    <span class=\"btn-add-to-cart-plus\"><img src=\"img/check.svg\" alt=\"Add to cart\"></span>\n                </button>\n            </div>\n        ");
   },
   emptyCart: "\n        <div class=\"col-12 col-md-6 offset-md-3\">\n            <div class=\"flex-center-col pt-4\">\n                <h3 class=\"uc font-size-21 text-center\">Your cart is currently empty.</h3>\n                <p class=\"small-p\">You did not insert the product into your cart.</p>\n                <a href=\"/collections.php\" class=\"uc btn btn-derma\">\n                    Back to shop\n                </a>\n            </div>\n        </div>\n    ",
   loader: "\n        <div class=\"cart-loader-wrapper\">\n            <div class=\"lds-ripple\"><div></div><div></div></div>\n        </div>\n    ",
@@ -1196,28 +1196,24 @@ var templates = {
 };
 
 var _default = _objectSpread({
-  $cartWrapper: document.querySelector('#cart-wrapper .row')
+  $cartWrapper: $('#cart-wrapper .row')
 }, templates, {
   renderEmptyCart: function renderEmptyCart() {
-    this.$cartWrapper.innerHTML = this.emptyCart;
+    this.$cartWrapper.html(this.emptyCart);
   },
   renderLoader: function renderLoader() {
-    this.$cartWrapper.innerHTML = this.loader;
+    this.$cartWrapper.html(this.loader);
   },
   initialRender: function initialRender(cart) {
-    var _this = this;
-
     if (cart.length === 0) {
       this.renderEmptyCart();
       return false;
     }
 
-    var productsHTML = cart.map(function (product) {
-      return _this.cartProduct(product);
-    }).join('');
+    var productsHTML = cart.map(this.cartProduct).join('');
     var cartTableHTML = this.cartProductsWrapper(productsHTML);
     var cartSumHTML = this.cartSum();
-    this.$cartWrapper.innerHTML = cartTableHTML + cartSumHTML;
+    this.$cartWrapper.html(cartTableHTML + cartSumHTML);
     return true;
   }
 });
