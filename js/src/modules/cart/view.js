@@ -85,7 +85,7 @@ const templates = {
   emptyCart: `
         <div class="col-12 col-md-6 offset-md-3">
             <div class="flex-center-col pt-4">
-                <h3 class="uc font-size-21">Your cart is currently empty.</h3>
+                <h3 class="uc font-size-21 text-center">Your cart is currently empty.</h3>
                 <p class="small-p">You did not insert the product into your cart.</p>
                 <a href="/collections.php" class="uc btn btn-derma">
                     Back to shop
