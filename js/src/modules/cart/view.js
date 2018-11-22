@@ -100,9 +100,9 @@ const templates = {
         </div>
     `,
   successfulyCheckout: `
-        <div class="flex-center-col" style="height: 100%;">
+        <div class="flex-center-col" style="height: 100%; width: 100%;">
             <h3 class="uc font-size-21 text-center">Thank you for purchasing our products!</h3>
-            <p>Check your mail to complete your purchase</p>
+            <p class="text-center">Check your mail to complete your purchase</p>
         </div>
     `
 }

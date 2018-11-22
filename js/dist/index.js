@@ -1192,7 +1192,7 @@ var templates = {
   },
   emptyCart: "\n        <div class=\"col-12 col-md-6 offset-md-3\">\n            <div class=\"flex-center-col pt-4\">\n                <h3 class=\"uc font-size-21 text-center\">Your cart is currently empty.</h3>\n                <p class=\"small-p\">You did not insert the product into your cart.</p>\n                <a href=\"/collections.php\" class=\"uc btn btn-derma\">\n                    Back to shop\n                </a>\n            </div>\n        </div>\n    ",
   loader: "\n        <div class=\"cart-loader-wrapper\">\n            <div class=\"lds-ripple\"><div></div><div></div></div>\n        </div>\n    ",
-  successfulyCheckout: "\n        <div class=\"flex-center-col\" style=\"height: 100%;\">\n            <h3 class=\"uc font-size-21 text-center\">Thank you for purchasing our products!</h3>\n            <p>Check your mail to complete your purchase</p>\n        </div>\n    "
+  successfulyCheckout: "\n        <div class=\"flex-center-col\" style=\"height: 100%; width: 100%;\">\n            <h3 class=\"uc font-size-21 text-center\">Thank you for purchasing our products!</h3>\n            <p class=\"text-center\">Check your mail to complete your purchase</p>\n        </div>\n    "
 };
 
 var _default = _objectSpread({
