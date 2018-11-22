@@ -1,4 +1,4 @@
-import { wait, toaster, url as urlUtil, pagination } from './shared/utils'
+import { wait, toaster, FormValidation, url, pagination } from './shared/utils'
 import { product, cart, category } from './modules'
 import { CURRENCY } from './modules/cart/config'
 import productService from './modules/product/productService'
@@ -6,7 +6,7 @@ import categoryService from './modules/category/categoryService'
 
 const app = {
   load() {
-    const slug = urlUtil.getParam('slug')
+    const slug = url.getParam('slug')
     return Promise.all([
       productService.fetchFeatured(),
       productService.fetchByCategory(slug),
@@ -30,16 +30,38 @@ const app = {
       })
   },
   initContactForm() {
-    $('#contact-form').on('submit', event => {
+    const $form = $('#contact-form')
+    const validator = new FormValidation({ $form })
+    $form.on('submit', event => {
       event.preventDefault()
-      const $form = $(event.target)
+      if (!validator.validate()) {
+        return
+      }
       const $btn = $form.find('button[type="submit"]')
       const $formWrapper = $form.parent()
-      $btn.css({ 'pointer-events': 'none' }).text('Molimo Vas da sačekate...')
+      $btn.css({ 'pointer-events': 'none' }).text('Please wait...')
       wait({}, 1000).then(() => {
         $form.fadeOut(() => {
           $formWrapper.html(
-            `<div><p class="font-size-21">Thank you. You have successfully sent a message. Soon we'll answer.</p></div>`
+            `<div><p class="font-size-21">Thank you. You have successfully sent a message. We'll answer soon.</p></div>`
+          )
+        })
+      })
+    })
+  },
+  initNewsletterForm() {
+    const $form = $('#newsletter-form')
+    const validator = new FormValidation({ $form })
+    $form.on('submit', event => {
+      event.preventDefault()
+      if (!validator.validate()) {
+        return
+      }
+      const $formWrapper = $form.parent()
+      wait({}, 100).then(() => {
+        $form.fadeOut(() => {
+          $formWrapper.append(
+            `<div><p class="font-size-18 text-center">You have successfully singed up for newsletter.</p></div>`
           )
         })
       })
@@ -49,14 +71,15 @@ const app = {
     $('.currency').text(CURRENCY)
   },
   init() {
+    app.initNewsletterForm()
     app.initContactForm()
     app.initVideoModal()
     app.load().then(([featuredProducts, categoryProducts, categories]) => {
-      category.init({ categories })
       product.init({ featuredProducts, categoryProducts })
+      category.init({ categories })
       cart.init()
-      app.showCurrency()
       pagination.init()
+      app.showCurrency()
     })
   }
 }

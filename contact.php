@@ -27,30 +27,55 @@
                 <form id="contact-form">
                     <div class="form-group">
                         <label for="senderName">Name</label>
-                        <input type="text"
-                               name="senderName"
-                               id="senderName"
-                               class="form-control"
-                               required>
+                        <input
+                            class="form-control"
+                            type="text"
+                            name="senderName"
+                            id="senderName"
+                            data-validate
+                            data-required="Name is required"
+                            data-pattern="^[a-zA-Z ]+$"
+                            data-pattern-message="Invalid name format"
+                        />
                     </div>
                     <div class="form-group">
                         <label for="senderEmail">Email</label>
-                        <input type="email"
-                               name="senderEmail"
-                               id="senderEmail"
-                               class="form-control"
-                               required>
+                        <input
+                            class="form-control"
+                            type="text"
+                            name="senderEmail"
+                            id="senderEmail"
+                            data-validate
+                            data-required="Email is required"
+                            data-pattern="\S+@\S+\.\S+"
+                            data-pattern-message="Invalid email format"
+                        />
                     </div>
                     <div class="form-group">
-                        <label for="senderSubject">Title</label>
-                        <input type="text"
-                               name="senderSubject"
-                               id="senderSubject"
-                               class="form-control">
+                        <label for="senderSubject">Subject</label>
+                        <input
+                            type="text"
+                            name="senderSubject"
+                            id="senderSubject"
+                            class="form-control"
+                            data-validate
+                            data-required="Subject is required"
+                            data-pattern="^[a-z]{5,70}$"
+                            data-pattern-message="Subject must be between 5 and 70 characters"
+                        />
                     </div>
                     <div class="form-group">
                         <label for="senderMessage">Content</label>
-                        <textarea class="form-control" id="senderMessage" rows="3"></textarea>
+                        <textarea
+                            class="form-control"
+                            name="senderMessage"
+                            id="senderMessage"
+                            rows="3"
+                            data-validate
+                            data-required="Content message is required"
+                            data-pattern="^[a-z]{10,250}$"
+                            data-pattern-message="Content message must be between 10 and 250 characters"
+                        ></textarea>
                     </div>
 
                     <button type="submit" class="btn-add-to-cart-look d-flex justify-content-between">
@@ -63,7 +88,7 @@
                 <h6>Dermacare</h6>
                 <hr>
                 <p class="lh2">
-                    Adresa 312<br>
+                    Adresa 213a<br>
                     11000 Beograd<br>
                     marko.rusic.22.17@ict.edu.rs
                 </p>

@@ -5,11 +5,11 @@
 ?>
 
     <main id="about-me">
-		<div class="container pt-5">
+		<div class="container py-5">
     		<div class="content-wrapper flex-center-col">
 	            <img class="circle mb-2" src="https://avatars1.githubusercontent.com/u/25515080?s=460&amp;v=4" alt="Avatar photo of website author.">	           
 	            <p class="author-info">
-	                <span class="bold uc"> Marko Rusic</span>
+	                <span class="bold uc">Marko Rusic</span>
 	                </p><p><i class="fa fa-envelope-o" aria-hidden="true"></i> marko.rusic.22.17@ict.edu.rs</p>
 	                <p><i class="fa fa-id-card-o" aria-hidden="true"></i> Broj indeksa: 22/17</p>
 	            <p></p>

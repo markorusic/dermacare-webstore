@@ -1,3 +1,4 @@
+import { FormValidation } from '../../shared/utils'
 import productService from '../product/productService'
 import store from './store'
 import view from './view'
@@ -8,8 +9,8 @@ const { CART_PRODUCTS_LOADING, CART_PRODUCTS_LOADED, CART_UPDATED } = ACTIONS
 export default (() => {
   const isCartPage = window.location.pathname === '/cart.php'
 
+  let checkoutFormValidator = null
   let checkoutInProgress = false
-
   const $dom = {}
 
   function _initCart() {
@@ -22,6 +23,7 @@ export default (() => {
       if (isCartPage) {
         view.initialRender(cart)
         _cahceCartDom()
+        checkoutFormValidator = new FormValidation({ $form: $dom.checkoutForm })
         _bindCartEvents()
       }
     })
@@ -116,6 +118,9 @@ export default (() => {
   function _handleCheckout(event) {
     event.preventDefault()
     if (checkoutInProgress) {
+      return
+    }
+    if (!checkoutFormValidator.validate()) {
       return
     }
     checkoutInProgress = true

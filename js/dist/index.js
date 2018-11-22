@@ -339,6 +339,134 @@ var _default = function _default(data) {
 };
 
 exports.default = _default;
+},{}],"src/shared/utils/FormValidation.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+var selector = {
+  field: '[data-validate]',
+  errorPlaceholder: '.validation-error-placeholder'
+};
+var defaultRules = {
+  required: null,
+  pattern: '(.*?)',
+  patternMessage: ''
+};
+
+var extractField = function extractField(field) {
+  var $field = $(field);
+
+  var _$field$data = $field.data(),
+      validate = _$field$data.validate,
+      rules = _objectWithoutProperties(_$field$data, ["validate"]);
+
+  return {
+    rules: _objectSpread({}, defaultRules, rules),
+    $el: $field
+  };
+};
+
+var FormValidation =
+/*#__PURE__*/
+function () {
+  function FormValidation(_ref) {
+    var _this = this;
+
+    var $form = _ref.$form,
+        _ref$validateOnChange = _ref.validateOnChange,
+        validateOnChange = _ref$validateOnChange === void 0 ? true : _ref$validateOnChange;
+
+    _classCallCheck(this, FormValidation);
+
+    if (!$form) {
+      throw new Error('FormValidation constructor - Invalid $form');
+    }
+
+    this.$form = $form;
+    this.fields = this.$form.find(selector.field).toArray().map(extractField);
+
+    if (validateOnChange) {
+      this.fields.forEach(function (field) {
+        field.$el.on('change', function () {
+          _this.validateField(field);
+        });
+      });
+    }
+  }
+
+  _createClass(FormValidation, [{
+    key: "validate",
+    value: function validate() {
+      var fieldValidities = this.fields.map(this.validateField.bind(this));
+      return fieldValidities.every(function (v) {
+        return v;
+      });
+    }
+  }, {
+    key: "validateField",
+    value: function validateField(field) {
+      var errorMessages = [];
+      var rules = field.rules,
+          $el = field.$el;
+      var value = $el.val();
+
+      if (rules.required && !value) {
+        errorMessages.push(rules.required);
+      }
+
+      if (rules.pattern && !new RegExp(rules.pattern).test(value)) {
+        errorMessages.push(rules.patternMessage);
+      }
+
+      if (errorMessages.length > 0) {
+        this.showErrorMessage($el, errorMessages.join('<br />'));
+        return false;
+      }
+
+      this.removeErrorMessage($el);
+      return true;
+    }
+  }, {
+    key: "showErrorMessage",
+    value: function showErrorMessage($el, message) {
+      var $placeholder = $el.siblings(selector.errorPlaceholder).first();
+
+      if ($placeholder.length === 0) {
+        $el.after("<div class=\"".concat(selector.errorPlaceholder.slice(1), "\"></div>"));
+        $placeholder = $el.next();
+      }
+
+      $placeholder.html(message);
+    }
+  }, {
+    key: "removeErrorMessage",
+    value: function removeErrorMessage($el) {
+      $el.siblings(selector.errorPlaceholder).remove();
+    }
+  }]);
+
+  return FormValidation;
+}();
+
+exports.default = FormValidation;
 },{}],"src/shared/utils/toaster.js":[function(require,module,exports) {
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -522,6 +650,12 @@ Object.defineProperty(exports, "wait", {
     return _wait.default;
   }
 });
+Object.defineProperty(exports, "FormValidation", {
+  enumerable: true,
+  get: function () {
+    return _FormValidation.default;
+  }
+});
 Object.defineProperty(exports, "toaster", {
   enumerable: true,
   get: function () {
@@ -539,10 +673,12 @@ var _url = _interopRequireDefault(require("./url"));
 
 var _wait = _interopRequireDefault(require("./wait"));
 
+var _FormValidation = _interopRequireDefault(require("./FormValidation"));
+
 var _toaster = _interopRequireDefault(require("./toaster"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./EventEmitter":"src/shared/utils/EventEmitter.js","./View":"src/shared/utils/View.js","./pagination":"src/shared/utils/pagination.js","./url":"src/shared/utils/url.js","./wait":"src/shared/utils/wait.js","./toaster":"src/shared/utils/toaster.js"}],"src/mockup/products.json":[function(require,module,exports) {
+},{"./EventEmitter":"src/shared/utils/EventEmitter.js","./View":"src/shared/utils/View.js","./pagination":"src/shared/utils/pagination.js","./url":"src/shared/utils/url.js","./wait":"src/shared/utils/wait.js","./FormValidation":"src/shared/utils/FormValidation.js","./toaster":"src/shared/utils/toaster.js"}],"src/mockup/products.json":[function(require,module,exports) {
 module.exports = [{
   "id": 1,
   "name": "24k premium Gold Mask",
@@ -1095,6 +1231,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
+var _utils = require("../../shared/utils");
+
 var _productService = _interopRequireDefault(require("../product/productService"));
 
 var _store = _interopRequireDefault(require("./store"));
@@ -1111,6 +1249,7 @@ var CART_PRODUCTS_LOADING = _config.ACTIONS.CART_PRODUCTS_LOADING,
 
 var _default = function () {
   var isCartPage = window.location.pathname === '/cart.php';
+  var checkoutFormValidator = null;
   var checkoutInProgress = false;
   var $dom = {};
 
@@ -1126,6 +1265,10 @@ var _default = function () {
         _view.default.initialRender(cart);
 
         _cahceCartDom();
+
+        checkoutFormValidator = new _utils.FormValidation({
+          $form: $dom.checkoutForm
+        });
 
         _bindCartEvents();
       }
@@ -1233,6 +1376,10 @@ var _default = function () {
       return;
     }
 
+    if (!checkoutFormValidator.validate()) {
+      return;
+    }
+
     checkoutInProgress = true;
     var $form = $(event.target);
     var $btn = $form.find('button[type="submit"]');
@@ -1272,7 +1419,7 @@ var _default = function () {
 }();
 
 exports.default = _default;
-},{"../product/productService":"src/modules/product/productService.js","./store":"src/modules/cart/store.js","./view":"src/modules/cart/view.js","./config":"src/modules/cart/config.js"}],"src/modules/product/ordering.js":[function(require,module,exports) {
+},{"../../shared/utils":"src/shared/utils/index.js","../product/productService":"src/modules/product/productService.js","./store":"src/modules/cart/store.js","./view":"src/modules/cart/view.js","./config":"src/modules/cart/config.js"}],"src/modules/product/ordering.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1608,17 +1755,45 @@ var app = {
     });
   },
   initContactForm: function initContactForm() {
-    $('#contact-form').on('submit', function (event) {
+    var $form = $('#contact-form');
+    var validator = new _utils.FormValidation({
+      $form: $form
+    });
+    $form.on('submit', function (event) {
       event.preventDefault();
-      var $form = $(event.target);
+
+      if (!validator.validate()) {
+        return;
+      }
+
       var $btn = $form.find('button[type="submit"]');
       var $formWrapper = $form.parent();
       $btn.css({
         'pointer-events': 'none'
-      }).text('Molimo Vas da sačekate...');
+      }).text('Please wait...');
       (0, _utils.wait)({}, 1000).then(function () {
         $form.fadeOut(function () {
-          $formWrapper.html("<div><p class=\"font-size-21\">Thank you. You have successfully sent a message. Soon we'll answer.</p></div>");
+          $formWrapper.html("<div><p class=\"font-size-21\">Thank you. You have successfully sent a message. We'll answer soon.</p></div>");
+        });
+      });
+    });
+  },
+  initNewsletterForm: function initNewsletterForm() {
+    var $form = $('#newsletter-form');
+    var validator = new _utils.FormValidation({
+      $form: $form
+    });
+    $form.on('submit', function (event) {
+      event.preventDefault();
+
+      if (!validator.validate()) {
+        return;
+      }
+
+      var $formWrapper = $form.parent();
+      (0, _utils.wait)({}, 100).then(function () {
+        $form.fadeOut(function () {
+          $formWrapper.append("<div><p class=\"font-size-18 text-center\">You have successfully singed up for newsletter.</p></div>");
         });
       });
     });
@@ -1627,6 +1802,7 @@ var app = {
     $('.currency').text(_config.CURRENCY);
   },
   init: function init() {
+    app.initNewsletterForm();
     app.initContactForm();
     app.initVideoModal();
     app.load().then(function (_ref) {
@@ -1635,20 +1811,20 @@ var app = {
           categoryProducts = _ref2[1],
           categories = _ref2[2];
 
-      _modules.category.init({
-        categories: categories
-      });
-
       _modules.product.init({
         featuredProducts: featuredProducts,
         categoryProducts: categoryProducts
       });
 
+      _modules.category.init({
+        categories: categories
+      });
+
       _modules.cart.init();
 
-      app.showCurrency();
-
       _utils.pagination.init();
+
+      app.showCurrency();
     });
   }
 };

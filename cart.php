@@ -29,50 +29,80 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <!-- Modal body -->
                 <div class="modal-body position-relative">
-                    <form id="checkout-form" action="">
+                    <form id="checkout-form">
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text"
-                                   name="name"
-                                   id="name"
-                                   class="form-control"
-                                   required>
+                            <input
+                                type="text"
+                                name="name"
+                                id="name"
+                                class="form-control"
+                                data-validate
+                                data-required="Name is required"
+                                data-pattern="^[a-zA-Z ]+$"
+                                data-pattern-message="Invalid name format"
+                            />
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email"
-                                   name="email"
-                                   id="email"
-                                   class="form-control"
-                                   required>
+                            <input
+                                type="text"
+                                name="email"
+                                id="email"
+                                class="form-control"
+                                data-validate
+                                data-required="Email is required"
+                                data-pattern="\S+@\S+\.\S+"
+                                data-pattern-message="Invalid email format"
+                            />
                         </div>
                         <div class="form-group">
                             <label for="address">Address</label>
-                            <input type="text"
-                                   name="address"
-                                   id="address"
-                                   class="form-control"
-                                   required>
+                            <input
+                                type="text"
+                                name="address"
+                                id="address"
+                                class="form-control"
+                                data-validate
+                                data-required="Address is required"
+                                data-pattern="^[#.0-9a-zA-Z\s,-]+$"
+                                data-pattern-message="Invalid address format"
+                            />
                         </div>
                         <div class="form-group">
                             <label for="city">City</label>
-                            <input type="text"
-                                   name="city"
-                                   id="city"
-                                   class="form-control"
-                                   required>
+                            <input
+                                type="text"
+                                name="city"
+                                id="city"
+                                class="form-control"
+                                data-validate
+                                data-required="City is required"
+                                data-pattern="^([a-zA-Z\u0080-\u024F]+(?:. |-| |'))*[a-zA-Z\u0080-\u024F]*$"
+                                data-pattern-message="Invalid city name"
+                            />
                         </div>
                         <div class="form-group">
                             <label for="contact">Phone number</label>
-                            <input type="tel"
-                                   name="contact"
-                                   id="contact"
-                                   class="form-control"
-                                   required>
+                            <input
+                                type="tel"
+                                name="contact"
+                                id="contact"
+                                class="form-control"
+                                data-validate
+                                data-required="Phone number is required"
+                                data-pattern="^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$"
+                                data-pattern-message="Invalid phone number"
+                            />
                         </div>
                         <div class="form-group">
                             <label for="additionalInfo">Additional info</label>
-                            <textarea class="form-control" id="additionalInfo" name="additionalInfo" rows="3"></textarea>
+                            <textarea
+                                class="form-control"
+                                id="additionalInfo"
+                                name="additionalInfo"
+                                rows="3"
+                            ></textarea>
                         </div>
     
                         <button type="submit" class="btn-derma btn-add-to-cart-look d-flex justify-content-between">
