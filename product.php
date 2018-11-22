@@ -62,7 +62,7 @@
                             >
                             <div class="d-inline-block">
                                 <button data-product-id="<?= $product['id'] ?>" type="submit" class="btn-add-to-cart d-flex justify-content-between">
-                                    <span>Dodaj u korpu</span>
+                                    <span>Add to cart</span>
                                     <span class="btn-add-to-cart-plus"><img src="img/plus.svg" alt="Dodaj u korpu"></span>
                                 </button>
                             </div>
@@ -73,7 +73,7 @@
                     <hr>
 
                     <div class="product-description">
-                        <h4 class="mt-4 mb-4">Opis proizvoda</h4>
+                        <h4 class="mt-4 mb-4">Product description</h4>
                         <p><?= $product['description'] ?></p>
                     </div>
                 </div>

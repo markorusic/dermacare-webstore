@@ -29,14 +29,14 @@
     </div>
     <div class="container">
         <div class="product-filter d-flex flex-column justify-content-md-between flex-md-row num-of-showed-products">
-            <p>Prikazano <span class="currently-showing"></span> od ukupno <span class="total"></span> proizvoda</p>
+            <p>Shown <span class="currently-showing"></span> of total <span class="total"></span> products</p>
 
             <div>
                 <form class="product-ordering">
                     <select name="orderby" class="orderby">
-                        <option value="date" selected="selected">Sortiraj po datumu dodavanja</option>
-                        <option value="price">Sortiraj po ceni: od manje ka većoj</option>
-                        <option value="price-desc">Sortiraj po ceni: od veće ka manjoj</option>
+                        <option value="date" selected="selected">Sort by creation date</option>
+                        <option value="price">Sort by price: ascending</option>
+                        <option value="price-desc">Sort by price: descending</option>
                     </select>
                 </form>
             </div>
@@ -49,7 +49,7 @@
         <div class="container">
             <div class="row" id="product-list"></div>
             <div class="heading-wrap text-center lmb-wrap" style="display: none;">
-                <h3 class="d-inline-block bg-white"><a id="loadMore" class="load-more-btn">Učitaj još</a></h3>
+                <h3 class="d-inline-block bg-white"><a id="loadMore" class="load-more-btn">Show more</a></h3>
             </div>
         </div>
     </section>
