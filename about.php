@@ -17,11 +17,20 @@
 	            <div class="author-more-info text-center mt-3">
                     <p>Korisini linkovi:</p>
                     <div class="useful-links">
-                        <a href="https://github.com/markorusic" class="btn btn-derma" style="width: 250px;" target="_blank"> <i class="fa fa-github"></i> Github</a> 
-                        <a href="https://codepen.io/marko123/" class="btn btn-derma" style="width: 250px;" target="_blank"> <i class="fa fa-codepen"></i> Codepen</a> 
+                        <a href="https://github.com/markorusic" class="btn btn-derma" style="width: 250px;" target="_blank">
+							<i class="fa fa-github"></i> Github
+						</a> 
+                        <a href="https://codepen.io/marko123/" class="btn btn-derma" style="width: 250px;" target="_blank">
+							<i class="fa fa-codepen"></i> Codepen
+						</a> 
                     </div>
                     <hr>
-                    <p>Repozitorijum ovog sajta: <a class="repo black" href="https://github.com/markorusic/wp1" target="_blank">https://github.com/markorusic/wp1</a></p>
+                    <p>
+						Repozitorijum ovog sajta: <a class="repo black" href="https://github.com/markorusic/wp1" target="_blank">https://github.com/markorusic/wp1</a>
+					</p>
+					<p>
+						<a href="/dokumentacija.pdf" target="_blank">Dokumentacija sajta</a>
+					</p>
                 </div>
 	        </div>	        
     	</div>

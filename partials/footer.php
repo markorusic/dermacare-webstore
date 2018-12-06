@@ -55,7 +55,7 @@
     <div class="copyright">
         <div class="container text-center">
             <small class="text-center">
-                Dermacare© <?= date("Y") ?>.
+                Dermacare © <?= date("Y") ?>. <a href="/dokumentacija.pdf" target="_blank">Docs</a>
             </small>
             <p class="text-center">Site designed & developed by <a href="about.php">Marko Rusic</a></p>
         </div>

@@ -12,6 +12,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+main {
+  min-height: calc(100vh - 342px);
+}
+
 h1,
 .h1 {
   font-size: 20px;
@@ -608,9 +612,6 @@ input[type='number']::-webkit-inner-spin-button {
   margin-right: 5px;
 }
 
-.media-filter span.line-ver {
-}
-
 .media-filter a:last-of-type {
   margin-right: 0;
   margin-left: 5px;
@@ -674,7 +675,6 @@ input[type='number']::-webkit-inner-spin-button {
   line-height: 2;
 }
 
-/** cart **/
 .table > tbody > tr > td,
 .table > tfoot > tr > td {
   vertical-align: middle;
@@ -727,15 +727,6 @@ input[type='number']::-webkit-inner-spin-button {
   table#cart tfoot td .btn {
     display: block;
   }
-}
-
-.blog-img-preview {
-  width: 100%;
-  padding-bottom: 100%;
-  -webkit-background-size: cover;
-  background-size: cover;
-  background-position: center center;
-  border: 1px solid #cdcfd0;
 }
 
 .card-product-img {
@@ -845,31 +836,9 @@ input[type='number']::-webkit-inner-spin-button {
   background: #d4c00b; /* Gecko Browsers */
 }
 
-.blog {
-  margin-bottom: 50px;
-}
-
-.blog article h3 a {
-  font-size: 18px;
-  color: #231f20;
-}
-
-.blog article {
-  margin: 30px 0;
-}
-
 .read-more-btn {
   font-weight: 700;
   color: #231f20;
-}
-
-.blog article time {
-  font-style: italic;
-  color: #818086;
-}
-
-.blog article p {
-  line-height: 2;
 }
 
 /*========================================================================
@@ -972,14 +941,9 @@ input[type='number']::-webkit-inner-spin-button {
   padding: 0;
   list-style: none;
 }
-/* nemanja */
 #cart h4,
 .table > tbody > tr > td {
   border-top: none;
-}
-/* mr */
-main {
-  min-height: calc(100vh - 342px);
 }
 .font-size-18 {
   font-size: 18px;
