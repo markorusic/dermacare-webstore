@@ -222,6 +222,7 @@ header {
   background-image: url('/img/pattern.jpg');
   background-repeat: repeat;
   margin-bottom: 40px;
+  max-height: 255px;
 }
 
 .hr-line-heading {
