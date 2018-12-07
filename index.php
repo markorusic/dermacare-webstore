@@ -67,30 +67,21 @@
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <p class="text-center">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.
-                                Sed
-                                cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis
-                                sagittis ipsum.
+                                We have no regrets! Demacare did exactly what you said it does. I am completely blown away.
                             </p>
-                            <h6 class="text-center">Ana Popovic, 27 godina, Beograd</h6>
+                            <h6 class="text-center">Elizabeth H</h6>
                         </div>
                         <div class="carousel-item">
                             <p class="text-center">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.
-                                Sed
-                                cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis
-                                sagittis ipsum.
+                            I can't say enough about Demacare. I am so pleased with this product. Demacare is worth much more than I paid. I would like to personally thank you for your outstanding product.
                             </p>
-                            <h6 class="text-center">Ana Popovic, 27 godina, Beograd</h6>
+                            <h6 class="text-center">Romonda H</h6>
                         </div>
                         <div class="carousel-item">
                             <p class="text-center">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.
-                                Sed
-                                cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis
-                                sagittis ipsum.
+                                I will refer everyone I know. I don't know what else to say. We can't understand how we've been living without Demacare.
                             </p>
-                            <h6 class="text-center">Ana Popovic, 27 godina, Beograd</h6>
+                            <h6 class="text-center">Che X</h6>
                         </div>
                     </div>
 

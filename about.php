@@ -31,6 +31,9 @@
 					<p>
 						<a href="/dokumentacija.pdf" target="_blank">Dokumentacija sajta</a>
 					</p>
+					<p>
+						<a href="/sitemap.xml" target="_blank">Sitemap</a>
+					</p>
                 </div>
 	        </div>	        
     	</div>
