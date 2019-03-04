@@ -1,10 +1,9 @@
 # Veb programiranje projekat - Veb prodavnica
 
-
 ### Pokretanje
 
 ```sh
-$ git clone https://github.com/markorusic/wp1
+$ git clone https://github.com/markorusic/dermacare-webstore
 ```
 
 ```sh
@@ -34,7 +33,6 @@ Dev mode
 ```sh
 $ npm start
 ```
-
 
 Production mode
 

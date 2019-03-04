@@ -1,4 +1,4 @@
-import { wait, toaster, FormValidation, url, pagination } from './shared/utils'
+import { wait, FormValidation, url, pagination } from './shared/utils'
 import { product, cart, category } from './modules'
 import { CURRENCY } from './modules/cart/config'
 import productService from './modules/product/productService'

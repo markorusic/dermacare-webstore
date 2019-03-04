@@ -26,7 +26,7 @@
                     </div>
                     <hr>
                     <p>
-						Repozitorijum ovog sajta: <a class="repo black" href="https://github.com/markorusic/wp1" target="_blank">https://github.com/markorusic/wp1</a>
+						Repozitorijum ovog sajta: <a class="repo black" href="https://github.com/markorusic/dermacare-webstore" target="_blank">https://github.com/markorusic/dermacare-webstore</a>
 					</p>
 					<p>
 						<a href="/dokumentacija.pdf" target="_blank">Dokumentacija sajta</a>
