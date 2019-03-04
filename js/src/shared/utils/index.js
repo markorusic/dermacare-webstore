@@ -1,9 +1,7 @@
-import EventEmitter from './EventEmitter'
-import View from './View'
-import pagination from './pagination'
-import url from './url'
-import wait from './wait'
-import FormValidation from './FormValidation'
-import toaster from './toaster'
-
-export { EventEmitter, View, FormValidation, pagination, url, wait, toaster }
+export { default as EventEmitter } from './EventEmitter'
+export { default as View } from './View'
+export { default as pagination } from './pagination'
+export { default as url } from './url'
+export { default as wait } from './wait'
+export { default as FormValidation } from './FormValidation'
+export { default as toaster } from './toaster'

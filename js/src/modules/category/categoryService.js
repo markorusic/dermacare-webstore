@@ -1,6 +1,3 @@
-import categoriesData from '../../mockup/categories.json'
-import wait from '../../shared/utils/wait'
-
 export default {
-  fetchAll: () => wait(categoriesData)
+  fetchAll: () => fetch('/api/categories.json').then(res => res.json())
 }

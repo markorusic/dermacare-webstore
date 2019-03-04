@@ -10,7 +10,8 @@
     "category": {
       "name": "GLOW EDITION",
       "slug": "glow-edition"
-    }
+    },
+    "isFetured": true
   },
   {
     "id": 2,
@@ -23,7 +24,8 @@
     "category": {
       "name": "GLOW EDITION",
       "slug": "glow-edition"
-    }
+    },
+    "isFetured": true
   },
   {
     "id": 3,
@@ -36,7 +38,8 @@
     "category": {
       "name": "GLOW EDITION",
       "slug": "glow-edition"
-    }
+    },
+    "isFetured": true
   },
   {
     "id": 4,
@@ -49,7 +52,8 @@
     "category": {
       "name": "GLOW EDITION",
       "slug": "glow-edition"
-    }
+    },
+    "isFetured": true
   },
   {
     "id": 5,
@@ -62,7 +66,8 @@
     "category": {
       "name": "GLOW EDITION",
       "slug": "glow-edition"
-    }
+    },
+    "isFetured": true
   },
   {
     "id": 6,
@@ -75,7 +80,8 @@
     "category": {
       "name": "GLOW EDITION",
       "slug": "glow-edition"
-    }
+    },
+    "isFetured": true
   },
   {
     "id": 7,
@@ -88,7 +94,8 @@
     "category": {
       "name": "GLOW EDITION",
       "slug": "glow-edition"
-    }
+    },
+    "isFetured": true
   },
   {
     "id": 8,
@@ -101,7 +108,8 @@
     "category": {
       "name": "GLOW EDITION",
       "slug": "glow-edition"
-    }
+    },
+    "isFetured": true
   },
   {
     "id": 11,
@@ -114,7 +122,8 @@
     "category": {
       "name": "CLEAN & CLEAR",
       "slug": "clean-and-clear"
-    }
+    },
+    "isFetured": true
   },
   {
     "id": 12,
@@ -127,7 +136,8 @@
     "category": {
       "name": "CLEAN & CLEAR",
       "slug": "clean-and-clear"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 13,
@@ -140,7 +150,8 @@
     "category": {
       "name": "CLEAN & CLEAR",
       "slug": "clean-and-clear"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 14,
@@ -153,7 +164,8 @@
     "category": {
       "name": "CLEAN & CLEAR",
       "slug": "clean-and-clear"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 15,
@@ -166,7 +178,8 @@
     "category": {
       "name": "CLEAN & CLEAR",
       "slug": "clean-and-clear"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 16,
@@ -179,7 +192,8 @@
     "category": {
       "name": "CLEAN & CLEAR",
       "slug": "clean-and-clear"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 17,
@@ -192,7 +206,8 @@
     "category": {
       "name": "CLEAN & CLEAR",
       "slug": "clean-and-clear"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 18,
@@ -205,7 +220,8 @@
     "category": {
       "name": "CLEAN & CLEAR",
       "slug": "clean-and-clear"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 21,
@@ -218,7 +234,8 @@
     "category": {
       "name": "BOOST",
       "slug": "boost"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 22,
@@ -231,7 +248,8 @@
     "category": {
       "name": "BOOST",
       "slug": "boost"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 23,
@@ -244,7 +262,8 @@
     "category": {
       "name": "BOOST",
       "slug": "boost"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 24,
@@ -257,7 +276,8 @@
     "category": {
       "name": "BOOST",
       "slug": "boost"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 25,
@@ -270,7 +290,8 @@
     "category": {
       "name": "BOOST",
       "slug": "boost"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 26,
@@ -283,7 +304,8 @@
     "category": {
       "name": "BOOST",
       "slug": "boost"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 27,
@@ -296,7 +318,8 @@
     "category": {
       "name": "BOOST",
       "slug": "boost"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 28,
@@ -309,7 +332,8 @@
     "category": {
       "name": "BOOST",
       "slug": "boost"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 31,
@@ -322,7 +346,8 @@
     "category": {
       "name": "SKIN CARE",
       "slug": "skin-care"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 32,
@@ -335,7 +360,8 @@
     "category": {
       "name": "SKIN CARE",
       "slug": "skin-care"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 33,
@@ -348,7 +374,8 @@
     "category": {
       "name": "SKIN CARE",
       "slug": "skin-care"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 34,
@@ -361,7 +388,8 @@
     "category": {
       "name": "SKIN CARE",
       "slug": "skin-care"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 35,
@@ -374,7 +402,8 @@
     "category": {
       "name": "SKIN CARE",
       "slug": "skin-care"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 36,
@@ -387,7 +416,8 @@
     "category": {
       "name": "SKIN CARE",
       "slug": "skin-care"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 37,
@@ -400,7 +430,8 @@
     "category": {
       "name": "SKIN CARE",
       "slug": "skin-care"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 38,
@@ -413,7 +444,8 @@
     "category": {
       "name": "SKIN CARE",
       "slug": "skin-care"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 1,
@@ -426,7 +458,8 @@
     "category": {
       "name": "GLOW EDITION",
       "slug": "glow-edition"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 3,
@@ -439,7 +472,8 @@
     "category": {
       "name": "GLOW EDITION",
       "slug": "glow-edition"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 5,
@@ -452,7 +486,8 @@
     "category": {
       "name": "GLOW EDITION",
       "slug": "glow-edition"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 7,
@@ -465,7 +500,8 @@
     "category": {
       "name": "GLOW EDITION",
       "slug": "glow-edition"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 9,
@@ -478,7 +514,8 @@
     "category": {
       "name": "GLOW EDITION",
       "slug": "glow-edition"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 11,
@@ -491,7 +528,8 @@
     "category": {
       "name": "GLOW EDITION",
       "slug": "glow-edition"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 13,
@@ -504,7 +542,8 @@
     "category": {
       "name": "GLOW EDITION",
       "slug": "glow-edition"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 15,
@@ -517,7 +556,8 @@
     "category": {
       "name": "GLOW EDITION",
       "slug": "glow-edition"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 19,
@@ -530,7 +570,8 @@
     "category": {
       "name": "CLEAN & CLEAR",
       "slug": "clean-and-clear"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 21,
@@ -543,7 +584,8 @@
     "category": {
       "name": "CLEAN & CLEAR",
       "slug": "clean-and-clear"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 23,
@@ -556,7 +598,8 @@
     "category": {
       "name": "CLEAN & CLEAR",
       "slug": "clean-and-clear"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 25,
@@ -569,7 +612,8 @@
     "category": {
       "name": "CLEAN & CLEAR",
       "slug": "clean-and-clear"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 27,
@@ -582,7 +626,8 @@
     "category": {
       "name": "CLEAN & CLEAR",
       "slug": "clean-and-clear"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 29,
@@ -595,7 +640,8 @@
     "category": {
       "name": "CLEAN & CLEAR",
       "slug": "clean-and-clear"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 31,
@@ -608,7 +654,8 @@
     "category": {
       "name": "CLEAN & CLEAR",
       "slug": "clean-and-clear"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 33,
@@ -621,7 +668,8 @@
     "category": {
       "name": "CLEAN & CLEAR",
       "slug": "clean-and-clear"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 37,
@@ -634,7 +682,8 @@
     "category": {
       "name": "BOOST",
       "slug": "boost"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 39,
@@ -647,7 +696,8 @@
     "category": {
       "name": "BOOST",
       "slug": "boost"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 41,
@@ -660,7 +710,8 @@
     "category": {
       "name": "BOOST",
       "slug": "boost"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 43,
@@ -673,7 +724,8 @@
     "category": {
       "name": "BOOST",
       "slug": "boost"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 45,
@@ -686,7 +738,8 @@
     "category": {
       "name": "BOOST",
       "slug": "boost"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 47,
@@ -699,7 +752,8 @@
     "category": {
       "name": "BOOST",
       "slug": "boost"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 49,
@@ -712,7 +766,8 @@
     "category": {
       "name": "BOOST",
       "slug": "boost"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 51,
@@ -725,7 +780,8 @@
     "category": {
       "name": "BOOST",
       "slug": "boost"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 55,
@@ -738,7 +794,8 @@
     "category": {
       "name": "SKIN CARE",
       "slug": "skin-care"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 57,
@@ -751,7 +808,8 @@
     "category": {
       "name": "SKIN CARE",
       "slug": "skin-care"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 59,
@@ -764,7 +822,8 @@
     "category": {
       "name": "SKIN CARE",
       "slug": "skin-care"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 61,
@@ -777,7 +836,8 @@
     "category": {
       "name": "SKIN CARE",
       "slug": "skin-care"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 63,
@@ -790,7 +850,8 @@
     "category": {
       "name": "SKIN CARE",
       "slug": "skin-care"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 65,
@@ -803,7 +864,8 @@
     "category": {
       "name": "SKIN CARE",
       "slug": "skin-care"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 67,
@@ -816,7 +878,8 @@
     "category": {
       "name": "SKIN CARE",
       "slug": "skin-care"
-    }
+    },
+    "isFetured": false
   },
   {
     "id": 69,
@@ -829,6 +892,7 @@
     "category": {
       "name": "SKIN CARE",
       "slug": "skin-care"
-    }
+    },
+    "isFetured": false
   }
 ]

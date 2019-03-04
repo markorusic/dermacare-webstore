@@ -1,7 +1,7 @@
 <?php
 
-$products = json_decode(file_get_contents('js/src/mockup/products.json'), true);
-$categories = json_decode(file_get_contents('js/src/mockup/categories.json'), true);
+$products = json_decode(file_get_contents('api/products.json'), true);
+$categories = json_decode(file_get_contents('api/categories.json'), true);
 
 function findBySlug($slug, $items) {
   foreach ($items as $i => $item) {
