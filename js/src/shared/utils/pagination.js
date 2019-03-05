@@ -60,7 +60,7 @@ export default (() => {
       $dom.api.refreshAll()
       return $dom.all.length
     },
-    countAll() {
+    countHidden() {
       $dom.api.refreshHidden()
       return $dom.hidden.length
     },

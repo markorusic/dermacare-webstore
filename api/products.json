@@ -11,7 +11,7 @@
       "name": "GLOW EDITION",
       "slug": "glow-edition"
     },
-    "isFetured": true
+    "featured": true
   },
   {
     "id": 2,
@@ -25,7 +25,7 @@
       "name": "GLOW EDITION",
       "slug": "glow-edition"
     },
-    "isFetured": true
+    "featured": true
   },
   {
     "id": 3,
@@ -39,7 +39,7 @@
       "name": "GLOW EDITION",
       "slug": "glow-edition"
     },
-    "isFetured": true
+    "featured": true
   },
   {
     "id": 4,
@@ -53,7 +53,7 @@
       "name": "GLOW EDITION",
       "slug": "glow-edition"
     },
-    "isFetured": true
+    "featured": true
   },
   {
     "id": 5,
@@ -67,7 +67,7 @@
       "name": "GLOW EDITION",
       "slug": "glow-edition"
     },
-    "isFetured": true
+    "featured": true
   },
   {
     "id": 6,
@@ -81,7 +81,7 @@
       "name": "GLOW EDITION",
       "slug": "glow-edition"
     },
-    "isFetured": true
+    "featured": true
   },
   {
     "id": 7,
@@ -95,7 +95,7 @@
       "name": "GLOW EDITION",
       "slug": "glow-edition"
     },
-    "isFetured": true
+    "featured": true
   },
   {
     "id": 8,
@@ -109,7 +109,7 @@
       "name": "GLOW EDITION",
       "slug": "glow-edition"
     },
-    "isFetured": true
+    "featured": true
   },
   {
     "id": 11,
@@ -123,7 +123,7 @@
       "name": "CLEAN & CLEAR",
       "slug": "clean-and-clear"
     },
-    "isFetured": true
+    "featured": true
   },
   {
     "id": 12,
@@ -137,7 +137,7 @@
       "name": "CLEAN & CLEAR",
       "slug": "clean-and-clear"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 13,
@@ -151,7 +151,7 @@
       "name": "CLEAN & CLEAR",
       "slug": "clean-and-clear"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 14,
@@ -165,7 +165,7 @@
       "name": "CLEAN & CLEAR",
       "slug": "clean-and-clear"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 15,
@@ -179,7 +179,7 @@
       "name": "CLEAN & CLEAR",
       "slug": "clean-and-clear"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 16,
@@ -193,7 +193,7 @@
       "name": "CLEAN & CLEAR",
       "slug": "clean-and-clear"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 17,
@@ -207,7 +207,7 @@
       "name": "CLEAN & CLEAR",
       "slug": "clean-and-clear"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 18,
@@ -221,7 +221,7 @@
       "name": "CLEAN & CLEAR",
       "slug": "clean-and-clear"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 21,
@@ -235,7 +235,7 @@
       "name": "BOOST",
       "slug": "boost"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 22,
@@ -249,7 +249,7 @@
       "name": "BOOST",
       "slug": "boost"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 23,
@@ -263,7 +263,7 @@
       "name": "BOOST",
       "slug": "boost"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 24,
@@ -277,7 +277,7 @@
       "name": "BOOST",
       "slug": "boost"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 25,
@@ -291,7 +291,7 @@
       "name": "BOOST",
       "slug": "boost"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 26,
@@ -305,7 +305,7 @@
       "name": "BOOST",
       "slug": "boost"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 27,
@@ -319,7 +319,7 @@
       "name": "BOOST",
       "slug": "boost"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 28,
@@ -333,7 +333,7 @@
       "name": "BOOST",
       "slug": "boost"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 31,
@@ -347,7 +347,7 @@
       "name": "SKIN CARE",
       "slug": "skin-care"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 32,
@@ -361,7 +361,7 @@
       "name": "SKIN CARE",
       "slug": "skin-care"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 33,
@@ -375,7 +375,7 @@
       "name": "SKIN CARE",
       "slug": "skin-care"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 34,
@@ -389,7 +389,7 @@
       "name": "SKIN CARE",
       "slug": "skin-care"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 35,
@@ -403,7 +403,7 @@
       "name": "SKIN CARE",
       "slug": "skin-care"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 36,
@@ -417,7 +417,7 @@
       "name": "SKIN CARE",
       "slug": "skin-care"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 37,
@@ -431,7 +431,7 @@
       "name": "SKIN CARE",
       "slug": "skin-care"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 38,
@@ -445,7 +445,7 @@
       "name": "SKIN CARE",
       "slug": "skin-care"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 1,
@@ -459,7 +459,7 @@
       "name": "GLOW EDITION",
       "slug": "glow-edition"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 3,
@@ -473,7 +473,7 @@
       "name": "GLOW EDITION",
       "slug": "glow-edition"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 5,
@@ -487,7 +487,7 @@
       "name": "GLOW EDITION",
       "slug": "glow-edition"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 7,
@@ -501,7 +501,7 @@
       "name": "GLOW EDITION",
       "slug": "glow-edition"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 9,
@@ -515,7 +515,7 @@
       "name": "GLOW EDITION",
       "slug": "glow-edition"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 11,
@@ -529,7 +529,7 @@
       "name": "GLOW EDITION",
       "slug": "glow-edition"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 13,
@@ -543,7 +543,7 @@
       "name": "GLOW EDITION",
       "slug": "glow-edition"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 15,
@@ -557,7 +557,7 @@
       "name": "GLOW EDITION",
       "slug": "glow-edition"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 19,
@@ -571,7 +571,7 @@
       "name": "CLEAN & CLEAR",
       "slug": "clean-and-clear"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 21,
@@ -585,7 +585,7 @@
       "name": "CLEAN & CLEAR",
       "slug": "clean-and-clear"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 23,
@@ -599,7 +599,7 @@
       "name": "CLEAN & CLEAR",
       "slug": "clean-and-clear"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 25,
@@ -613,7 +613,7 @@
       "name": "CLEAN & CLEAR",
       "slug": "clean-and-clear"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 27,
@@ -627,7 +627,7 @@
       "name": "CLEAN & CLEAR",
       "slug": "clean-and-clear"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 29,
@@ -641,7 +641,7 @@
       "name": "CLEAN & CLEAR",
       "slug": "clean-and-clear"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 31,
@@ -655,7 +655,7 @@
       "name": "CLEAN & CLEAR",
       "slug": "clean-and-clear"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 33,
@@ -669,7 +669,7 @@
       "name": "CLEAN & CLEAR",
       "slug": "clean-and-clear"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 37,
@@ -683,7 +683,7 @@
       "name": "BOOST",
       "slug": "boost"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 39,
@@ -697,7 +697,7 @@
       "name": "BOOST",
       "slug": "boost"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 41,
@@ -711,7 +711,7 @@
       "name": "BOOST",
       "slug": "boost"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 43,
@@ -725,7 +725,7 @@
       "name": "BOOST",
       "slug": "boost"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 45,
@@ -739,7 +739,7 @@
       "name": "BOOST",
       "slug": "boost"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 47,
@@ -753,7 +753,7 @@
       "name": "BOOST",
       "slug": "boost"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 49,
@@ -767,7 +767,7 @@
       "name": "BOOST",
       "slug": "boost"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 51,
@@ -781,7 +781,7 @@
       "name": "BOOST",
       "slug": "boost"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 55,
@@ -795,7 +795,7 @@
       "name": "SKIN CARE",
       "slug": "skin-care"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 57,
@@ -809,7 +809,7 @@
       "name": "SKIN CARE",
       "slug": "skin-care"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 59,
@@ -823,7 +823,7 @@
       "name": "SKIN CARE",
       "slug": "skin-care"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 61,
@@ -837,7 +837,7 @@
       "name": "SKIN CARE",
       "slug": "skin-care"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 63,
@@ -851,7 +851,7 @@
       "name": "SKIN CARE",
       "slug": "skin-care"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 65,
@@ -865,7 +865,7 @@
       "name": "SKIN CARE",
       "slug": "skin-care"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 67,
@@ -879,7 +879,7 @@
       "name": "SKIN CARE",
       "slug": "skin-care"
     },
-    "isFetured": false
+    "featured": false
   },
   {
     "id": 69,
@@ -893,6 +893,6 @@
       "name": "SKIN CARE",
       "slug": "skin-care"
     },
-    "isFetured": false
+    "featured": false
   }
 ]

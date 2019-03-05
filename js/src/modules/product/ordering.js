@@ -23,10 +23,6 @@ export default (() => {
     $dom.ordering.on('change', _handleOrderingChange)
   }
 
-  function _getById(id) {
-    return $dom.root.find(`[data-product=${id}]`).get(0).outerHTML
-  }
-
   function _handleOrderingChange(event) {
     event.preventDefault()
     const orderBy = $(event.target).val()

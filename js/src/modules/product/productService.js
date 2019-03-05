@@ -47,7 +47,7 @@ export default {
   },
   fetchFeatured() {
     return this.fetchAll().then(products =>
-      products.filter(product => product.isFetured)
+      products.filter(product => product.featured)
     )
   },
   fetchByCategory(cateogrySlug) {
