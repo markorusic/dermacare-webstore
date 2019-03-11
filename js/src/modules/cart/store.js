@@ -17,15 +17,13 @@ export default {
       return
     }
 
-    const cartItemsIds = cartItems.map(item => item.id)
-
     this.eventBus.emit(ACTIONS.CART_PRODUCTS_LOADING)
 
     productService.fetchAll().then(products => {
       const productIds = products.map(({ id }) => id)
       cartItems = cartItems
         .filter(item => productIds.includes(item.id))
-        .map((item, index, cart) => {
+        .map(item => {
           const product = products.find(p => p.id === item.id)
           return {
             ...item,
@@ -45,18 +43,12 @@ export default {
     return this.cart.map(({ id, quantity }) => ({ id, quantity }))
   },
   countItems() {
-    return this.cart.reduce(
-      (currentValue, currentItem) => currentValue + currentItem.quantity,
-      0
-    )
+    return this.cart.reduce((acc, curr) => acc + curr.quantity, 0)
   },
   total() {
     return (
-      this.cart.reduce(
-        (currentValue, currentItem) =>
-          currentValue + currentItem.price * currentItem.quantity,
-        0
-      ) + SHIPPING_FEE
+      this.cart.reduce((acc, curr) => acc + curr.price * curr.quantity, 0) +
+      SHIPPING_FEE
     )
   },
   totalByProduct(id) {
